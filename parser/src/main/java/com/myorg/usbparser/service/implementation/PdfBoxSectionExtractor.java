@@ -30,18 +30,17 @@ public class PdfBoxSectionExtractor implements SectionExtractor {
     @Override
     public List<Section> parse(File pdfFile) throws IOException {
         List<Section> sections = new ArrayList<>();
-
         try (PDDocument document = PDDocument.load(pdfFile)) {
             PDFTextStripper stripper = new PDFTextStripper();
             int totalPages = document.getNumberOfPages();
 
+            // Fields that describe the currently parsing section
             Section currentSection = null;
             StringBuilder currentContent = new StringBuilder();
 
             for (int page = 1; page <= totalPages; page++) {
                 stripper.setStartPage(page);
                 stripper.setEndPage(page);
-
                 String text = stripper.getText(document);
                 String[] lines = text.split("\\r?\\n");
 
@@ -50,20 +49,31 @@ public class PdfBoxSectionExtractor implements SectionExtractor {
                     Matcher matcher = HEADING_PATTERN.matcher(trimmed);
 
                     if (matcher.matches()) {
-                        // ✅ Save previous section
+                        // finalize previous section (if any) by building a new immutable Section with content
                         if (currentSection != null) {
                             String content = currentContent.toString().trim();
                             if (content.isEmpty()) {
                                 content = "[No extractable text — section may contain only figures/tables]";
                             }
-                            currentSection.setContent(content);
-                            sections.add(currentSection);
+
+                            Section completed = Section.builder()
+                                    .docTitle(currentSection.getDocTitle())
+                                    .sectionId(currentSection.getSectionId())
+                                    .title(currentSection.getTitle())
+                                    .page(currentSection.getPage())
+                                    .level(currentSection.getLevel())
+                                    .parentId(currentSection.getParentId())
+                                    .fullPath(currentSection.getFullPath())
+                                    .tags(currentSection.getTags())
+                                    .content(content)
+                                    .build();
+
+                            sections.add(completed);
                             log.debug("✔ Saved section {} with {} chars of content",
-                                    currentSection.getSectionId(),
-                                    content.length());
+                                    completed.getSectionId(), content.length());
                         }
 
-                        // ✅ Start new section
+                        // Start new section
                         String sectionId = matcher.group(1).trim();
                         String title = matcher.group(2).trim();
                         int level = sectionId.split("\\.").length;
@@ -82,33 +92,44 @@ public class PdfBoxSectionExtractor implements SectionExtractor {
                                 .parentId(parentId)
                                 .fullPath(sectionId + " " + title)
                                 .tags(new ArrayList<>())
-                                .content("") // placeholder, will be filled
+                                .content("") // placeholder, content will be set when finalizing
                                 .build();
 
                         currentContent = new StringBuilder();
+
                     } else if (currentSection != null && !trimmed.isEmpty()) {
-                        // ✅ Add body text
+                        // Add body text
                         currentContent.append(trimmed).append(" ");
                     }
                 }
             }
 
-            // ✅ Save the last section
+            // finalize last section if present
             if (currentSection != null) {
                 String content = currentContent.toString().trim();
                 if (content.isEmpty()) {
                     content = "[No extractable text — section may contain only figures/tables]";
                 }
-                currentSection.setContent(content);
-                sections.add(currentSection);
+
+                Section completed = Section.builder()
+                        .docTitle(currentSection.getDocTitle())
+                        .sectionId(currentSection.getSectionId())
+                        .title(currentSection.getTitle())
+                        .page(currentSection.getPage())
+                        .level(currentSection.getLevel())
+                        .parentId(currentSection.getParentId())
+                        .fullPath(currentSection.getFullPath())
+                        .tags(currentSection.getTags())
+                        .content(content)
+                        .build();
+
+                sections.add(completed);
                 log.debug("✔ Saved final section {} with {} chars of content",
-                        currentSection.getSectionId(),
-                        content.length());
+                        completed.getSectionId(), content.length());
             }
         }
 
-        log.info("✅ Extracted {} sections (with content or placeholders) from {}",
-                sections.size(), pdfFile.getName());
+        log.info("✅ Extracted {} sections (with content or placeholders) from {}", sections.size(), pdfFile.getName());
         return sections;
     }
 }
