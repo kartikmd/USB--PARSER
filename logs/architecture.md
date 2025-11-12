@@ -1,71 +1,127 @@
 graph TD
 
-    %% Ingestion / Environment
+    %% Environment
     subgraph Environment
-        UserPC["💻 Developer / Runner\nInput: PDF file path or upload\nOutput: Triggers parsing run"]
-        CI["⚙️ CI / GitHub Actions\nInput: repo push\nOutput: runs tests & packaging"]
+        User["👤 User / Developer
+        Input: USB_PD_R3_2.pdf
+        Output: Runs parsing process"]
+
+        CLI["🖥️ CLI Runner
+        (UsbParserRunner / main)
+        Input: PDF path
+        Output: Triggers parsing & validation"]
+
+        API["🌐 Spring Boot API
+        (PdfParserController)
+        Input: Upload / API request
+        Output: JSON response or file output"]
     end
 
-    %% Software Components
-    subgraph Software
-        CLI["🖥️ CLI Runner\nUsbParserRunner / main()\nInput: PDF path\nTask: Orchestrate parse -> postprocess -> write"]
-        API["🌐 Spring Boot API\nPdfParserController (optional)\nInput: upload / URL\nTask: expose parse endpoint"]
-        PdfBox["📦 PDF Parser (PdfBoxSectionExtractor)\nInput: PDF bytes\nTask: extract text blocks & layout"]
-        ToC["🧭 ToC Extractor (PdfBoxTocExtractor)\nInput: front-matter text\nTask: parse ToC lines -> section_ids"]
-        SectionExt["📑 Section Extractor\nInput: page text & headings\nTask: split into Section objects"]
-        OCR["🔎 OCR Fallback (Tess4J/pytesseract)\nInput: image-only pages\nTask: recover text, mark source=\"ocr\""]
-        PostProc["🧼 SectionPostProcessor\nInput: raw Sections\nTask: clean titles, normalize, heuristics"]
-        Dedup["🔁 Deduplicator\nInput: Sections\nTask: chooseBest per section_id"]
-        JsonWriter["💾 JsonlWriter (Jackson)\nInput: Sections\nTask: write usb_pd_sections.jsonl"]
-        ToCWriter["🗂 ToC Writer\nTask: write usb_pd_toc.jsonl"]
-        Validator["✅ ExcelValidator (Apache POI)\nInput: ToC + Sections\nTask: validate, produce validation_report.xlsx"]
-        ReportGen["📊 Report Generator\nTask: build validation_report.xlsx"]
+    %% Core Parsing Engine
+    subgraph ParsingEngine
+        PdfBox["📦 PDF Parser (Apache PDFBox)
+        Input: PDF
+        Task: Extract text blocks, layout, and headings
+        Output: Raw text data"]
+
+        ToCExtractor["🧭 ToC Extractor (PdfBoxTocExtractor)
+        Input: Front-matter text
+        Task: Identify numbered section titles
+        Output: usb_pd_toc.jsonl"]
+
+        SectionExtractor["📑 Section Extractor (PdfBoxSectionExtractor)
+        Input: Text blocks
+        Task: Split PDF pages into sections
+        Output: Section objects"]
+
+        OCR["🔎 OCR Module (Tess4J)
+        Input: Image-only pages
+        Task: Extract text via OCR
+        Output: OCR text content"]
     end
 
-    %% Observability / Utilities
+    %% Processing Layer
+    subgraph ProcessingLayer
+        PostProcessor["🧼 SectionPostProcessor
+        Task: Clean titles, normalize section IDs,
+        remove unwanted text"]
+
+        Deduplicator["🔁 Deduplicator
+        Task: Keep best section per section_id"]
+
+        JsonWriter["💾 JsonlWriter (Jackson)
+        Task: Write usb_pd_sections.jsonl"]
+
+        Validator["✅ ExcelValidator (Apache POI)
+        Task: Compare ToC vs Sections,
+        Identify missing/extra entries"]
+
+        ReportGenerator["📊 Report Generator
+        Task: Create validation_report.xlsx"]
+    end
+
+    %% Observability
     subgraph Observability
-        Logger["📝 Logging (SLF4J + Logback)\nInput: events & errors\nTask: write to performance.log"]
-        Perf["📈 PerfProbe / PerfLogger\nTask: track time, pages/sec"]
-        README["📚 README & Docs\nTask: usage, architecture, notes"]
+        Logger["📝 Logger (SLF4J + Logback)
+        Input: Events & exceptions
+        Output: performance.log"]
+
+        Perf["📈 PerfProbe / PerfLogger
+        Task: Measure execution time,
+        memory, and throughput"]
+
+        README["📚 Documentation
+        Content: Architecture, Usage, Output details"]
     end
 
     %% Storage / Artifacts
     subgraph Storage
-        TOCFile["🗂 usb_pd_toc.jsonl\nContains: section_id, title, page, level, parent_id"]
-        SectionsFile["🗂 usb_pd_sections.jsonl\nContains: Section objects (content, page, full_path)"]
-        ValidationFile["🗂 validation_report.xlsx\nContains: ToC vs Sections validation"]
-        Logs["📄 performance.log\nContains: execution metrics, errors"]
-        RepoZip["📦 release.zip / repo\nContains: code + outputs + README"]
+        TOCFile["🗂 usb_pd_toc.jsonl
+        Stores: Table of Contents data"]
+
+        SectionsFile["🗂 usb_pd_sections.jsonl
+        Stores: Parsed section data"]
+
+        ValidationFile["🗂 validation_report.xlsx
+        Stores: Validation results (ToC ↔ Sections)"]
+
+        LogFile["📄 performance.log
+        Stores: Errors, warnings, and performance"]
+
+        Archive["📦 Project Repository / Release.zip
+        Includes: Code, outputs, README"]
     end
 
-    %% Connections / Flow
-    UserPC --> CLI
-    UserPC --> API
+    %% Connections
+    User --> CLI
+    User --> API
     CLI --> PdfBox
     API --> PdfBox
-    PdfBox --> ToC
-    PdfBox --> SectionExt
-    SectionExt --> OCR
-    OCR --> SectionExt
-    SectionExt --> PostProc
-    PostProc --> Dedup
-    Dedup --> JsonWriter
-    ToC --> ToCWriter
-    ToCWriter --> TOCFile
+    PdfBox --> ToCExtractor
+    PdfBox --> SectionExtractor
+    SectionExtractor --> OCR
+    OCR --> SectionExtractor
+    SectionExtractor --> PostProcessor
+    PostProcessor --> Deduplicator
+    Deduplicator --> JsonWriter
+    ToCExtractor --> TOCFile
     JsonWriter --> SectionsFile
-    ToCWriter --> Validator
+    ToCExtractor --> Validator
     JsonWriter --> Validator
-    Validator --> ReportGen
-    ReportGen --> ValidationFile
+    Validator --> ReportGenerator
+    ReportGenerator --> ValidationFile
 
-    %% Observability links
+    %% Logging / Observability Links
     PdfBox --> Logger
-    SectionExt --> Logger
+    SectionExtractor --> Logger
     Validator --> Logger
     JsonWriter --> Logger
-    Logger --> Logs
+    Logger --> LogFile
     Logger --> Perf
-    README --> RepoZip
-    TOCFile --> RepoZip
-    SectionsFile --> RepoZip
-    ValidationFile --> RepoZip
+
+    %% Final Artifacts
+    TOCFile --> Archive
+    SectionsFile --> Archive
+    ValidationFile --> Archive
+    LogFile --> Archive
+    README --> Archive
