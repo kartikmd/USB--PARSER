@@ -1,10 +1,14 @@
-graph TD
-%% Ingestion
-subgraph Ingestion
-PDF["📄 Input PDF\n(USB_PD_R3_2 V1.1.pdf)\nInput: spec PDF file"]
-CLI["🖥️ CLI / Runner\nUsbParserRunner / UsbPdParserApplication\nInput: file path\nTrigger: parsing run"]
-API["🌐 Spring Boot API\nPdfParserController\nInput: upload / URL\nOutput: parse request"]
-end
+# System Architecture Diagram
+
+```mermaid
+
+   graph TD
+    %% Ingestion
+    subgraph Ingestion
+        PDF["📄 Input PDF\n(USB_PD_R3_2 V1.1.pdf)\nInput: spec PDF file"]
+        CLI["🖥️ CLI / Runner\nUsbParserRunner / UsbPdParserApplication\nInput: file path\nTrigger: parsing run"]
+        API["🌐 Spring Boot API\nPdfParserController\nInput: upload / URL\nOutput: parse request"]
+    end
 
     %% Parsing
     subgraph Parsing
@@ -72,3 +76,4 @@ end
     JsonWriter --> Logger
     Logger --> Metrics
     README --> Artifacts
+
