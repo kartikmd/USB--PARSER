@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Use a dedicated logs folder rather than project root -->
+    <property name="LOG_DIR" value="logs" />
+    <property name="PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n"/>
+    <property name="MAX_HISTORY" value="30" />
+    <property name="MAX_FILE_SIZE" value="50MB" />
+
+    <!-- Performance rolling file: rotate daily + when size exceeds threshold -->
+    <appender name="PERF_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/performance.log</file>
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- daily files + size cap per day -->
+            <fileNamePattern>${LOG_DIR}/performance.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+            <maxHistory>${MAX_HISTORY}</maxHistory>
+            <maxFileSize>${MAX_FILE_SIZE}</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Console appender (useful for local dev) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- Async wrapper for perf-sensitive appenders (optional but recommended) -->
+    <appender name="ASYNC_PERF" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="PERF_FILE"/>
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>10240</queueSize>
+    </appender>
+
+    <!-- Package-level logger for your application (adjust level as needed) -->
+    <logger name="com.myorg.usbparser" level="INFO"/>
+
+    <!-- A dedicated logger name for performance messages if you want separation -->
+    <logger name="performance" level="INFO" additivity="false">
+        <appender-ref ref="ASYNC_PERF"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

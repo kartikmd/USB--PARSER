@@ -1,0 +1,456 @@
+2025-11-12 16:20:08.134 INFO  performance - Upload saved: 126 ms (Rate/FPS: 7.94), CPU: 8.42%, Memory: 67.60 MB, items=1
+2025-11-12 16:20:08.135 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 16:20:13.990 INFO  performance - ToC extracted: 5783 ms (Rate/FPS: 58.62), CPU: 23.66%, Memory: 414.39 MB, items=339
+2025-11-12 16:20:22.410 INFO  performance - Sections extracted: 8354 ms (Rate/FPS: 590.62), CPU: 15.68%, Memory: 264.19 MB, items=4934
+2025-11-12 16:20:22.652 INFO  performance - JSONL written: 174 ms (Rate/FPS: 30304.60), CPU: 15.68%, Memory: 280.24 MB, items=5273
+2025-11-12 16:20:24.812 INFO  performance - Validation report written: 2057 ms (Rate/FPS: 0.49), CPU: 23.30%, Memory: 439.97 MB, items=1
+2025-11-12 16:20:24.910 INFO  performance - Job complete: 17808 ms, CPU: 23.30%, Memory: 440.03 MB
+2025-11-12 16:48:06.858 INFO  performance - Upload saved: 140 ms (Rate/FPS: 7.14), CPU: 6.43%, Memory: 66.21 MB, items=1
+2025-11-12 16:48:06.860 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 16:48:12.950 INFO  performance - ToC extracted: 6014 ms (Rate/FPS: 56.37), CPU: 19.91%, Memory: 216.09 MB, items=339
+2025-11-12 16:48:22.998 INFO  performance - Sections extracted: 9970 ms (Rate/FPS: 494.88), CPU: 14.35%, Memory: 830.16 MB, items=4934
+2025-11-12 16:48:23.318 INFO  performance - JSONL written: 235 ms (Rate/FPS: 22438.30), CPU: 14.35%, Memory: 845.19 MB, items=5273
+2025-11-12 16:48:40.708 INFO  performance - Upload saved: 152 ms (Rate/FPS: 6.58), CPU: 2.12%, Memory: 430.38 MB, items=1
+2025-11-12 16:48:40.708 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 16:48:42.299 INFO  performance - ToC extracted: 1519 ms (Rate/FPS: 223.17), CPU: 16.08%, Memory: 792.92 MB, items=339
+2025-11-12 16:48:49.481 INFO  performance - Sections extracted: 7100 ms (Rate/FPS: 694.93), CPU: 10.96%, Memory: 924.94 MB, items=4934
+2025-11-12 16:48:49.597 INFO  performance - JSONL written: 48 ms (Rate/FPS: 109854.17), CPU: 10.96%, Memory: 933.10 MB, items=5273
+2025-11-12 16:48:50.029 INFO  performance - Validation report written: 358 ms (Rate/FPS: 2.79), CPU: 25.09%, Memory: 641.27 MB, items=1
+2025-11-12 16:48:50.096 INFO  performance - Job complete: 9545 ms, CPU: 25.09%, Memory: 641.29 MB
+2025-11-12 16:59:42.093 INFO  performance - Upload saved: 184 ms (Rate/FPS: 5.43), CPU: 6.16%, Memory: 67.41 MB, items=1
+2025-11-12 16:59:42.094 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 16:59:45.366 INFO  performance - ToC extracted: 3210 ms (Rate/FPS: 105.61), CPU: 25.01%, Memory: 253.92 MB, items=339
+2025-11-12 16:59:52.848 INFO  performance - Sections extracted: 7428 ms (Rate/FPS: 664.24), CPU: 11.94%, Memory: 358.53 MB, items=4934
+2025-11-12 16:59:53.064 INFO  performance - JSONL written: 166 ms (Rate/FPS: 31765.06), CPU: 11.94%, Memory: 371.50 MB, items=5273
+2025-11-12 16:59:54.723 INFO  performance - Validation report written: 1597 ms (Rate/FPS: 0.63), CPU: 17.62%, Memory: 532.23 MB, items=1
+2025-11-12 16:59:54.783 INFO  performance - Job complete: 13574 ms, CPU: 17.62%, Memory: 532.25 MB
+2025-11-12 17:15:08.318 INFO  performance - Upload saved: 154 ms (Rate/FPS: 6.49), CPU: 4.88%, Memory: 67.81 MB, items=1
+2025-11-12 17:15:08.319 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 17:15:12.803 INFO  performance - ToC extracted: 4406 ms (Rate/FPS: 76.94), CPU: 26.13%, Memory: 421.11 MB, items=339
+2025-11-12 17:15:22.418 INFO  performance - Sections extracted: 9539 ms (Rate/FPS: 517.24), CPU: 13.42%, Memory: 582.59 MB, items=4934
+2025-11-12 17:15:22.678 INFO  performance - JSONL written: 191 ms (Rate/FPS: 27607.33), CPU: 13.42%, Memory: 597.60 MB, items=5273
+2025-11-12 17:15:47.782 INFO  performance - Upload saved: 128 ms (Rate/FPS: 7.81), CPU: 5.17%, Memory: 67.54 MB, items=1
+2025-11-12 17:15:47.784 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 17:15:51.211 INFO  performance - ToC extracted: 3368 ms (Rate/FPS: 100.65), CPU: 33.08%, Memory: 450.43 MB, items=339
+2025-11-12 17:15:59.201 INFO  performance - Sections extracted: 7928 ms (Rate/FPS: 622.35), CPU: 13.14%, Memory: 672.24 MB, items=4934
+2025-11-12 17:15:59.457 INFO  performance - JSONL written: 193 ms (Rate/FPS: 27321.24), CPU: 13.14%, Memory: 686.33 MB, items=5273
+2025-11-12 17:16:01.083 INFO  performance - Validation report written: 1554 ms (Rate/FPS: 0.64), CPU: 20.64%, Memory: 849.18 MB, items=1
+2025-11-12 17:16:01.148 INFO  performance - Job complete: 14261 ms, CPU: 20.64%, Memory: 849.21 MB
+2025-11-12 17:47:03.161 INFO  performance - Upload saved: 163 ms (Rate/FPS: 6.13), CPU: 5.33%, Memory: 69.07 MB, items=1
+2025-11-12 17:47:03.162 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 17:47:06.745 INFO  performance - ToC extracted: 3484 ms (Rate/FPS: 90.13), CPU: 30.32%, Memory: 300.95 MB, items=314
+2025-11-12 17:47:14.726 INFO  performance - Sections extracted: 7917 ms (Rate/FPS: 617.91), CPU: 13.37%, Memory: 629.31 MB, items=4892
+2025-11-12 17:47:15.015 INFO  performance - JSONL written: 220 ms (Rate/FPS: 23663.64), CPU: 13.37%, Memory: 644.32 MB, items=5206
+2025-11-12 17:47:16.525 INFO  performance - Validation report written: 1443 ms (Rate/FPS: 0.69), CPU: 17.87%, Memory: 404.02 MB, items=1
+2025-11-12 17:47:16.582 INFO  performance - Job complete: 14231 ms, CPU: 17.87%, Memory: 405.03 MB
+2025-11-12 17:59:28.874 INFO  performance - Upload saved: 139 ms (Rate/FPS: 7.19), CPU: 6.74%, Memory: 68.07 MB, items=1
+2025-11-12 17:59:28.875 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 17:59:32.689 INFO  performance - ToC extracted: 3721 ms (Rate/FPS: 84.39), CPU: 28.41%, Memory: 590.15 MB, items=314
+2025-11-12 17:59:40.669 INFO  performance - Sections extracted: 7920 ms (Rate/FPS: 619.82), CPU: 12.53%, Memory: 590.39 MB, items=4909
+2025-11-12 17:59:40.933 INFO  performance - JSONL written: 203 ms (Rate/FPS: 25729.06), CPU: 12.53%, Memory: 605.44 MB, items=5223
+2025-11-12 17:59:53.328 INFO  performance - Upload saved: 129 ms (Rate/FPS: 7.75), CPU: 3.08%, Memory: 404.67 MB, items=1
+2025-11-12 17:59:53.328 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 17:59:54.871 INFO  performance - ToC extracted: 1488 ms (Rate/FPS: 211.02), CPU: 19.66%, Memory: 650.41 MB, items=314
+2025-11-12 18:00:02.585 INFO  performance - Sections extracted: 7653 ms (Rate/FPS: 641.45), CPU: 10.69%, Memory: 698.04 MB, items=4909
+2025-11-12 18:00:02.693 INFO  performance - JSONL written: 41 ms (Rate/FPS: 127390.24), CPU: 10.69%, Memory: 705.20 MB, items=5223
+2025-11-12 18:00:03.155 INFO  performance - Validation report written: 389 ms (Rate/FPS: 2.57), CPU: 24.23%, Memory: 791.49 MB, items=1
+2025-11-12 18:00:03.226 INFO  performance - Job complete: 10031 ms, CPU: 24.23%, Memory: 791.51 MB
+2025-11-12 18:09:11.121 INFO  performance - Upload saved: 145 ms (Rate/FPS: 6.90), CPU: 6.56%, Memory: 67.78 MB, items=1
+2025-11-12 18:09:11.122 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:09:15.510 INFO  performance - ToC extracted: 4289 ms (Rate/FPS: 73.21), CPU: 20.26%, Memory: 325.69 MB, items=314
+2025-11-12 18:09:23.985 INFO  performance - Sections extracted: 8412 ms (Rate/FPS: 583.57), CPU: 12.43%, Memory: 605.03 MB, items=4909
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=34 for section 1
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=53 for section 2
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=77 for section 3
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=78 for section 4
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=79 for section 5
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=34 for section 1
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=53 for section 2
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=77 for section 3
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=78 for section 4
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=79 for section 5
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=10 for section 116
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=34 for section 1
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=53 for section 2
+2025-11-12 18:09:23.987 INFO  performance - Fixed ToC entry: set page=77 for section 3
+2025-11-12 18:09:23.988 INFO  performance - Fixed ToC entry: set page=78 for section 4
+2025-11-12 18:09:23.988 INFO  performance - Fixed ToC entry: set page=79 for section 5
+2025-11-12 18:09:24.002 INFO  performance - Applied median page offset = 229 to parsed sections to align with ToC.
+2025-11-12 18:09:24.240 INFO  performance - JSONL written: 168 ms (Rate/FPS: 31089.29), CPU: 12.43%, Memory: 621.20 MB, items=5223
+2025-11-12 18:09:26.247 INFO  performance - Validation report written: 1916 ms (Rate/FPS: 0.52), CPU: 23.43%, Memory: 793.23 MB, items=1
+2025-11-12 18:09:26.322 INFO  performance - Job complete: 16073 ms, CPU: 23.43%, Memory: 793.28 MB
+2025-11-12 18:23:12.164 INFO  performance - Upload saved: 154 ms (Rate/FPS: 6.49), CPU: 6.42%, Memory: 67.03 MB, items=1
+2025-11-12 18:23:12.166 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:23:16.071 INFO  performance - ToC extracted: 3833 ms (Rate/FPS: 81.92), CPU: 21.97%, Memory: 478.84 MB, items=314
+2025-11-12 18:23:24.764 INFO  performance - Sections extracted: 8619 ms (Rate/FPS: 569.56), CPU: 12.79%, Memory: 582.44 MB, items=4909
+2025-11-12 18:23:24.775 INFO  performance - Chapter 1042: only 1 matched pairs (need 3), skipping
+2025-11-12 18:23:24.777 INFO  performance - Chapter 1: matchedPairs=13, medianOffset=24
+2025-11-12 18:23:24.778 INFO  performance - Chapter 2: matchedPairs=29, medianOffset=52
+2025-11-12 18:23:24.778 INFO  performance - Chapter 3: only 0 matched pairs (need 3), skipping
+2025-11-12 18:23:24.779 INFO  performance - Chapter 4: matchedPairs=4, medianOffset=64
+2025-11-12 18:23:24.779 INFO  performance - Chapter 1003: only 0 matched pairs (need 3), skipping
+2025-11-12 18:23:24.779 INFO  performance - Chapter 5: matchedPairs=22, medianOffset=77
+2025-11-12 18:23:24.780 INFO  performance - Chapter 116: only 0 matched pairs (need 3), skipping
+2025-11-12 18:23:24.781 INFO  performance - Chapter 6: matchedPairs=113, medianOffset=223
+2025-11-12 18:23:24.781 INFO  performance - Chapter 656: only 1 matched pairs (need 3), skipping
+2025-11-12 18:23:24.781 INFO  performance - Chapter 7: matchedPairs=39, medianOffset=318
+2025-11-12 18:23:24.782 INFO  performance - Chapter 8: matchedPairs=16, medianOffset=402
+2025-11-12 18:23:24.783 INFO  performance - Chapter 9: medianOffset 969 outside sane range, skipping
+2025-11-12 18:23:24.783 INFO  performance - Chapter 1009: only 0 matched pairs (need 3), skipping
+2025-11-12 18:23:24.784 INFO  performance - Chapter 10: medianOffset 978 outside sane range, skipping
+2025-11-12 18:23:24.784 INFO  performance - Applying offset 24 to chapter 1
+2025-11-12 18:23:24.786 INFO  performance - Applying offset 52 to chapter 2
+2025-11-12 18:23:24.788 INFO  performance - Applying offset 64 to chapter 4
+2025-11-12 18:23:24.790 INFO  performance - Applying offset 77 to chapter 5
+2025-11-12 18:23:24.792 INFO  performance - Applying offset 223 to chapter 6
+2025-11-12 18:23:24.794 INFO  performance - Applying offset 318 to chapter 7
+2025-11-12 18:23:24.796 INFO  performance - Applying offset 402 to chapter 8
+2025-11-12 18:23:24.801 INFO  performance - Sample matches for chapter 1: 1.1 -> toc:34 parsed:13 offset:21; 1.2 -> toc:35 parsed:13 offset:22; 1.2.1 -> toc:36 parsed:13 offset:23; 1.3 -> toc:36 parsed:13 offset:23; 1.4 -> toc:37 parsed:13 offset:24; 1.4.1 -> toc:37 parsed:13 offset:24; 1.4.2 -> toc:37 parsed:13 offset:24; 1.4.3 -> toc:38 parsed:13 offset:25; 1.5 -> toc:39 parsed:13 offset:26; 1.6 -> toc:40 parsed:13 offset:27; 1.7 -> toc:52 parsed:13 offset:39; 1.8 -> toc:52 parsed:13 offset:39; 1.9 -> toc:52 parsed:13 offset:39
+2025-11-12 18:23:24.801 INFO  performance - Sample matches for chapter 2: 2.1 -> toc:53 parsed:13 offset:40; 2.1.1 -> toc:53 parsed:13 offset:40; 2.1.2 -> toc:53 parsed:13 offset:40; 2.1.3 -> toc:54 parsed:13 offset:41; 2.2 -> toc:54 parsed:13 offset:41; 2.3 -> toc:55 parsed:13 offset:42; 2.4 -> toc:57 parsed:13 offset:44; 2.4.1 -> toc:57 parsed:13 offset:44; 2.4.2 -> toc:57 parsed:13 offset:44; 2.4.3 -> toc:57 parsed:13 offset:44; 2.4.4 -> toc:57 parsed:13 offset:44; 2.5 -> toc:59 parsed:13 offset:46; 2.5.1 -> toc:59 parsed:13 offset:46; 2.5.2 -> toc:62 parsed:13 offset:49; 2.5.3 -> toc:65 parsed:13 offset:52; 2.6 -> toc:66 parsed:13 offset:53; 2.6.1 -> toc:69 parsed:13 offset:56; 2.6.2 -> toc:70 parsed:13 offset:57; 2.6.3 -> toc:70 parsed:13 offset:57; 2.6.4 -> toc:71 parsed:13 offset:58; 2.6.5 -> toc:71 parsed:13 offset:58; 2.6.6 -> toc:72 parsed:14 offset:58; 2.6.7 -> toc:72 parsed:14 offset:58; 2.6.8 -> toc:72 parsed:14 offset:58; 2.7 -> toc:73 parsed:14 offset:59
+2025-11-12 18:23:24.801 INFO  performance - Sample matches for chapter 4: 4.1 -> toc:78 parsed:14 offset:64; 4.2 -> toc:78 parsed:14 offset:64; 4.3 -> toc:78 parsed:14 offset:64; 4.4 -> toc:78 parsed:14 offset:64
+2025-11-12 18:23:24.801 INFO  performance - Sample matches for chapter 5: 5.1 -> toc:79 parsed:14 offset:65; 5.2 -> toc:79 parsed:14 offset:65; 5.3 -> toc:80 parsed:14 offset:66; 5.4 -> toc:81 parsed:14 offset:67; 5.5 -> toc:83 parsed:14 offset:69; 5.6 -> toc:84 parsed:14 offset:70; 5.6.1 -> toc:84 parsed:14 offset:70; 5.6.2 -> toc:86 parsed:14 offset:72; 5.6.3 -> toc:89 parsed:14 offset:75; 5.6.4 -> toc:89 parsed:14 offset:75; 5.6.5 -> toc:90 parsed:14 offset:76; 5.7 -> toc:91 parsed:14 offset:77; 5.8 -> toc:92 parsed:14 offset:78; 5.8.1 -> toc:92 parsed:14 offset:78; 5.8.2 -> toc:96 parsed:14 offset:82; 5.8.3 -> toc:103 parsed:14 offset:89; 5.8.4 -> toc:105 parsed:14 offset:91; 5.8.5 -> toc:106 parsed:14 offset:92; 5.8.6 -> toc:110 parsed:14 offset:96; 5.9 -> toc:113 parsed:14 offset:99; 5.9.1 -> toc:113 parsed:14 offset:99; 5.9.2 -> toc:113 parsed:14 offset:99
+2025-11-12 18:23:24.801 INFO  performance - Sample matches for chapter 6: 6 -> toc:114 parsed:14 offset:100; 6.1 -> toc:114 parsed:14 offset:100; 6.2 -> toc:115 parsed:14 offset:101; 6.2.1 -> toc:115 parsed:14 offset:101; 6.3 -> toc:128 parsed:14 offset:114; 6.3.1 -> toc:129 parsed:14 offset:115; 6.3.2 -> toc:129 parsed:14 offset:115; 6.3.3 -> toc:129 parsed:14 offset:115; 6.3.4 -> toc:129 parsed:14 offset:115; 6.3.5 -> toc:130 parsed:14 offset:116; 6.3.6 -> toc:130 parsed:14 offset:116; 6.3.7 -> toc:131 parsed:14 offset:117; 6.3.8 -> toc:131 parsed:14 offset:117; 6.3.9 -> toc:131 parsed:15 offset:116; 6.3.10 -> toc:131 parsed:15 offset:116; 6.3.11 -> toc:132 parsed:15 offset:117; 6.3.12 -> toc:133 parsed:15 offset:118; 6.3.13 -> toc:134 parsed:15 offset:119; 6.3.14 -> toc:135 parsed:15 offset:120; 6.3.15 -> toc:135 parsed:15 offset:120; 6.3.16 -> toc:135 parsed:15 offset:120; 6.3.17 -> toc:136 parsed:15 offset:121; 6.3.18 -> toc:136 parsed:15 offset:121; 6.3.19 -> toc:136 parsed:15 offset:121; 6.3.20 -> toc:137 parsed:15 offset:122
+2025-11-12 18:23:24.801 INFO  performance - Sample matches for chapter 7: 7 -> toc:312 parsed:16 offset:296; 7.1 -> toc:312 parsed:16 offset:296; 7.1.1 -> toc:312 parsed:16 offset:296; 7.1.2 -> toc:312 parsed:16 offset:296; 7.1.3 -> toc:312 parsed:16 offset:296; 7.1.4 -> toc:313 parsed:16 offset:297; 7.1.5 -> toc:322 parsed:16 offset:306; 7.1.6 -> toc:323 parsed:16 offset:307; 7.1.7 -> toc:323 parsed:16 offset:307; 7.1.8 -> toc:325 parsed:16 offset:309; 7.1.9 -> toc:328 parsed:16 offset:312; 7.1.10 -> toc:328 parsed:16 offset:312; 7.1.11 -> toc:328 parsed:16 offset:312; 7.1.12 -> toc:329 parsed:16 offset:313; 7.1.13 -> toc:331 parsed:16 offset:315; 7.1.14 -> toc:332 parsed:17 offset:315; 7.1.15 -> toc:333 parsed:17 offset:316; 7.2 -> toc:335 parsed:17 offset:318; 7.2.1 -> toc:335 parsed:17 offset:318; 7.2.2 -> toc:335 parsed:17 offset:318; 7.2.3 -> toc:335 parsed:17 offset:318; 7.2.4 -> toc:336 parsed:17 offset:319; 7.2.5 -> toc:336 parsed:17 offset:319; 7.2.6 -> toc:336 parsed:17 offset:319; 7.2.7 -> toc:336 parsed:17 offset:319
+2025-11-12 18:23:24.801 INFO  performance - Sample matches for chapter 8: 8 -> toc:416 parsed:17 offset:399; 8.1 -> toc:416 parsed:17 offset:399; 8.2 -> toc:417 parsed:17 offset:400; 8.2.1 -> toc:418 parsed:17 offset:401; 8.2.2 -> toc:418 parsed:17 offset:401; 8.2.3 -> toc:419 parsed:17 offset:402; 8.2.4 -> toc:419 parsed:17 offset:402; 8.2.5 -> toc:420 parsed:17 offset:403; 8.2.6 -> toc:421 parsed:17 offset:404; 8.2.7 -> toc:423 parsed:17 offset:406; 8.3 -> toc:424 parsed:17 offset:407; 8.3.1 -> toc:424 parsed:17 offset:407; 8.3.2 -> toc:425 parsed:17 offset:408; 8.3.3 -> toc:822 parsed:17 offset:805; 8 -> toc:416 parsed:17 offset:399; 8 -> toc:416 parsed:17 offset:399
+2025-11-12 18:23:25.033 INFO  performance - JSONL written: 173 ms (Rate/FPS: 30190.75), CPU: 12.79%, Memory: 599.82 MB, items=5223
+2025-11-12 18:23:54.688 INFO  performance - Upload saved: 126 ms (Rate/FPS: 7.94), CPU: 6.78%, Memory: 68.53 MB, items=1
+2025-11-12 18:23:54.691 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:23:58.094 INFO  performance - ToC extracted: 3311 ms (Rate/FPS: 94.84), CPU: 28.70%, Memory: 217.94 MB, items=314
+2025-11-12 18:24:07.178 INFO  performance - Sections extracted: 9016 ms (Rate/FPS: 544.48), CPU: 13.42%, Memory: 536.44 MB, items=4909
+2025-11-12 18:24:07.188 INFO  performance - Chapter 1042: only 1 matched pairs (need 3), skipping
+2025-11-12 18:24:07.189 INFO  performance - Chapter 1: matchedPairs=13, medianOffset=24
+2025-11-12 18:24:07.190 INFO  performance - Chapter 2: matchedPairs=29, medianOffset=52
+2025-11-12 18:24:07.190 INFO  performance - Chapter 3: only 0 matched pairs (need 3), skipping
+2025-11-12 18:24:07.190 INFO  performance - Chapter 4: matchedPairs=4, medianOffset=64
+2025-11-12 18:24:07.190 INFO  performance - Chapter 1003: only 0 matched pairs (need 3), skipping
+2025-11-12 18:24:07.191 INFO  performance - Chapter 5: matchedPairs=22, medianOffset=77
+2025-11-12 18:24:07.191 INFO  performance - Chapter 116: only 0 matched pairs (need 3), skipping
+2025-11-12 18:24:07.192 INFO  performance - Chapter 6: matchedPairs=113, medianOffset=223
+2025-11-12 18:24:07.192 INFO  performance - Chapter 656: only 1 matched pairs (need 3), skipping
+2025-11-12 18:24:07.193 INFO  performance - Chapter 7: matchedPairs=39, medianOffset=318
+2025-11-12 18:24:07.194 INFO  performance - Chapter 8: matchedPairs=16, medianOffset=402
+2025-11-12 18:24:07.194 INFO  performance - Chapter 9: medianOffset 969 outside sane range, skipping
+2025-11-12 18:24:07.194 INFO  performance - Chapter 1009: only 0 matched pairs (need 3), skipping
+2025-11-12 18:24:07.195 INFO  performance - Chapter 10: medianOffset 978 outside sane range, skipping
+2025-11-12 18:24:07.195 INFO  performance - Applying offset 24 to chapter 1
+2025-11-12 18:24:07.196 INFO  performance - Applying offset 52 to chapter 2
+2025-11-12 18:24:07.199 INFO  performance - Applying offset 64 to chapter 4
+2025-11-12 18:24:07.201 INFO  performance - Applying offset 77 to chapter 5
+2025-11-12 18:24:07.203 INFO  performance - Applying offset 223 to chapter 6
+2025-11-12 18:24:07.205 INFO  performance - Applying offset 318 to chapter 7
+2025-11-12 18:24:07.207 INFO  performance - Applying offset 402 to chapter 8
+2025-11-12 18:24:07.209 INFO  performance - Sample matches for chapter 1: 1.1 -> toc:34 parsed:13 offset:21; 1.2 -> toc:35 parsed:13 offset:22; 1.2.1 -> toc:36 parsed:13 offset:23; 1.3 -> toc:36 parsed:13 offset:23; 1.4 -> toc:37 parsed:13 offset:24; 1.4.1 -> toc:37 parsed:13 offset:24; 1.4.2 -> toc:37 parsed:13 offset:24; 1.4.3 -> toc:38 parsed:13 offset:25; 1.5 -> toc:39 parsed:13 offset:26; 1.6 -> toc:40 parsed:13 offset:27; 1.7 -> toc:52 parsed:13 offset:39; 1.8 -> toc:52 parsed:13 offset:39; 1.9 -> toc:52 parsed:13 offset:39
+2025-11-12 18:24:07.210 INFO  performance - Sample matches for chapter 2: 2.1 -> toc:53 parsed:13 offset:40; 2.1.1 -> toc:53 parsed:13 offset:40; 2.1.2 -> toc:53 parsed:13 offset:40; 2.1.3 -> toc:54 parsed:13 offset:41; 2.2 -> toc:54 parsed:13 offset:41; 2.3 -> toc:55 parsed:13 offset:42; 2.4 -> toc:57 parsed:13 offset:44; 2.4.1 -> toc:57 parsed:13 offset:44; 2.4.2 -> toc:57 parsed:13 offset:44; 2.4.3 -> toc:57 parsed:13 offset:44; 2.4.4 -> toc:57 parsed:13 offset:44; 2.5 -> toc:59 parsed:13 offset:46; 2.5.1 -> toc:59 parsed:13 offset:46; 2.5.2 -> toc:62 parsed:13 offset:49; 2.5.3 -> toc:65 parsed:13 offset:52; 2.6 -> toc:66 parsed:13 offset:53; 2.6.1 -> toc:69 parsed:13 offset:56; 2.6.2 -> toc:70 parsed:13 offset:57; 2.6.3 -> toc:70 parsed:13 offset:57; 2.6.4 -> toc:71 parsed:13 offset:58; 2.6.5 -> toc:71 parsed:13 offset:58; 2.6.6 -> toc:72 parsed:14 offset:58; 2.6.7 -> toc:72 parsed:14 offset:58; 2.6.8 -> toc:72 parsed:14 offset:58; 2.7 -> toc:73 parsed:14 offset:59
+2025-11-12 18:24:07.210 INFO  performance - Sample matches for chapter 4: 4.1 -> toc:78 parsed:14 offset:64; 4.2 -> toc:78 parsed:14 offset:64; 4.3 -> toc:78 parsed:14 offset:64; 4.4 -> toc:78 parsed:14 offset:64
+2025-11-12 18:24:07.210 INFO  performance - Sample matches for chapter 5: 5.1 -> toc:79 parsed:14 offset:65; 5.2 -> toc:79 parsed:14 offset:65; 5.3 -> toc:80 parsed:14 offset:66; 5.4 -> toc:81 parsed:14 offset:67; 5.5 -> toc:83 parsed:14 offset:69; 5.6 -> toc:84 parsed:14 offset:70; 5.6.1 -> toc:84 parsed:14 offset:70; 5.6.2 -> toc:86 parsed:14 offset:72; 5.6.3 -> toc:89 parsed:14 offset:75; 5.6.4 -> toc:89 parsed:14 offset:75; 5.6.5 -> toc:90 parsed:14 offset:76; 5.7 -> toc:91 parsed:14 offset:77; 5.8 -> toc:92 parsed:14 offset:78; 5.8.1 -> toc:92 parsed:14 offset:78; 5.8.2 -> toc:96 parsed:14 offset:82; 5.8.3 -> toc:103 parsed:14 offset:89; 5.8.4 -> toc:105 parsed:14 offset:91; 5.8.5 -> toc:106 parsed:14 offset:92; 5.8.6 -> toc:110 parsed:14 offset:96; 5.9 -> toc:113 parsed:14 offset:99; 5.9.1 -> toc:113 parsed:14 offset:99; 5.9.2 -> toc:113 parsed:14 offset:99
+2025-11-12 18:24:07.210 INFO  performance - Sample matches for chapter 6: 6 -> toc:114 parsed:14 offset:100; 6.1 -> toc:114 parsed:14 offset:100; 6.2 -> toc:115 parsed:14 offset:101; 6.2.1 -> toc:115 parsed:14 offset:101; 6.3 -> toc:128 parsed:14 offset:114; 6.3.1 -> toc:129 parsed:14 offset:115; 6.3.2 -> toc:129 parsed:14 offset:115; 6.3.3 -> toc:129 parsed:14 offset:115; 6.3.4 -> toc:129 parsed:14 offset:115; 6.3.5 -> toc:130 parsed:14 offset:116; 6.3.6 -> toc:130 parsed:14 offset:116; 6.3.7 -> toc:131 parsed:14 offset:117; 6.3.8 -> toc:131 parsed:14 offset:117; 6.3.9 -> toc:131 parsed:15 offset:116; 6.3.10 -> toc:131 parsed:15 offset:116; 6.3.11 -> toc:132 parsed:15 offset:117; 6.3.12 -> toc:133 parsed:15 offset:118; 6.3.13 -> toc:134 parsed:15 offset:119; 6.3.14 -> toc:135 parsed:15 offset:120; 6.3.15 -> toc:135 parsed:15 offset:120; 6.3.16 -> toc:135 parsed:15 offset:120; 6.3.17 -> toc:136 parsed:15 offset:121; 6.3.18 -> toc:136 parsed:15 offset:121; 6.3.19 -> toc:136 parsed:15 offset:121; 6.3.20 -> toc:137 parsed:15 offset:122
+2025-11-12 18:24:07.210 INFO  performance - Sample matches for chapter 7: 7 -> toc:312 parsed:16 offset:296; 7.1 -> toc:312 parsed:16 offset:296; 7.1.1 -> toc:312 parsed:16 offset:296; 7.1.2 -> toc:312 parsed:16 offset:296; 7.1.3 -> toc:312 parsed:16 offset:296; 7.1.4 -> toc:313 parsed:16 offset:297; 7.1.5 -> toc:322 parsed:16 offset:306; 7.1.6 -> toc:323 parsed:16 offset:307; 7.1.7 -> toc:323 parsed:16 offset:307; 7.1.8 -> toc:325 parsed:16 offset:309; 7.1.9 -> toc:328 parsed:16 offset:312; 7.1.10 -> toc:328 parsed:16 offset:312; 7.1.11 -> toc:328 parsed:16 offset:312; 7.1.12 -> toc:329 parsed:16 offset:313; 7.1.13 -> toc:331 parsed:16 offset:315; 7.1.14 -> toc:332 parsed:17 offset:315; 7.1.15 -> toc:333 parsed:17 offset:316; 7.2 -> toc:335 parsed:17 offset:318; 7.2.1 -> toc:335 parsed:17 offset:318; 7.2.2 -> toc:335 parsed:17 offset:318; 7.2.3 -> toc:335 parsed:17 offset:318; 7.2.4 -> toc:336 parsed:17 offset:319; 7.2.5 -> toc:336 parsed:17 offset:319; 7.2.6 -> toc:336 parsed:17 offset:319; 7.2.7 -> toc:336 parsed:17 offset:319
+2025-11-12 18:24:07.210 INFO  performance - Sample matches for chapter 8: 8 -> toc:416 parsed:17 offset:399; 8.1 -> toc:416 parsed:17 offset:399; 8.2 -> toc:417 parsed:17 offset:400; 8.2.1 -> toc:418 parsed:17 offset:401; 8.2.2 -> toc:418 parsed:17 offset:401; 8.2.3 -> toc:419 parsed:17 offset:402; 8.2.4 -> toc:419 parsed:17 offset:402; 8.2.5 -> toc:420 parsed:17 offset:403; 8.2.6 -> toc:421 parsed:17 offset:404; 8.2.7 -> toc:423 parsed:17 offset:406; 8.3 -> toc:424 parsed:17 offset:407; 8.3.1 -> toc:424 parsed:17 offset:407; 8.3.2 -> toc:425 parsed:17 offset:408; 8.3.3 -> toc:822 parsed:17 offset:805; 8 -> toc:416 parsed:17 offset:399; 8 -> toc:416 parsed:17 offset:399
+2025-11-12 18:24:07.446 INFO  performance - JSONL written: 173 ms (Rate/FPS: 30190.75), CPU: 13.42%, Memory: 552.77 MB, items=5223
+2025-11-12 18:24:09.253 INFO  performance - Validation report written: 1715 ms (Rate/FPS: 0.58), CPU: 22.07%, Memory: 724.66 MB, items=1
+2025-11-12 18:24:09.335 INFO  performance - Job complete: 15406 ms, CPU: 22.07%, Memory: 724.73 MB
+2025-11-12 18:34:43.920 INFO  performance - Upload saved: 168 ms (Rate/FPS: 5.95), CPU: 6.82%, Memory: 67.08 MB, items=1
+2025-11-12 18:34:43.921 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:34:48.042 INFO  performance - ToC extracted: 4068 ms (Rate/FPS: 83.33), CPU: 29.50%, Memory: 257.33 MB, items=339
+2025-11-12 18:34:56.452 INFO  performance - Sections extracted: 8349 ms (Rate/FPS: 585.94), CPU: 12.49%, Memory: 537.58 MB, items=4892
+2025-11-12 18:34:56.463 INFO  performance - Chapter 1042: only 1 matched pairs (need 3), skipping
+2025-11-12 18:34:56.464 INFO  performance - Chapter 1: matchedPairs=15, medianOffset=25
+2025-11-12 18:34:56.465 INFO  performance - Chapter 2: matchedPairs=32, medianOffset=57
+2025-11-12 18:34:56.465 INFO  performance - Chapter 3: only 0 matched pairs (need 3), skipping
+2025-11-12 18:34:56.465 INFO  performance - Chapter 4: matchedPairs=4, medianOffset=64
+2025-11-12 18:34:56.465 INFO  performance - Chapter 1003: only 0 matched pairs (need 3), skipping
+2025-11-12 18:34:56.467 INFO  performance - Chapter 5: matchedPairs=22, medianOffset=77
+2025-11-12 18:34:56.467 INFO  performance - Chapter 116: only 0 matched pairs (need 3), skipping
+2025-11-12 18:34:56.468 INFO  performance - Chapter 6: matchedPairs=112, medianOffset=224
+2025-11-12 18:34:56.468 INFO  performance - Chapter 656: only 1 matched pairs (need 3), skipping
+2025-11-12 18:34:56.469 INFO  performance - Chapter 7: matchedPairs=39, medianOffset=318
+2025-11-12 18:34:56.470 INFO  performance - Chapter 8: matchedPairs=16, medianOffset=402
+2025-11-12 18:34:56.470 INFO  performance - Chapter 9: medianOffset 969 outside sane range, skipping
+2025-11-12 18:34:56.470 INFO  performance - Chapter 1009: only 0 matched pairs (need 3), skipping
+2025-11-12 18:34:56.471 INFO  performance - Chapter 10: medianOffset 978 outside sane range, skipping
+2025-11-12 18:34:56.471 INFO  performance - Applying offset 25 to chapter 1
+2025-11-12 18:34:56.474 INFO  performance - Applying offset 57 to chapter 2
+2025-11-12 18:34:56.477 INFO  performance - Applying offset 64 to chapter 4
+2025-11-12 18:34:56.479 INFO  performance - Applying offset 77 to chapter 5
+2025-11-12 18:34:56.482 INFO  performance - Applying offset 224 to chapter 6
+2025-11-12 18:34:56.484 INFO  performance - Applying offset 318 to chapter 7
+2025-11-12 18:34:56.486 INFO  performance - Applying offset 402 to chapter 8
+2025-11-12 18:34:56.490 INFO  performance - Sample matches for chapter 1: 1.0 -> toc:2012 parsed:413 offset:1599; 1.0 -> toc:2012 parsed:413 offset:1599; 1.0 -> toc:2013 parsed:413 offset:1600; 1.0 -> toc:2014 parsed:413 offset:1601; 1.1 -> toc:34 parsed:13 offset:21; 1.2 -> toc:35 parsed:13 offset:22; 1.2.1 -> toc:36 parsed:13 offset:23; 1.3 -> toc:36 parsed:13 offset:23; 1.4 -> toc:37 parsed:13 offset:24; 1.4.1 -> toc:37 parsed:13 offset:24; 1.4.2 -> toc:37 parsed:13 offset:24; 1.4.3 -> toc:38 parsed:13 offset:25; 1.5 -> toc:39 parsed:13 offset:26; 1.6 -> toc:40 parsed:13 offset:27; 1.7 -> toc:52 parsed:13 offset:39
+2025-11-12 18:34:56.490 INFO  performance - Sample matches for chapter 2: 2.0 -> toc:2014 parsed:1034 offset:980; 2.0 -> toc:2015 parsed:1034 offset:981; 2.0 -> toc:2016 parsed:1034 offset:982; 2.0 -> toc:2017 parsed:1034 offset:983; 2.1 -> toc:53 parsed:13 offset:40; 2.1.1 -> toc:53 parsed:13 offset:40; 2.1.2 -> toc:53 parsed:13 offset:40; 2.1.3 -> toc:54 parsed:13 offset:41; 2.3 -> toc:55 parsed:13 offset:42; 2.4 -> toc:57 parsed:13 offset:44; 2.4.1 -> toc:57 parsed:13 offset:44; 2.4.2 -> toc:57 parsed:13 offset:44; 2.4.3 -> toc:57 parsed:13 offset:44; 2.4.4 -> toc:57 parsed:13 offset:44; 2.5 -> toc:59 parsed:13 offset:46; 2.5.1 -> toc:59 parsed:13 offset:46; 2.5.2 -> toc:62 parsed:13 offset:49; 2.5.3 -> toc:65 parsed:13 offset:52; 2.6 -> toc:66 parsed:13 offset:53; 2.6.1 -> toc:69 parsed:13 offset:56; 2.6.2 -> toc:70 parsed:13 offset:57; 2.6.3 -> toc:70 parsed:13 offset:57; 2.6.4 -> toc:71 parsed:13 offset:58; 2.6.5 -> toc:71 parsed:13 offset:58; 2.6.6 -> toc:72 parsed:14 offset:58
+2025-11-12 18:34:56.490 INFO  performance - Sample matches for chapter 4: 4.1 -> toc:78 parsed:14 offset:64; 4.2 -> toc:78 parsed:14 offset:64; 4.3 -> toc:78 parsed:14 offset:64; 4.4 -> toc:78 parsed:14 offset:64
+2025-11-12 18:34:56.491 INFO  performance - Sample matches for chapter 5: 5.1 -> toc:79 parsed:14 offset:65; 5.2 -> toc:79 parsed:14 offset:65; 5.3 -> toc:80 parsed:14 offset:66; 5.4 -> toc:81 parsed:14 offset:67; 5.5 -> toc:83 parsed:14 offset:69; 5.6 -> toc:84 parsed:14 offset:70; 5.6.1 -> toc:84 parsed:14 offset:70; 5.6.2 -> toc:86 parsed:14 offset:72; 5.6.3 -> toc:89 parsed:14 offset:75; 5.6.4 -> toc:89 parsed:14 offset:75; 5.6.5 -> toc:90 parsed:14 offset:76; 5.7 -> toc:91 parsed:14 offset:77; 5.8 -> toc:92 parsed:14 offset:78; 5.8.1 -> toc:92 parsed:14 offset:78; 5.8.2 -> toc:96 parsed:14 offset:82; 5.8.3 -> toc:103 parsed:14 offset:89; 5.8.4 -> toc:105 parsed:14 offset:91; 5.8.5 -> toc:106 parsed:14 offset:92; 5.8.6 -> toc:110 parsed:14 offset:96; 5.9 -> toc:113 parsed:14 offset:99; 5.9.1 -> toc:113 parsed:14 offset:99; 5.9.2 -> toc:113 parsed:14 offset:99
+2025-11-12 18:34:56.491 INFO  performance - Sample matches for chapter 6: 6 -> toc:114 parsed:14 offset:100; 6.1 -> toc:114 parsed:14 offset:100; 6.2 -> toc:115 parsed:14 offset:101; 6.2.1 -> toc:115 parsed:14 offset:101; 6.3 -> toc:128 parsed:14 offset:114; 6.3.1 -> toc:129 parsed:14 offset:115; 6.3.2 -> toc:129 parsed:14 offset:115; 6.3.3 -> toc:129 parsed:14 offset:115; 6.3.4 -> toc:129 parsed:14 offset:115; 6.3.5 -> toc:130 parsed:14 offset:116; 6.3.6 -> toc:130 parsed:14 offset:116; 6.3.7 -> toc:131 parsed:14 offset:117; 6.3.8 -> toc:131 parsed:14 offset:117; 6.3.9 -> toc:131 parsed:15 offset:116; 6.3.10 -> toc:131 parsed:15 offset:116; 6.3.11 -> toc:132 parsed:15 offset:117; 6.3.12 -> toc:133 parsed:15 offset:118; 6.3.13 -> toc:134 parsed:15 offset:119; 6.3.14 -> toc:135 parsed:15 offset:120; 6.3.15 -> toc:135 parsed:15 offset:120; 6.3.16 -> toc:135 parsed:15 offset:120; 6.3.17 -> toc:136 parsed:15 offset:121; 6.3.18 -> toc:136 parsed:15 offset:121; 6.3.19 -> toc:136 parsed:15 offset:121; 6.3.20 -> toc:137 parsed:15 offset:122
+2025-11-12 18:34:56.491 INFO  performance - Sample matches for chapter 7: 7 -> toc:312 parsed:16 offset:296; 7.1 -> toc:312 parsed:16 offset:296; 7.1.1 -> toc:312 parsed:16 offset:296; 7.1.2 -> toc:312 parsed:16 offset:296; 7.1.3 -> toc:312 parsed:16 offset:296; 7.1.4 -> toc:313 parsed:16 offset:297; 7.1.5 -> toc:322 parsed:16 offset:306; 7.1.6 -> toc:323 parsed:16 offset:307; 7.1.7 -> toc:323 parsed:16 offset:307; 7.1.8 -> toc:325 parsed:16 offset:309; 7.1.9 -> toc:328 parsed:16 offset:312; 7.1.10 -> toc:328 parsed:16 offset:312; 7.1.11 -> toc:328 parsed:16 offset:312; 7.1.12 -> toc:329 parsed:16 offset:313; 7.1.13 -> toc:331 parsed:16 offset:315; 7.1.14 -> toc:332 parsed:17 offset:315; 7.1.15 -> toc:333 parsed:17 offset:316; 7.2 -> toc:335 parsed:17 offset:318; 7.2.1 -> toc:335 parsed:17 offset:318; 7.2.2 -> toc:335 parsed:17 offset:318; 7.2.3 -> toc:335 parsed:17 offset:318; 7.2.4 -> toc:336 parsed:17 offset:319; 7.2.5 -> toc:336 parsed:17 offset:319; 7.2.6 -> toc:336 parsed:17 offset:319; 7.2.7 -> toc:336 parsed:17 offset:319
+2025-11-12 18:34:56.491 INFO  performance - Sample matches for chapter 8: 8 -> toc:416 parsed:17 offset:399; 8.1 -> toc:416 parsed:17 offset:399; 8.2 -> toc:417 parsed:17 offset:400; 8.2.1 -> toc:418 parsed:17 offset:401; 8.2.2 -> toc:418 parsed:17 offset:401; 8.2.3 -> toc:419 parsed:17 offset:402; 8.2.4 -> toc:419 parsed:17 offset:402; 8.2.5 -> toc:420 parsed:17 offset:403; 8.2.6 -> toc:421 parsed:17 offset:404; 8.2.7 -> toc:423 parsed:17 offset:406; 8.3 -> toc:424 parsed:17 offset:407; 8.3.1 -> toc:424 parsed:17 offset:407; 8.3.2 -> toc:425 parsed:17 offset:408; 8.3.3 -> toc:822 parsed:17 offset:805; 8 -> toc:416 parsed:17 offset:399; 8 -> toc:416 parsed:17 offset:399
+2025-11-12 18:34:56.737 INFO  performance - JSONL written: 177 ms (Rate/FPS: 29553.67), CPU: 12.49%, Memory: 554.91 MB, items=5231
+2025-11-12 18:34:58.517 INFO  performance - Validation report written: 1715 ms (Rate/FPS: 0.58), CPU: 15.75%, Memory: 329.68 MB, items=1
+2025-11-12 18:34:58.574 INFO  performance - Job complete: 15533 ms, CPU: 15.75%, Memory: 329.71 MB
+2025-11-12 18:37:16.691 INFO  performance - Upload saved: 151 ms (Rate/FPS: 6.62), CPU: 6.21%, Memory: 67.40 MB, items=1
+2025-11-12 18:37:16.693 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:37:20.621 INFO  performance - ToC extracted: 3856 ms (Rate/FPS: 81.43), CPU: 25.83%, Memory: 253.64 MB, items=314
+2025-11-12 18:37:29.336 INFO  performance - Sections extracted: 8607 ms (Rate/FPS: 568.37), CPU: 12.02%, Memory: 600.88 MB, items=4892
+2025-11-12 18:37:29.350 INFO  performance - Chapter 1042: only 1 matched pairs (need 3), skipping
+2025-11-12 18:37:29.352 INFO  performance - Chapter 1: matchedPairs=11, medianOffset=24
+2025-11-12 18:37:29.353 INFO  performance - Chapter 2: matchedPairs=28, medianOffset=53
+2025-11-12 18:37:29.353 INFO  performance - Chapter 3: only 0 matched pairs (need 3), skipping
+2025-11-12 18:37:29.353 INFO  performance - Chapter 4: matchedPairs=4, medianOffset=64
+2025-11-12 18:37:29.353 INFO  performance - Chapter 1003: only 0 matched pairs (need 3), skipping
+2025-11-12 18:37:29.354 INFO  performance - Chapter 5: matchedPairs=22, medianOffset=77
+2025-11-12 18:37:29.354 INFO  performance - Chapter 116: only 0 matched pairs (need 3), skipping
+2025-11-12 18:37:29.355 INFO  performance - Chapter 6: matchedPairs=112, medianOffset=224
+2025-11-12 18:37:29.355 INFO  performance - Chapter 656: only 1 matched pairs (need 3), skipping
+2025-11-12 18:37:29.356 INFO  performance - Chapter 7: matchedPairs=39, medianOffset=318
+2025-11-12 18:37:29.357 INFO  performance - Chapter 8: matchedPairs=16, medianOffset=402
+2025-11-12 18:37:29.357 INFO  performance - Chapter 9: medianOffset 969 outside sane range, skipping
+2025-11-12 18:37:29.357 INFO  performance - Chapter 1009: only 0 matched pairs (need 3), skipping
+2025-11-12 18:37:29.358 INFO  performance - Chapter 10: medianOffset 978 outside sane range, skipping
+2025-11-12 18:37:29.358 INFO  performance - Applying offset 24 to chapter 1
+2025-11-12 18:37:29.360 INFO  performance - Applying offset 53 to chapter 2
+2025-11-12 18:37:29.363 INFO  performance - Applying offset 64 to chapter 4
+2025-11-12 18:37:29.365 INFO  performance - Applying offset 77 to chapter 5
+2025-11-12 18:37:29.367 INFO  performance - Applying offset 224 to chapter 6
+2025-11-12 18:37:29.368 INFO  performance - Applying offset 318 to chapter 7
+2025-11-12 18:37:29.370 INFO  performance - Applying offset 402 to chapter 8
+2025-11-12 18:37:29.373 INFO  performance - Sample matches for chapter 1: 1.1 -> toc:34 parsed:13 offset:21; 1.2 -> toc:35 parsed:13 offset:22; 1.2.1 -> toc:36 parsed:13 offset:23; 1.3 -> toc:36 parsed:13 offset:23; 1.4 -> toc:37 parsed:13 offset:24; 1.4.1 -> toc:37 parsed:13 offset:24; 1.4.2 -> toc:37 parsed:13 offset:24; 1.4.3 -> toc:38 parsed:13 offset:25; 1.5 -> toc:39 parsed:13 offset:26; 1.6 -> toc:40 parsed:13 offset:27; 1.7 -> toc:52 parsed:13 offset:39
+2025-11-12 18:37:29.373 INFO  performance - Sample matches for chapter 2: 2.1 -> toc:53 parsed:13 offset:40; 2.1.1 -> toc:53 parsed:13 offset:40; 2.1.2 -> toc:53 parsed:13 offset:40; 2.1.3 -> toc:54 parsed:13 offset:41; 2.3 -> toc:55 parsed:13 offset:42; 2.4 -> toc:57 parsed:13 offset:44; 2.4.1 -> toc:57 parsed:13 offset:44; 2.4.2 -> toc:57 parsed:13 offset:44; 2.4.3 -> toc:57 parsed:13 offset:44; 2.4.4 -> toc:57 parsed:13 offset:44; 2.5 -> toc:59 parsed:13 offset:46; 2.5.1 -> toc:59 parsed:13 offset:46; 2.5.2 -> toc:62 parsed:13 offset:49; 2.5.3 -> toc:65 parsed:13 offset:52; 2.6 -> toc:66 parsed:13 offset:53; 2.6.1 -> toc:69 parsed:13 offset:56; 2.6.2 -> toc:70 parsed:13 offset:57; 2.6.3 -> toc:70 parsed:13 offset:57; 2.6.4 -> toc:71 parsed:13 offset:58; 2.6.5 -> toc:71 parsed:13 offset:58; 2.6.6 -> toc:72 parsed:14 offset:58; 2.6.7 -> toc:72 parsed:14 offset:58; 2.6.8 -> toc:72 parsed:14 offset:58; 2.7 -> toc:73 parsed:14 offset:59; 2.8 -> toc:75 parsed:14 offset:61
+2025-11-12 18:37:29.373 INFO  performance - Sample matches for chapter 4: 4.1 -> toc:78 parsed:14 offset:64; 4.2 -> toc:78 parsed:14 offset:64; 4.3 -> toc:78 parsed:14 offset:64; 4.4 -> toc:78 parsed:14 offset:64
+2025-11-12 18:37:29.373 INFO  performance - Sample matches for chapter 5: 5.1 -> toc:79 parsed:14 offset:65; 5.2 -> toc:79 parsed:14 offset:65; 5.3 -> toc:80 parsed:14 offset:66; 5.4 -> toc:81 parsed:14 offset:67; 5.5 -> toc:83 parsed:14 offset:69; 5.6 -> toc:84 parsed:14 offset:70; 5.6.1 -> toc:84 parsed:14 offset:70; 5.6.2 -> toc:86 parsed:14 offset:72; 5.6.3 -> toc:89 parsed:14 offset:75; 5.6.4 -> toc:89 parsed:14 offset:75; 5.6.5 -> toc:90 parsed:14 offset:76; 5.7 -> toc:91 parsed:14 offset:77; 5.8 -> toc:92 parsed:14 offset:78; 5.8.1 -> toc:92 parsed:14 offset:78; 5.8.2 -> toc:96 parsed:14 offset:82; 5.8.3 -> toc:103 parsed:14 offset:89; 5.8.4 -> toc:105 parsed:14 offset:91; 5.8.5 -> toc:106 parsed:14 offset:92; 5.8.6 -> toc:110 parsed:14 offset:96; 5.9 -> toc:113 parsed:14 offset:99; 5.9.1 -> toc:113 parsed:14 offset:99; 5.9.2 -> toc:113 parsed:14 offset:99
+2025-11-12 18:37:29.373 INFO  performance - Sample matches for chapter 6: 6 -> toc:114 parsed:14 offset:100; 6.1 -> toc:114 parsed:14 offset:100; 6.2 -> toc:115 parsed:14 offset:101; 6.2.1 -> toc:115 parsed:14 offset:101; 6.3 -> toc:128 parsed:14 offset:114; 6.3.1 -> toc:129 parsed:14 offset:115; 6.3.2 -> toc:129 parsed:14 offset:115; 6.3.3 -> toc:129 parsed:14 offset:115; 6.3.4 -> toc:129 parsed:14 offset:115; 6.3.5 -> toc:130 parsed:14 offset:116; 6.3.6 -> toc:130 parsed:14 offset:116; 6.3.7 -> toc:131 parsed:14 offset:117; 6.3.8 -> toc:131 parsed:14 offset:117; 6.3.9 -> toc:131 parsed:15 offset:116; 6.3.10 -> toc:131 parsed:15 offset:116; 6.3.11 -> toc:132 parsed:15 offset:117; 6.3.12 -> toc:133 parsed:15 offset:118; 6.3.13 -> toc:134 parsed:15 offset:119; 6.3.14 -> toc:135 parsed:15 offset:120; 6.3.15 -> toc:135 parsed:15 offset:120; 6.3.16 -> toc:135 parsed:15 offset:120; 6.3.17 -> toc:136 parsed:15 offset:121; 6.3.18 -> toc:136 parsed:15 offset:121; 6.3.19 -> toc:136 parsed:15 offset:121; 6.3.20 -> toc:137 parsed:15 offset:122
+2025-11-12 18:37:29.373 INFO  performance - Sample matches for chapter 7: 7 -> toc:312 parsed:16 offset:296; 7.1 -> toc:312 parsed:16 offset:296; 7.1.1 -> toc:312 parsed:16 offset:296; 7.1.2 -> toc:312 parsed:16 offset:296; 7.1.3 -> toc:312 parsed:16 offset:296; 7.1.4 -> toc:313 parsed:16 offset:297; 7.1.5 -> toc:322 parsed:16 offset:306; 7.1.6 -> toc:323 parsed:16 offset:307; 7.1.7 -> toc:323 parsed:16 offset:307; 7.1.8 -> toc:325 parsed:16 offset:309; 7.1.9 -> toc:328 parsed:16 offset:312; 7.1.10 -> toc:328 parsed:16 offset:312; 7.1.11 -> toc:328 parsed:16 offset:312; 7.1.12 -> toc:329 parsed:16 offset:313; 7.1.13 -> toc:331 parsed:16 offset:315; 7.1.14 -> toc:332 parsed:17 offset:315; 7.1.15 -> toc:333 parsed:17 offset:316; 7.2 -> toc:335 parsed:17 offset:318; 7.2.1 -> toc:335 parsed:17 offset:318; 7.2.2 -> toc:335 parsed:17 offset:318; 7.2.3 -> toc:335 parsed:17 offset:318; 7.2.4 -> toc:336 parsed:17 offset:319; 7.2.5 -> toc:336 parsed:17 offset:319; 7.2.6 -> toc:336 parsed:17 offset:319; 7.2.7 -> toc:336 parsed:17 offset:319
+2025-11-12 18:37:29.373 INFO  performance - Sample matches for chapter 8: 8 -> toc:416 parsed:17 offset:399; 8.1 -> toc:416 parsed:17 offset:399; 8.2 -> toc:417 parsed:17 offset:400; 8.2.1 -> toc:418 parsed:17 offset:401; 8.2.2 -> toc:418 parsed:17 offset:401; 8.2.3 -> toc:419 parsed:17 offset:402; 8.2.4 -> toc:419 parsed:17 offset:402; 8.2.5 -> toc:420 parsed:17 offset:403; 8.2.6 -> toc:421 parsed:17 offset:404; 8.2.7 -> toc:423 parsed:17 offset:406; 8.3 -> toc:424 parsed:17 offset:407; 8.3.1 -> toc:424 parsed:17 offset:407; 8.3.2 -> toc:425 parsed:17 offset:408; 8.3.3 -> toc:822 parsed:17 offset:805; 8 -> toc:416 parsed:17 offset:399; 8 -> toc:416 parsed:17 offset:399
+2025-11-12 18:37:29.582 INFO  performance - JSONL written: 144 ms (Rate/FPS: 36152.78), CPU: 12.02%, Memory: 617.22 MB, items=5206
+2025-11-12 18:37:31.385 INFO  performance - Validation report written: 1730 ms (Rate/FPS: 0.58), CPU: 20.70%, Memory: 788.05 MB, items=1
+2025-11-12 18:37:31.452 INFO  performance - Job complete: 15668 ms, CPU: 20.70%, Memory: 788.10 MB
+2025-11-12 18:45:07.275 INFO  performance - Upload saved: 156 ms (Rate/FPS: 6.41), CPU: 8.70%, Memory: 65.83 MB, items=1
+2025-11-12 18:45:07.278 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:45:11.881 INFO  performance - ToC extracted: 4509 ms (Rate/FPS: 87.38), CPU: 22.36%, Memory: 286.45 MB, items=394
+2025-11-12 18:45:27.771 INFO  performance - Sections extracted: 15839 ms (Rate/FPS: 311.51), CPU: 11.00%, Memory: 720.35 MB, items=4934
+2025-11-12 18:45:27.780 INFO  performance - Chapter 15: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:27.780 INFO  performance - Chapter 1042: only 1 matched pairs (need 3), skipping
+2025-11-12 18:45:27.780 INFO  performance - Chapter 0: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:27.782 INFO  performance - Chapter 1: matchedPairs=18, medianOffset=-32
+2025-11-12 18:45:27.783 INFO  performance - Chapter 2: matchedPairs=34, medianOffset=-14
+2025-11-12 18:45:27.783 INFO  performance - Chapter 3: matchedPairs=10, medianOffset=-3
+2025-11-12 18:45:27.783 INFO  performance - Chapter 4: matchedPairs=5, medianOffset=-53
+2025-11-12 18:45:27.783 INFO  performance - Chapter 1003: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:27.784 INFO  performance - Chapter 5: matchedPairs=23, medianOffset=-41
+2025-11-12 18:45:27.784 INFO  performance - Chapter 116: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:27.785 INFO  performance - Chapter 6: matchedPairs=114, medianOffset=-49
+2025-11-12 18:45:27.785 INFO  performance - Chapter 656: only 1 matched pairs (need 3), skipping
+2025-11-12 18:45:27.786 INFO  performance - Chapter 7: medianOffset -582 outside sane range, skipping
+2025-11-12 18:45:27.786 INFO  performance - Chapter 8: medianOffset -576 outside sane range, skipping
+2025-11-12 18:45:27.787 INFO  performance - Chapter 9: matchedPairs=19, medianOffset=-10
+2025-11-12 18:45:27.787 INFO  performance - Chapter 1009: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:27.787 INFO  performance - Chapter 10: matchedPairs=11, medianOffset=-31
+2025-11-12 18:45:27.788 INFO  performance - Applying offset -32 to chapter 1
+2025-11-12 18:45:27.789 INFO  performance - Applying offset -14 to chapter 2
+2025-11-12 18:45:27.791 INFO  performance - Applying offset -3 to chapter 3
+2025-11-12 18:45:27.792 INFO  performance - Applying offset -53 to chapter 4
+2025-11-12 18:45:27.794 INFO  performance - Applying offset -41 to chapter 5
+2025-11-12 18:45:27.796 INFO  performance - Applying offset -49 to chapter 6
+2025-11-12 18:45:27.797 INFO  performance - Applying offset -10 to chapter 9
+2025-11-12 18:45:27.798 INFO  performance - Applying offset -31 to chapter 10
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 1: 1.0 -> toc:2012 parsed:2022 offset:-10; 1.0 -> toc:2012 parsed:2022 offset:-10; 1.0 -> toc:2013 parsed:2022 offset:-9; 1.0 -> toc:2014 parsed:2022 offset:-8; 1.1 -> toc:34 parsed:71 offset:-37; 1.2 -> toc:35 parsed:71 offset:-36; 1.2.1 -> toc:36 parsed:71 offset:-35; 1.3 -> toc:36 parsed:71 offset:-35; 1.4 -> toc:37 parsed:71 offset:-34; 1.4.1 -> toc:37 parsed:71 offset:-34; 1.4.2 -> toc:37 parsed:71 offset:-34; 1.4.3 -> toc:38 parsed:71 offset:-33; 1.5 -> toc:39 parsed:71 offset:-32; 1.6 -> toc:40 parsed:71 offset:-31; 1.7 -> toc:52 parsed:71 offset:-19; 1.8 -> toc:52 parsed:71 offset:-19; 1.9 -> toc:52 parsed:71 offset:-19; 1 -> toc:1 parsed:71 offset:-70
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 2: 2.0 -> toc:2014 parsed:2022 offset:-8; 2.0 -> toc:2015 parsed:2022 offset:-7; 2.0 -> toc:2016 parsed:2022 offset:-6; 2.0 -> toc:2017 parsed:2022 offset:-5; 2.1 -> toc:53 parsed:71 offset:-18; 2.1.1 -> toc:53 parsed:71 offset:-18; 2.1.2 -> toc:53 parsed:71 offset:-18; 2.1.3 -> toc:54 parsed:71 offset:-17; 2.2 -> toc:54 parsed:71 offset:-17; 2.3 -> toc:55 parsed:71 offset:-16; 2.4 -> toc:57 parsed:71 offset:-14; 2.4.1 -> toc:57 parsed:71 offset:-14; 2.4.2 -> toc:57 parsed:71 offset:-14; 2.4.3 -> toc:57 parsed:71 offset:-14; 2.4.4 -> toc:57 parsed:71 offset:-14; 2.5 -> toc:59 parsed:71 offset:-12; 2.5.1 -> toc:59 parsed:71 offset:-12; 2.5.2 -> toc:62 parsed:71 offset:-9; 2.5.3 -> toc:65 parsed:71 offset:-6; 2.6 -> toc:66 parsed:71 offset:-5; 2.6.1 -> toc:69 parsed:71 offset:-2; 2.6.2 -> toc:70 parsed:71 offset:-1; 2.6.3 -> toc:70 parsed:71 offset:-1; 2.6.4 -> toc:71 parsed:71 offset:0; 2.6.5 -> toc:71 parsed:71 offset:0
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 3: 3.0 -> toc:2015 parsed:2022 offset:-7; 3.0 -> toc:2016 parsed:2022 offset:-6; 3.0 -> toc:2017 parsed:2022 offset:-5; 3.0 -> toc:2018 parsed:2022 offset:-4; 3.0 -> toc:2019 parsed:2022 offset:-3; 3.1 -> toc:2021 parsed:2022 offset:-1; 3.1 -> toc:2021 parsed:2022 offset:-1; 3.1 -> toc:2021 parsed:2022 offset:-1; 3.1 -> toc:2023 parsed:2022 offset:1; 3 -> toc:3 parsed:131 offset:-128
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 4: 4.1 -> toc:78 parsed:131 offset:-53; 4.2 -> toc:78 parsed:131 offset:-53; 4.3 -> toc:78 parsed:131 offset:-53; 4.4 -> toc:78 parsed:131 offset:-53; 4 -> toc:4 parsed:131 offset:-127
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 5: 5.1 -> toc:79 parsed:131 offset:-52; 5.2 -> toc:79 parsed:131 offset:-52; 5.3 -> toc:80 parsed:131 offset:-51; 5.4 -> toc:81 parsed:131 offset:-50; 5.5 -> toc:83 parsed:131 offset:-48; 5.6 -> toc:84 parsed:131 offset:-47; 5.6.1 -> toc:84 parsed:131 offset:-47; 5.6.2 -> toc:86 parsed:131 offset:-45; 5.6.3 -> toc:89 parsed:131 offset:-42; 5.6.4 -> toc:89 parsed:131 offset:-42; 5.6.5 -> toc:90 parsed:131 offset:-41; 5.7 -> toc:91 parsed:131 offset:-40; 5.8 -> toc:92 parsed:131 offset:-39; 5.8.1 -> toc:92 parsed:131 offset:-39; 5.8.2 -> toc:96 parsed:131 offset:-35; 5.8.3 -> toc:103 parsed:131 offset:-28; 5.8.4 -> toc:105 parsed:131 offset:-26; 5.8.5 -> toc:106 parsed:131 offset:-25; 5.8.6 -> toc:110 parsed:131 offset:-21; 5.9 -> toc:113 parsed:131 offset:-18; 5.9.1 -> toc:113 parsed:131 offset:-18; 5.9.2 -> toc:113 parsed:131 offset:-18; 5 -> toc:5 parsed:131 offset:-126
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 6: 6 -> toc:114 parsed:131 offset:-17; 6.1 -> toc:114 parsed:131 offset:-17; 6.2 -> toc:115 parsed:131 offset:-16; 6.2.1 -> toc:115 parsed:131 offset:-16; 6.3 -> toc:128 parsed:131 offset:-3; 6.3.1 -> toc:129 parsed:131 offset:-2; 6.3.2 -> toc:129 parsed:131 offset:-2; 6.3.3 -> toc:129 parsed:131 offset:-2; 6.3.4 -> toc:129 parsed:131 offset:-2; 6.3.5 -> toc:130 parsed:131 offset:-1; 6.3.6 -> toc:130 parsed:131 offset:-1; 6.3.7 -> toc:131 parsed:131 offset:0; 6.3.8 -> toc:131 parsed:131 offset:0; 6.3.9 -> toc:131 parsed:255 offset:-124; 6.3.10 -> toc:131 parsed:255 offset:-124; 6.3.11 -> toc:132 parsed:255 offset:-123; 6.3.12 -> toc:133 parsed:255 offset:-122; 6.3.13 -> toc:134 parsed:255 offset:-121; 6.3.14 -> toc:135 parsed:255 offset:-120; 6.3.15 -> toc:135 parsed:255 offset:-120; 6.3.16 -> toc:135 parsed:255 offset:-120; 6.3.17 -> toc:136 parsed:255 offset:-119; 6.3.18 -> toc:136 parsed:255 offset:-119; 6.3.19 -> toc:136 parsed:255 offset:-119; 6.3.20 -> toc:137 parsed:255 offset:-118
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 9: 9 -> toc:975 parsed:995 offset:-20; 9.1 -> toc:975 parsed:995 offset:-20; 9.1.1 -> toc:979 parsed:995 offset:-16; 9.1.2 -> toc:980 parsed:995 offset:-15; 9.1.3 -> toc:983 parsed:995 offset:-12; 9.1.4 -> toc:984 parsed:995 offset:-11; 9.2 -> toc:985 parsed:995 offset:-10; 9.2.1 -> toc:986 parsed:995 offset:-9; 9.2.2 -> toc:987 parsed:995 offset:-8; 9.2.3 -> toc:988 parsed:995 offset:-7; 9.2.4 -> toc:989 parsed:995 offset:-6; 9.3 -> toc:990 parsed:995 offset:-5; 9.3.1 -> toc:990 parsed:995 offset:-5; 9.4 -> toc:991 parsed:995 offset:-4; 9.4.1 -> toc:991 parsed:995 offset:-4; 9.4.2 -> toc:992 parsed:995 offset:-3; 9 -> toc:975 parsed:995 offset:-20; 9 -> toc:975 parsed:995 offset:-20; 9 -> toc:9 parsed:995 offset:-986
+2025-11-12 18:45:27.800 INFO  performance - Sample matches for chapter 10: 10 -> toc:995 parsed:995 offset:0; 10.1 -> toc:995 parsed:1044 offset:-49; 10.2 -> toc:995 parsed:1044 offset:-49; 10.2.1 -> toc:996 parsed:1044 offset:-48; 10.2.2 -> toc:997 parsed:1044 offset:-47; 10.2.3 -> toc:1005 parsed:1044 offset:-39; 10.3 -> toc:1013 parsed:1044 offset:-31; 10.3.1 -> toc:1013 parsed:1044 offset:-31; 10.3.2 -> toc:1013 parsed:1044 offset:-31; 10 -> toc:995 parsed:995 offset:0; 10 -> toc:995 parsed:995 offset:0
+2025-11-12 18:45:28.010 INFO  performance - JSONL written: 144 ms (Rate/FPS: 37000.00), CPU: 11.00%, Memory: 734.89 MB, items=5328
+2025-11-12 18:45:40.817 INFO  performance - Upload saved: 128 ms (Rate/FPS: 7.81), CPU: 3.20%, Memory: 489.45 MB, items=1
+2025-11-12 18:45:40.817 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:45:42.476 INFO  performance - ToC extracted: 1603 ms (Rate/FPS: 245.79), CPU: 16.36%, Memory: 529.92 MB, items=394
+2025-11-12 18:45:56.859 INFO  performance - Sections extracted: 14331 ms (Rate/FPS: 344.29), CPU: 7.74%, Memory: 949.45 MB, items=4934
+2025-11-12 18:45:56.861 INFO  performance - Chapter 15: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:56.861 INFO  performance - Chapter 1042: only 1 matched pairs (need 3), skipping
+2025-11-12 18:45:56.861 INFO  performance - Chapter 0: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:56.861 INFO  performance - Chapter 1: matchedPairs=18, medianOffset=-32
+2025-11-12 18:45:56.862 INFO  performance - Chapter 2: matchedPairs=34, medianOffset=-14
+2025-11-12 18:45:56.862 INFO  performance - Chapter 3: matchedPairs=10, medianOffset=-3
+2025-11-12 18:45:56.862 INFO  performance - Chapter 4: matchedPairs=5, medianOffset=-53
+2025-11-12 18:45:56.862 INFO  performance - Chapter 1003: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:56.862 INFO  performance - Chapter 5: matchedPairs=23, medianOffset=-41
+2025-11-12 18:45:56.862 INFO  performance - Chapter 116: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:56.862 INFO  performance - Chapter 6: matchedPairs=114, medianOffset=-49
+2025-11-12 18:45:56.863 INFO  performance - Chapter 656: only 1 matched pairs (need 3), skipping
+2025-11-12 18:45:56.863 INFO  performance - Chapter 7: medianOffset -582 outside sane range, skipping
+2025-11-12 18:45:56.863 INFO  performance - Chapter 8: medianOffset -576 outside sane range, skipping
+2025-11-12 18:45:56.863 INFO  performance - Chapter 9: matchedPairs=19, medianOffset=-10
+2025-11-12 18:45:56.863 INFO  performance - Chapter 1009: only 0 matched pairs (need 3), skipping
+2025-11-12 18:45:56.864 INFO  performance - Chapter 10: matchedPairs=11, medianOffset=-31
+2025-11-12 18:45:56.864 INFO  performance - Applying offset -32 to chapter 1
+2025-11-12 18:45:56.866 INFO  performance - Applying offset -14 to chapter 2
+2025-11-12 18:45:56.868 INFO  performance - Applying offset -3 to chapter 3
+2025-11-12 18:45:56.869 INFO  performance - Applying offset -53 to chapter 4
+2025-11-12 18:45:56.871 INFO  performance - Applying offset -41 to chapter 5
+2025-11-12 18:45:56.873 INFO  performance - Applying offset -49 to chapter 6
+2025-11-12 18:45:56.875 INFO  performance - Applying offset -10 to chapter 9
+2025-11-12 18:45:56.876 INFO  performance - Applying offset -31 to chapter 10
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 1: 1.0 -> toc:2012 parsed:2022 offset:-10; 1.0 -> toc:2012 parsed:2022 offset:-10; 1.0 -> toc:2013 parsed:2022 offset:-9; 1.0 -> toc:2014 parsed:2022 offset:-8; 1.1 -> toc:34 parsed:71 offset:-37; 1.2 -> toc:35 parsed:71 offset:-36; 1.2.1 -> toc:36 parsed:71 offset:-35; 1.3 -> toc:36 parsed:71 offset:-35; 1.4 -> toc:37 parsed:71 offset:-34; 1.4.1 -> toc:37 parsed:71 offset:-34; 1.4.2 -> toc:37 parsed:71 offset:-34; 1.4.3 -> toc:38 parsed:71 offset:-33; 1.5 -> toc:39 parsed:71 offset:-32; 1.6 -> toc:40 parsed:71 offset:-31; 1.7 -> toc:52 parsed:71 offset:-19; 1.8 -> toc:52 parsed:71 offset:-19; 1.9 -> toc:52 parsed:71 offset:-19; 1 -> toc:1 parsed:71 offset:-70
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 2: 2.0 -> toc:2014 parsed:2022 offset:-8; 2.0 -> toc:2015 parsed:2022 offset:-7; 2.0 -> toc:2016 parsed:2022 offset:-6; 2.0 -> toc:2017 parsed:2022 offset:-5; 2.1 -> toc:53 parsed:71 offset:-18; 2.1.1 -> toc:53 parsed:71 offset:-18; 2.1.2 -> toc:53 parsed:71 offset:-18; 2.1.3 -> toc:54 parsed:71 offset:-17; 2.2 -> toc:54 parsed:71 offset:-17; 2.3 -> toc:55 parsed:71 offset:-16; 2.4 -> toc:57 parsed:71 offset:-14; 2.4.1 -> toc:57 parsed:71 offset:-14; 2.4.2 -> toc:57 parsed:71 offset:-14; 2.4.3 -> toc:57 parsed:71 offset:-14; 2.4.4 -> toc:57 parsed:71 offset:-14; 2.5 -> toc:59 parsed:71 offset:-12; 2.5.1 -> toc:59 parsed:71 offset:-12; 2.5.2 -> toc:62 parsed:71 offset:-9; 2.5.3 -> toc:65 parsed:71 offset:-6; 2.6 -> toc:66 parsed:71 offset:-5; 2.6.1 -> toc:69 parsed:71 offset:-2; 2.6.2 -> toc:70 parsed:71 offset:-1; 2.6.3 -> toc:70 parsed:71 offset:-1; 2.6.4 -> toc:71 parsed:71 offset:0; 2.6.5 -> toc:71 parsed:71 offset:0
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 3: 3.0 -> toc:2015 parsed:2022 offset:-7; 3.0 -> toc:2016 parsed:2022 offset:-6; 3.0 -> toc:2017 parsed:2022 offset:-5; 3.0 -> toc:2018 parsed:2022 offset:-4; 3.0 -> toc:2019 parsed:2022 offset:-3; 3.1 -> toc:2021 parsed:2022 offset:-1; 3.1 -> toc:2021 parsed:2022 offset:-1; 3.1 -> toc:2021 parsed:2022 offset:-1; 3.1 -> toc:2023 parsed:2022 offset:1; 3 -> toc:3 parsed:131 offset:-128
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 4: 4.1 -> toc:78 parsed:131 offset:-53; 4.2 -> toc:78 parsed:131 offset:-53; 4.3 -> toc:78 parsed:131 offset:-53; 4.4 -> toc:78 parsed:131 offset:-53; 4 -> toc:4 parsed:131 offset:-127
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 5: 5.1 -> toc:79 parsed:131 offset:-52; 5.2 -> toc:79 parsed:131 offset:-52; 5.3 -> toc:80 parsed:131 offset:-51; 5.4 -> toc:81 parsed:131 offset:-50; 5.5 -> toc:83 parsed:131 offset:-48; 5.6 -> toc:84 parsed:131 offset:-47; 5.6.1 -> toc:84 parsed:131 offset:-47; 5.6.2 -> toc:86 parsed:131 offset:-45; 5.6.3 -> toc:89 parsed:131 offset:-42; 5.6.4 -> toc:89 parsed:131 offset:-42; 5.6.5 -> toc:90 parsed:131 offset:-41; 5.7 -> toc:91 parsed:131 offset:-40; 5.8 -> toc:92 parsed:131 offset:-39; 5.8.1 -> toc:92 parsed:131 offset:-39; 5.8.2 -> toc:96 parsed:131 offset:-35; 5.8.3 -> toc:103 parsed:131 offset:-28; 5.8.4 -> toc:105 parsed:131 offset:-26; 5.8.5 -> toc:106 parsed:131 offset:-25; 5.8.6 -> toc:110 parsed:131 offset:-21; 5.9 -> toc:113 parsed:131 offset:-18; 5.9.1 -> toc:113 parsed:131 offset:-18; 5.9.2 -> toc:113 parsed:131 offset:-18; 5 -> toc:5 parsed:131 offset:-126
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 6: 6 -> toc:114 parsed:131 offset:-17; 6.1 -> toc:114 parsed:131 offset:-17; 6.2 -> toc:115 parsed:131 offset:-16; 6.2.1 -> toc:115 parsed:131 offset:-16; 6.3 -> toc:128 parsed:131 offset:-3; 6.3.1 -> toc:129 parsed:131 offset:-2; 6.3.2 -> toc:129 parsed:131 offset:-2; 6.3.3 -> toc:129 parsed:131 offset:-2; 6.3.4 -> toc:129 parsed:131 offset:-2; 6.3.5 -> toc:130 parsed:131 offset:-1; 6.3.6 -> toc:130 parsed:131 offset:-1; 6.3.7 -> toc:131 parsed:131 offset:0; 6.3.8 -> toc:131 parsed:131 offset:0; 6.3.9 -> toc:131 parsed:255 offset:-124; 6.3.10 -> toc:131 parsed:255 offset:-124; 6.3.11 -> toc:132 parsed:255 offset:-123; 6.3.12 -> toc:133 parsed:255 offset:-122; 6.3.13 -> toc:134 parsed:255 offset:-121; 6.3.14 -> toc:135 parsed:255 offset:-120; 6.3.15 -> toc:135 parsed:255 offset:-120; 6.3.16 -> toc:135 parsed:255 offset:-120; 6.3.17 -> toc:136 parsed:255 offset:-119; 6.3.18 -> toc:136 parsed:255 offset:-119; 6.3.19 -> toc:136 parsed:255 offset:-119; 6.3.20 -> toc:137 parsed:255 offset:-118
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 9: 9 -> toc:975 parsed:995 offset:-20; 9.1 -> toc:975 parsed:995 offset:-20; 9.1.1 -> toc:979 parsed:995 offset:-16; 9.1.2 -> toc:980 parsed:995 offset:-15; 9.1.3 -> toc:983 parsed:995 offset:-12; 9.1.4 -> toc:984 parsed:995 offset:-11; 9.2 -> toc:985 parsed:995 offset:-10; 9.2.1 -> toc:986 parsed:995 offset:-9; 9.2.2 -> toc:987 parsed:995 offset:-8; 9.2.3 -> toc:988 parsed:995 offset:-7; 9.2.4 -> toc:989 parsed:995 offset:-6; 9.3 -> toc:990 parsed:995 offset:-5; 9.3.1 -> toc:990 parsed:995 offset:-5; 9.4 -> toc:991 parsed:995 offset:-4; 9.4.1 -> toc:991 parsed:995 offset:-4; 9.4.2 -> toc:992 parsed:995 offset:-3; 9 -> toc:975 parsed:995 offset:-20; 9 -> toc:975 parsed:995 offset:-20; 9 -> toc:9 parsed:995 offset:-986
+2025-11-12 18:45:56.878 INFO  performance - Sample matches for chapter 10: 10 -> toc:995 parsed:995 offset:0; 10.1 -> toc:995 parsed:1044 offset:-49; 10.2 -> toc:995 parsed:1044 offset:-49; 10.2.1 -> toc:996 parsed:1044 offset:-48; 10.2.2 -> toc:997 parsed:1044 offset:-47; 10.2.3 -> toc:1005 parsed:1044 offset:-39; 10.3 -> toc:1013 parsed:1044 offset:-31; 10.3.1 -> toc:1013 parsed:1044 offset:-31; 10.3.2 -> toc:1013 parsed:1044 offset:-31; 10 -> toc:995 parsed:995 offset:0; 10 -> toc:995 parsed:995 offset:0
+2025-11-12 18:45:56.982 INFO  performance - JSONL written: 40 ms (Rate/FPS: 133200.00), CPU: 7.74%, Memory: 961.48 MB, items=5328
+2025-11-12 18:45:57.445 INFO  performance - Validation report written: 385 ms (Rate/FPS: 2.60), CPU: 27.40%, Memory: 697.06 MB, items=1
+2025-11-12 18:45:57.526 INFO  performance - Job complete: 16823 ms, CPU: 27.40%, Memory: 697.07 MB
+2025-11-12 18:53:05.924 INFO  performance - Upload saved: 158 ms (Rate/FPS: 6.33), CPU: 6.45%, Memory: 68.70 MB, items=1
+2025-11-12 18:53:05.926 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:53:09.859 INFO  performance - ToC extracted: 3874 ms (Rate/FPS: 101.70), CPU: 28.50%, Memory: 495.62 MB, items=394
+2025-11-12 18:53:09.868 INFO  performance - ToC filtered: 394 -> 308 entries (removed suspicious front-matter).
+2025-11-12 18:53:23.895 INFO  performance - Sections extracted: 13976 ms (Rate/FPS: 353.03), CPU: 10.22%, Memory: 266.41 MB, items=4934
+2025-11-12 18:53:24.101 INFO  performance - JSONL written: 151 ms (Rate/FPS: 34715.23), CPU: 10.22%, Memory: 281.45 MB, items=5242
+2025-11-12 18:53:25.771 INFO  performance - Validation report written: 1590 ms (Rate/FPS: 0.63), CPU: 22.39%, Memory: 453.59 MB, items=1
+2025-11-12 18:53:25.837 INFO  performance - Job complete: 20886 ms, CPU: 22.39%, Memory: 453.65 MB
+2025-11-12 18:59:53.162 INFO  performance - Upload saved: 143 ms (Rate/FPS: 6.99), CPU: 4.88%, Memory: 80.70 MB, items=1
+2025-11-12 18:59:53.164 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 18:59:57.083 INFO  performance - ToC extracted: 3828 ms (Rate/FPS: 102.93), CPU: 26.05%, Memory: 304.40 MB, items=394
+2025-11-12 19:00:11.945 INFO  performance - Sections extracted: 14809 ms (Rate/FPS: 333.18), CPU: 10.32%, Memory: 726.11 MB, items=4934
+2025-11-12 19:00:12.006 INFO  performance - ToC reconciled: 16 ms (Rate/FPS: 24625.00), CPU: 10.32%, Memory: 735.18 MB, items=394
+2025-11-12 19:00:12.221 INFO  performance - JSONL written: 152 ms (Rate/FPS: 35052.63), CPU: 10.32%, Memory: 750.24 MB, items=5328
+2025-11-12 19:00:14.103 INFO  performance - Validation report written: 1796 ms (Rate/FPS: 0.56), CPU: 22.12%, Memory: 923.42 MB, items=1
+2025-11-12 19:00:14.183 INFO  performance - Job complete: 21854 ms, CPU: 22.12%, Memory: 923.47 MB
+2025-11-12 19:09:40.975 INFO  performance - Upload saved: 160 ms (Rate/FPS: 6.25), CPU: 5.05%, Memory: 68.92 MB, items=1
+2025-11-12 19:09:40.977 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 19:09:44.871 INFO  performance - ToC extracted: 3814 ms (Rate/FPS: 82.33), CPU: 30.71%, Memory: 452.94 MB, items=314
+2025-11-12 19:09:59.878 INFO  performance - Sections extracted: 14958 ms (Rate/FPS: 329.86), CPU: 10.42%, Memory: 807.40 MB, items=4934
+2025-11-12 19:09:59.935 INFO  performance - ToC reconciled: 13 ms (Rate/FPS: 24153.85), CPU: 10.42%, Memory: 816.47 MB, items=314
+2025-11-12 19:10:00.137 INFO  performance - JSONL written: 156 ms (Rate/FPS: 33641.03), CPU: 10.42%, Memory: 831.51 MB, items=5248
+2025-11-12 19:10:01.817 INFO  performance - Validation report written: 1605 ms (Rate/FPS: 0.62), CPU: 19.16%, Memory: 452.32 MB, items=1
+2025-11-12 19:10:01.881 INFO  performance - Job complete: 21760 ms, CPU: 19.16%, Memory: 452.43 MB
+2025-11-12 19:14:54.517 INFO  performance - Upload saved: 142 ms (Rate/FPS: 7.04), CPU: 5.36%, Memory: 67.26 MB, items=1
+2025-11-12 19:14:54.518 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 19:14:58.453 INFO  performance - ToC extracted: 3862 ms (Rate/FPS: 81.31), CPU: 32.40%, Memory: 245.62 MB, items=314
+2025-11-12 19:15:12.490 INFO  performance - Sections extracted: 13988 ms (Rate/FPS: 352.73), CPU: 11.00%, Memory: 564.62 MB, items=4934
+2025-11-12 19:15:12.551 INFO  performance - ToC reconciled: 12 ms (Rate/FPS: 26166.67), CPU: 11.00%, Memory: 573.69 MB, items=314
+2025-11-12 19:15:12.754 INFO  performance - JSONL written: 144 ms (Rate/FPS: 36444.44), CPU: 11.00%, Memory: 587.73 MB, items=5248
+2025-11-12 19:15:14.147 INFO  performance - Validation report written: 1326 ms (Rate/FPS: 0.75), CPU: 17.81%, Memory: 760.66 MB, items=1
+2025-11-12 19:15:14.207 INFO  performance - Job complete: 20486 ms, CPU: 17.81%, Memory: 760.68 MB
+2025-11-12 19:19:04.294 INFO  performance - Upload saved: 155 ms (Rate/FPS: 6.45), CPU: 6.91%, Memory: 67.51 MB, items=1
+2025-11-12 19:19:04.295 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 19:19:08.971 INFO  performance - ToC extracted: 4574 ms (Rate/FPS: 57.94), CPU: 24.32%, Memory: 422.07 MB, items=265
+2025-11-12 19:19:24.234 INFO  performance - Sections extracted: 15210 ms (Rate/FPS: 324.39), CPU: 10.92%, Memory: 595.80 MB, items=4934
+2025-11-12 19:19:24.299 INFO  performance - ToC reconciled: 14 ms (Rate/FPS: 18928.57), CPU: 10.92%, Memory: 604.87 MB, items=265
+2025-11-12 19:19:24.509 INFO  performance - JSONL written: 147 ms (Rate/FPS: 35367.35), CPU: 10.92%, Memory: 619.93 MB, items=5199
+2025-11-12 19:19:26.242 INFO  performance - Validation report written: 1656 ms (Rate/FPS: 0.60), CPU: 19.87%, Memory: 355.31 MB, items=1
+2025-11-12 19:19:26.312 INFO  performance - Job complete: 22921 ms, CPU: 19.87%, Memory: 355.37 MB
+2025-11-12 19:50:20.132 INFO  performance - Upload saved: 176 ms (Rate/FPS: 5.68), CPU: 9.57%, Memory: 66.66 MB, items=1
+2025-11-12 19:50:20.135 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 19:50:26.089 INFO  performance - ToC extracted: 5862 ms (Rate/FPS: 45.21), CPU: 22.08%, Memory: 237.54 MB, items=265
+2025-11-12 19:50:59.672 INFO  performance - Sections extracted: 33535 ms (Rate/FPS: 112.21), CPU: 9.14%, Memory: 330.02 MB, items=3763
+2025-11-12 19:50:59.942 INFO  performance - JSONL written: 223 ms (Rate/FPS: 18062.78), CPU: 9.14%, Memory: 356.21 MB, items=4028
+2025-11-12 19:51:02.180 INFO  performance - Validation report written: 2167 ms (Rate/FPS: 0.46), CPU: 24.55%, Memory: 565.49 MB, items=1
+2025-11-12 19:51:02.246 INFO  performance - Job complete: 43069 ms, CPU: 24.55%, Memory: 565.54 MB
+2025-11-12 19:58:42.956 INFO  performance - Upload saved: 154 ms (Rate/FPS: 6.49), CPU: 6.71%, Memory: 67.62 MB, items=1
+2025-11-12 19:58:42.957 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 19:58:46.950 INFO  performance - ToC extracted: 3935 ms (Rate/FPS: 67.34), CPU: 27.12%, Memory: 344.39 MB, items=265
+2025-11-12 19:58:55.298 INFO  performance - Sections extracted: 8284 ms (Rate/FPS: 181.31), CPU: 12.61%, Memory: 649.58 MB, items=1502
+2025-11-12 19:58:55.524 INFO  performance - JSONL written: 175 ms (Rate/FPS: 10097.14), CPU: 12.61%, Memory: 666.15 MB, items=1767
+2025-11-12 19:58:56.985 INFO  performance - Validation report written: 1391 ms (Rate/FPS: 0.72), CPU: 16.78%, Memory: 782.56 MB, items=1
+2025-11-12 19:58:57.048 INFO  performance - Job complete: 14914 ms, CPU: 16.78%, Memory: 782.59 MB
+2025-11-12 20:07:40.120 INFO  performance - Upload saved: 182 ms (Rate/FPS: 5.49), CPU: 7.75%, Memory: 66.73 MB, items=1
+2025-11-12 20:07:40.122 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 20:07:44.150 INFO  performance - ToC extracted: 3953 ms (Rate/FPS: 67.04), CPU: 22.77%, Memory: 224.49 MB, items=265
+2025-11-12 20:07:53.399 INFO  performance - Sections extracted: 9193 ms (Rate/FPS: 119.33), CPU: 11.64%, Memory: 536.63 MB, items=1097
+2025-11-12 20:07:53.632 INFO  performance - JSONL written: 176 ms (Rate/FPS: 7738.64), CPU: 11.64%, Memory: 550.11 MB, items=1362
+2025-11-12 20:07:55.092 INFO  performance - Validation report written: 1396 ms (Rate/FPS: 0.72), CPU: 15.76%, Memory: 660.43 MB, items=1
+2025-11-12 20:07:55.154 INFO  performance - Job complete: 16112 ms, CPU: 15.76%, Memory: 660.47 MB
+2025-11-12 20:18:11.575 INFO  performance - Upload saved: 153 ms (Rate/FPS: 6.54), CPU: 8.72%, Memory: 68.56 MB, items=1
+2025-11-12 20:18:11.576 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 20:18:15.400 INFO  performance - ToC extracted: 3763 ms (Rate/FPS: 70.42), CPU: 30.63%, Memory: 416.18 MB, items=265
+2025-11-12 20:18:29.710 INFO  performance - Sections extracted: 14259 ms (Rate/FPS: 78.13), CPU: 10.56%, Memory: 384.96 MB, items=1114
+2025-11-12 20:18:29.920 INFO  performance - JSONL written: 155 ms (Rate/FPS: 8896.77), CPU: 10.56%, Memory: 403.92 MB, items=1379
+2025-11-12 20:18:31.570 INFO  performance - Validation report written: 1556 ms (Rate/FPS: 0.64), CPU: 17.99%, Memory: 529.48 MB, items=1
+2025-11-12 20:18:31.648 INFO  performance - Job complete: 20849 ms, CPU: 17.99%, Memory: 529.57 MB
+2025-11-12 20:25:58.609 INFO  performance - Upload saved: 169 ms (Rate/FPS: 5.92), CPU: 6.73%, Memory: 68.17 MB, items=1
+2025-11-12 20:25:58.612 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 20:26:03.509 INFO  performance - ToC extracted: 4807 ms (Rate/FPS: 55.13), CPU: 20.70%, Memory: 222.94 MB, items=265
+2025-11-12 20:26:19.922 INFO  performance - Sections extracted: 16334 ms (Rate/FPS: 103.40), CPU: 10.84%, Memory: 560.57 MB, items=1689
+2025-11-12 20:26:20.146 INFO  performance - JSONL written: 157 ms (Rate/FPS: 12445.86), CPU: 10.84%, Memory: 573.68 MB, items=1954
+2025-11-12 20:26:21.576 INFO  performance - Validation report written: 1382 ms (Rate/FPS: 0.72), CPU: 17.20%, Memory: 678.54 MB, items=1
+2025-11-12 20:26:21.620 INFO  performance - Job complete: 24042 ms, CPU: 17.20%, Memory: 678.54 MB
+2025-11-12 20:34:19.509 INFO  performance - Upload saved: 213 ms (Rate/FPS: 4.69), CPU: 1.00%, Memory: 67.24 MB, items=1
+2025-11-12 20:34:19.510 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 20:34:23.976 INFO  performance - ToC extracted: 4372 ms (Rate/FPS: 60.61), CPU: 20.49%, Memory: 404.55 MB, items=265
+2025-11-12 20:34:38.559 INFO  performance - Sections extracted: 14515 ms (Rate/FPS: 95.49), CPU: 10.29%, Memory: 474.17 MB, items=1386
+2025-11-12 20:34:38.802 INFO  performance - JSONL written: 165 ms (Rate/FPS: 10006.06), CPU: 10.29%, Memory: 488.20 MB, items=1651
+2025-11-12 20:34:40.627 INFO  performance - Validation report written: 1741 ms (Rate/FPS: 0.57), CPU: 22.15%, Memory: 616.04 MB, items=1
+2025-11-12 20:34:40.692 INFO  performance - Job complete: 23138 ms, CPU: 22.15%, Memory: 616.04 MB
+2025-11-12 20:41:01.218 INFO  performance - Upload saved: 172 ms (Rate/FPS: 5.81), CPU: 6.25%, Memory: 68.34 MB, items=1
+2025-11-12 20:41:01.221 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 20:41:07.040 INFO  performance - ToC extracted: 5723 ms (Rate/FPS: 46.30), CPU: 27.26%, Memory: 343.61 MB, items=265
+2025-11-12 20:41:23.461 INFO  performance - Sections extracted: 16363 ms (Rate/FPS: 301.53), CPU: 11.46%, Memory: 486.33 MB, items=4934
+2025-11-12 20:41:23.666 INFO  performance - JSONL written: 134 ms (Rate/FPS: 38798.51), CPU: 11.46%, Memory: 501.36 MB, items=5199
+2025-11-12 20:41:25.535 INFO  performance - Validation report written: 1777 ms (Rate/FPS: 0.56), CPU: 22.98%, Memory: 370.46 MB, items=1
+2025-11-12 20:41:25.611 INFO  performance - Job complete: 25392 ms, CPU: 22.98%, Memory: 371.49 MB
+2025-11-12 20:51:43.102 INFO  performance - Upload saved: 133 ms (Rate/FPS: 7.52), CPU: 6.91%, Memory: 67.59 MB, items=1
+2025-11-12 20:51:43.103 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 20:51:47.251 INFO  performance - ToC extracted: 4092 ms (Rate/FPS: 64.76), CPU: 24.80%, Memory: 632.65 MB, items=265
+2025-11-12 20:52:01.556 INFO  performance - Sections extracted: 14256 ms (Rate/FPS: 346.10), CPU: 10.28%, Memory: 540.58 MB, items=4934
+2025-11-12 20:52:01.753 INFO  performance - JSONL written: 131 ms (Rate/FPS: 39687.02), CPU: 10.28%, Memory: 555.60 MB, items=5199
+2025-11-12 20:52:03.363 INFO  performance - Validation report written: 1546 ms (Rate/FPS: 0.65), CPU: 18.38%, Memory: 726.49 MB, items=1
+2025-11-12 20:52:03.419 INFO  performance - Job complete: 21095 ms, CPU: 18.38%, Memory: 726.49 MB
+2025-11-12 20:57:01.604 INFO  performance - Upload saved: 144 ms (Rate/FPS: 6.94), CPU: 6.91%, Memory: 82.00 MB, items=1
+2025-11-12 20:57:01.606 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 20:57:05.455 INFO  performance - ToC extracted: 3769 ms (Rate/FPS: 70.31), CPU: 25.96%, Memory: 265.82 MB, items=265
+2025-11-12 20:57:20.473 INFO  performance - Sections extracted: 14969 ms (Rate/FPS: 318.86), CPU: 10.53%, Memory: 589.59 MB, items=4773
+2025-11-12 20:57:20.653 INFO  performance - JSONL written: 119 ms (Rate/FPS: 42336.13), CPU: 10.53%, Memory: 600.96 MB, items=5038
+2025-11-12 20:57:22.220 INFO  performance - Validation report written: 1497 ms (Rate/FPS: 0.67), CPU: 18.90%, Memory: 499.49 MB, items=1
+2025-11-12 20:57:22.273 INFO  performance - Job complete: 21473 ms, CPU: 18.90%, Memory: 499.56 MB
+2025-11-12 21:56:43.118 INFO  performance - Upload saved: 152 ms (Rate/FPS: 6.58), CPU: 6.55%, Memory: 69.62 MB, items=1
+2025-11-12 21:56:43.120 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 21:56:47.618 INFO  performance - ToC extracted: 4432 ms (Rate/FPS: 59.79), CPU: 20.18%, Memory: 218.49 MB, items=265
+2025-11-12 21:57:03.649 INFO  performance - Sections extracted: 15963 ms (Rate/FPS: 299.00), CPU: 11.48%, Memory: 455.87 MB, items=4773
+2025-11-12 21:57:03.864 INFO  performance - JSONL written: 140 ms (Rate/FPS: 35985.71), CPU: 11.48%, Memory: 469.57 MB, items=5038
+2025-11-12 21:57:05.684 INFO  performance - Validation report written: 1743 ms (Rate/FPS: 0.57), CPU: 20.74%, Memory: 647.49 MB, items=1
+2025-11-12 21:57:05.753 INFO  performance - Job complete: 23557 ms, CPU: 20.74%, Memory: 647.57 MB
+2025-11-12 22:17:47.235 INFO  performance - Upload saved: 162 ms (Rate/FPS: 6.17), CPU: 6.75%, Memory: 67.23 MB, items=1
+2025-11-12 22:17:47.235 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 22:17:51.354 INFO  performance - ToC extracted: 4023 ms (Rate/FPS: 65.87), CPU: 20.41%, Memory: 597.53 MB, items=265
+2025-11-12 22:18:06.894 INFO  performance - Sections extracted: 15486 ms (Rate/FPS: 308.21), CPU: 10.72%, Memory: 498.26 MB, items=4773
+2025-11-12 22:18:07.110 INFO  performance - JSONL written: 146 ms (Rate/FPS: 34506.85), CPU: 10.72%, Memory: 510.54 MB, items=5038
+2025-11-12 22:18:08.811 INFO  performance - Validation report written: 1631 ms (Rate/FPS: 0.61), CPU: 15.13%, Memory: 688.34 MB, items=1
+2025-11-12 22:18:08.875 INFO  performance - Job complete: 22497 ms, CPU: 15.13%, Memory: 689.34 MB
+2025-11-12 22:27:37.400 INFO  performance - Upload saved: 136 ms (Rate/FPS: 7.35), CPU: 7.88%, Memory: 68.09 MB, items=1
+2025-11-12 22:27:37.400 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 22:27:41.480 INFO  performance - ToC extracted: 4008 ms (Rate/FPS: 66.12), CPU: 25.23%, Memory: 249.34 MB, items=265
+2025-11-12 22:27:56.180 INFO  performance - Sections extracted: 14643 ms (Rate/FPS: 325.96), CPU: 11.08%, Memory: 398.28 MB, items=4773
+2025-11-12 22:27:56.371 INFO  performance - JSONL written: 128 ms (Rate/FPS: 39359.38), CPU: 11.08%, Memory: 410.47 MB, items=5038
+2025-11-12 22:27:58.044 INFO  performance - Validation report written: 1606 ms (Rate/FPS: 0.62), CPU: 21.36%, Memory: 588.37 MB, items=1
+2025-11-12 22:27:58.117 INFO  performance - Job complete: 21500 ms, CPU: 21.36%, Memory: 588.44 MB
+2025-11-12 22:39:29.165 INFO  performance - Upload saved: 178 ms (Rate/FPS: 5.62), CPU: 0.07%, Memory: 621.93 MB, items=1
+2025-11-12 22:39:29.167 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 22:39:31.526 INFO  performance - ToC extracted: 2305 ms (Rate/FPS: 114.97), CPU: 17.01%, Memory: 615.90 MB, items=265
+2025-11-12 22:39:44.858 INFO  performance - Sections extracted: 13294 ms (Rate/FPS: 359.03), CPU: 7.84%, Memory: 785.25 MB, items=4773
+2025-11-12 22:39:44.957 INFO  performance - JSONL written: 36 ms (Rate/FPS: 139944.44), CPU: 7.84%, Memory: 793.33 MB, items=5038
+2025-11-12 22:39:58.000 INFO  performance - Upload saved: 138 ms (Rate/FPS: 7.25), CPU: 3.50%, Memory: 67.10 MB, items=1
+2025-11-12 22:39:58.008 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 22:40:02.791 INFO  performance - ToC extracted: 4708 ms (Rate/FPS: 56.29), CPU: 34.16%, Memory: 225.48 MB, items=265
+2025-11-12 22:40:17.516 INFO  performance - Sections extracted: 14671 ms (Rate/FPS: 325.34), CPU: 10.96%, Memory: 534.39 MB, items=4773
+2025-11-12 22:40:17.703 INFO  performance - JSONL written: 126 ms (Rate/FPS: 39984.13), CPU: 10.96%, Memory: 549.44 MB, items=5038
+2025-11-12 22:40:19.241 INFO  performance - Validation report written: 1478 ms (Rate/FPS: 0.68), CPU: 16.93%, Memory: 727.06 MB, items=1
+2025-11-12 22:40:19.305 INFO  performance - Job complete: 22167 ms, CPU: 16.93%, Memory: 727.07 MB
+2025-11-12 23:03:18.091 INFO  performance - Upload saved: 193 ms (Rate/FPS: 5.18), CPU: 7.57%, Memory: 67.36 MB, items=1
+2025-11-12 23:03:18.094 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 23:03:23.136 INFO  performance - ToC extracted: 4939 ms (Rate/FPS: 53.65), CPU: 20.24%, Memory: 546.81 MB, items=265
+2025-11-12 23:03:38.806 INFO  performance - Sections extracted: 15617 ms (Rate/FPS: 305.63), CPU: 10.96%, Memory: 500.17 MB, items=4773
+2025-11-12 23:03:39.008 INFO  performance - JSONL written: 135 ms (Rate/FPS: 37318.52), CPU: 10.96%, Memory: 515.23 MB, items=5038
+2025-11-12 23:03:55.568 INFO  performance - Upload saved: 143 ms (Rate/FPS: 6.99), CPU: 2.68%, Memory: 406.01 MB, items=1
+2025-11-12 23:03:55.568 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 23:03:57.166 INFO  performance - ToC extracted: 1545 ms (Rate/FPS: 171.52), CPU: 18.59%, Memory: 443.85 MB, items=265
+2025-11-12 23:04:11.509 INFO  performance - Sections extracted: 14294 ms (Rate/FPS: 333.92), CPU: 8.38%, Memory: 539.75 MB, items=4773
+2025-11-12 23:04:11.596 INFO  performance - JSONL written: 35 ms (Rate/FPS: 143942.86), CPU: 8.38%, Memory: 547.84 MB, items=5038
+2025-11-12 23:04:12.017 INFO  performance - Validation report written: 355 ms (Rate/FPS: 2.82), CPU: 19.26%, Memory: 648.40 MB, items=1
+2025-11-12 23:04:12.077 INFO  performance - Job complete: 16659 ms, CPU: 19.26%, Memory: 648.44 MB
+2025-11-12 23:28:18.923 INFO  performance - Upload saved: 156 ms (Rate/FPS: 6.41), CPU: 6.14%, Memory: 68.35 MB, items=1
+2025-11-12 23:28:18.925 INFO  performance - Parsing started: USB_PD_R3_2 V1.1 2024-10 (1).pdf
+2025-11-12 23:28:23.695 INFO  performance - ToC extracted: 4709 ms (Rate/FPS: 56.28), CPU: 20.36%, Memory: 297.28 MB, items=265
+2025-11-12 23:28:39.284 INFO  performance - Sections extracted: 15513 ms (Rate/FPS: 307.68), CPU: 12.25%, Memory: 769.45 MB, items=4773
+2025-11-12 23:28:39.543 INFO  performance - JSONL written: 184 ms (Rate/FPS: 27380.43), CPU: 12.25%, Memory: 784.59 MB, items=5038
+2025-11-12 23:28:41.321 INFO  performance - Validation report written: 1701 ms (Rate/FPS: 0.59), CPU: 21.63%, Memory: 376.25 MB, items=1
+2025-11-12 23:28:41.386 INFO  performance - Job complete: 23430 ms, CPU: 21.63%, Memory: 376.34 MB

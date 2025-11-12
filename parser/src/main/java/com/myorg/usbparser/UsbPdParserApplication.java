@@ -10,5 +10,4 @@ public class UsbPdParserApplication {
 		SpringApplication.run(UsbPdParserApplication.class, args);
 		System.out.println("hellow karthik");
 	}
-
 }
