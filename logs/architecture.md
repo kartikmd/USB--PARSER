@@ -1,79 +1,71 @@
-# System Architecture Diagram
+graph TD
 
-```mermaid
-
-   graph TD
-    %% Ingestion
-    subgraph Ingestion
-        PDF["📄 Input PDF\n(USB_PD_R3_2 V1.1.pdf)\nInput: spec PDF file"]
-        CLI["🖥️ CLI / Runner\nUsbParserRunner / UsbPdParserApplication\nInput: file path\nTrigger: parsing run"]
-        API["🌐 Spring Boot API\nPdfParserController\nInput: upload / URL\nOutput: parse request"]
+    %% Ingestion / Environment
+    subgraph Environment
+        UserPC["💻 Developer / Runner\nInput: PDF file path or upload\nOutput: Triggers parsing run"]
+        CI["⚙️ CI / GitHub Actions\nInput: repo push\nOutput: runs tests & packaging"]
     end
 
-    %% Parsing
-    subgraph Parsing
-        PdfBox["📦 PDF Parser (Apache PDFBox / PyMuPDF)\nTask: extract page text + layout\nOutput: raw text blocks & layout"]
-        ToCExtractor["🧭 ToC Extractor\nPdfBoxTocExtractor\nTask: parse front-matter ToC lines\nOutput: usb_pd_toc.jsonl"]
-        SectionExtractor["📑 Section Extractor\nPdfBoxSectionExtractor\nTask: split pages into sections\nOutput: raw section objects"]
-        OCR["🔎 OCR Fallback (Tess4J / pytesseract)\nTask: OCR image-only pages\nOutput: OCR text appended to sections"]
+    %% Software Components
+    subgraph Software
+        CLI["🖥️ CLI Runner\nUsbParserRunner / main()\nInput: PDF path\nTask: Orchestrate parse -> postprocess -> write"]
+        API["🌐 Spring Boot API\nPdfParserController (optional)\nInput: upload / URL\nTask: expose parse endpoint"]
+        PdfBox["📦 PDF Parser (PdfBoxSectionExtractor)\nInput: PDF bytes\nTask: extract text blocks & layout"]
+        ToC["🧭 ToC Extractor (PdfBoxTocExtractor)\nInput: front-matter text\nTask: parse ToC lines -> section_ids"]
+        SectionExt["📑 Section Extractor\nInput: page text & headings\nTask: split into Section objects"]
+        OCR["🔎 OCR Fallback (Tess4J/pytesseract)\nInput: image-only pages\nTask: recover text, mark source=\"ocr\""]
+        PostProc["🧼 SectionPostProcessor\nInput: raw Sections\nTask: clean titles, normalize, heuristics"]
+        Dedup["🔁 Deduplicator\nInput: Sections\nTask: chooseBest per section_id"]
+        JsonWriter["💾 JsonlWriter (Jackson)\nInput: Sections\nTask: write usb_pd_sections.jsonl"]
+        ToCWriter["🗂 ToC Writer\nTask: write usb_pd_toc.jsonl"]
+        Validator["✅ ExcelValidator (Apache POI)\nInput: ToC + Sections\nTask: validate, produce validation_report.xlsx"]
+        ReportGen["📊 Report Generator\nTask: build validation_report.xlsx"]
     end
 
-    %% Post-processing
-    subgraph PostProcessing
-        PostProc["🧼 SectionPostProcessor (optional)\nTask: clean headings, normalize titles, heuristics"]
-        Dedup["🔁 Deduplicator\nTask: keep best Section per section_id"]
-        JsonWriter["💾 JSONL Writer (Jackson)\nTask: write usb_pd_sections.jsonl"]
-    end
-
-    %% Validation & Reporting
-    subgraph Validation
-        Validator["✅ Validation Engine (ExcelValidator)\nTask: ToC ↔ Sections matching\nOutputs: validation_report.xlsx"]
-        Rules["📋 Validation Rules\n- Missing / Extra sections\n- Page alignment\n- Table/figure counts"]
-        ReportGen["📊 Excel Report Generator (Apache POI)\nTask: build validation workbook"]
-    end
-
-    %% Storage & Outputs
-    subgraph StorageOutputs
-        TOCFile["🗂 usb_pd_toc.jsonl"]
-        SectionsFile["🗂 usb_pd_sections.jsonl"]
-        ValidationFile["🗂 validation_report.xlsx"]
-        Artifacts["📦 Archive (zip)\nPack: scripts + outputs + README"]
-    end
-
-    %% Observability & Utilities
+    %% Observability / Utilities
     subgraph Observability
-        Logger["📝 Logging (SLF4J + Logback)\nTask: record progress & errors"]
-        Metrics["📈 Metrics & Perf\n(Execution time, pages processed)"]
-        README["📚 README + Docs\nArchitecture, Usage, Notes"]
+        Logger["📝 Logging (SLF4J + Logback)\nInput: events & errors\nTask: write to performance.log"]
+        Perf["📈 PerfProbe / PerfLogger\nTask: track time, pages/sec"]
+        README["📚 README & Docs\nTask: usage, architecture, notes"]
+    end
+
+    %% Storage / Artifacts
+    subgraph Storage
+        TOCFile["🗂 usb_pd_toc.jsonl\nContains: section_id, title, page, level, parent_id"]
+        SectionsFile["🗂 usb_pd_sections.jsonl\nContains: Section objects (content, page, full_path)"]
+        ValidationFile["🗂 validation_report.xlsx\nContains: ToC vs Sections validation"]
+        Logs["📄 performance.log\nContains: execution metrics, errors"]
+        RepoZip["📦 release.zip / repo\nContains: code + outputs + README"]
     end
 
     %% Connections / Flow
-    CLI --> PDF
-    API --> PDF
-    PDF --> PdfBox
-    PdfBox --> ToCExtractor
-    PdfBox --> SectionExtractor
-    SectionExtractor --> OCR
-    OCR --> SectionExtractor
-    SectionExtractor --> PostProc
+    UserPC --> CLI
+    UserPC --> API
+    CLI --> PdfBox
+    API --> PdfBox
+    PdfBox --> ToC
+    PdfBox --> SectionExt
+    SectionExt --> OCR
+    OCR --> SectionExt
+    SectionExt --> PostProc
     PostProc --> Dedup
     Dedup --> JsonWriter
-    ToCExtractor --> TOCFile
+    ToC --> ToCWriter
+    ToCWriter --> TOCFile
     JsonWriter --> SectionsFile
-    Dedup --> Validator
-    ToCExtractor --> Validator
-    Validator --> Rules
-    Rules --> ReportGen
+    ToCWriter --> Validator
+    JsonWriter --> Validator
+    Validator --> ReportGen
     ReportGen --> ValidationFile
-    JsonWriter --> Artifacts
-    TOCFile --> Artifacts
-    ValidationFile --> Artifacts
 
     %% Observability links
     PdfBox --> Logger
-    SectionExtractor --> Logger
+    SectionExt --> Logger
     Validator --> Logger
     JsonWriter --> Logger
-    Logger --> Metrics
-    README --> Artifacts
-
+    Logger --> Logs
+    Logger --> Perf
+    README --> RepoZip
+    TOCFile --> RepoZip
+    SectionsFile --> RepoZip
+    ValidationFile --> RepoZip
