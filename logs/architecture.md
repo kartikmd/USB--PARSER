@@ -2,128 +2,78 @@
 
 graph TD
 
-    %% Environment
-    subgraph Environment
-        User["👤 User / Developer
-        Input: USB_PD_R3_2.pdf
-        Output: Runs parsing process"]
-
-        CLI["🖥️ CLI Runner
-        (UsbParserRunner / main)
-        Input: PDF path
-        Output: Triggers parsing & validation"]
-
-        API["🌐 Spring Boot API
-        (PdfParserController)
-        Input: Upload / API request
-        Output: JSON response or file output"]
+    %% Entry Points
+    subgraph Entry
+        Dev["👤 Developer / CLI"]
+        App["🌐 Spring Boot Application\nUsbPdParserApplication"]
+        Runner["🖥 UsbParserRunner (CLI Runner)"]
     end
 
-    %% Core Parsing Engine
-    subgraph ParsingEngine
-        PdfBox["📦 PDF Parser (Apache PDFBox)
-        Input: PDF
-        Task: Extract text blocks, layout, and headings
-        Output: Raw text data"]
+    %% Ingestion
+    subgraph Ingestion
+        PDF["📄 Input PDF\nUSB_PD_R3_2.pdf"]
+        UploadAPI["📤 PdfParserController (REST API)"]
+    end
 
-        ToCExtractor["🧭 ToC Extractor (PdfBoxTocExtractor)
-        Input: Front-matter text
-        Task: Identify numbered section titles
-        Output: usb_pd_toc.jsonl"]
-
-        SectionExtractor["📑 Section Extractor (PdfBoxSectionExtractor)
-        Input: Text blocks
-        Task: Split PDF pages into sections
-        Output: Section objects"]
-
-        OCR["🔎 OCR Module (Tess4J)
-        Input: Image-only pages
-        Task: Extract text via OCR
-        Output: OCR text content"]
+    %% Parsing Layer
+    subgraph Parsing
+        PdfBox["📦 PDFBox Layer\nPdfBoxSectionExtractor\nPdfBoxTocExtractor"]
+        ToCExtractor["🧭 ToC Extractor\nGenerates usb_pd_toc.jsonl"]
+        SectionExtractor["📑 Section Extractor\nCreates Section POJOs"]
     end
 
     %% Processing Layer
-    subgraph ProcessingLayer
-        PostProcessor["🧼 SectionPostProcessor
-        Task: Clean titles, normalize section IDs,
-        remove unwanted text"]
+    subgraph Processing
+        PostProc["🧼 SectionPostProcessor\nClean & normalize sections"]
+        Dedup["🔁 Deduplicator\nchooseBetterSection()"]
+        JsonWriter["💾 JsonlWriter (Jackson)\nWrites usb_pd_sections.jsonl"]
+    end
 
-        Deduplicator["🔁 Deduplicator
-        Task: Keep best section per section_id"]
-
-        JsonWriter["💾 JsonlWriter (Jackson)
-        Task: Write usb_pd_sections.jsonl"]
-
-        Validator["✅ ExcelValidator (Apache POI)
-        Task: Compare ToC vs Sections,
-        Identify missing/extra entries"]
-
-        ReportGenerator["📊 Report Generator
-        Task: Create validation_report.xlsx"]
+    %% Validation
+    subgraph Validation
+        Validator["✅ ExcelValidator (Apache POI)\nToC ↔ Sections validation"]
+        ReportGen["📊 Report Generator\nCreates validation_report.xlsx"]
     end
 
     %% Observability
     subgraph Observability
-        Logger["📝 Logger (SLF4J + Logback)
-        Input: Events & exceptions
-        Output: performance.log"]
-
-        Perf["📈 PerfProbe / PerfLogger
-        Task: Measure execution time,
-        memory, and throughput"]
-
-        README["📚 Documentation
-        Content: Architecture, Usage, Output details"]
+        Logger["📝 SLF4J + Logback"]
+        Perf["📈 PerfProbe / PerfLogger"]
     end
 
-    %% Storage / Artifacts
-    subgraph Storage
-        TOCFile["🗂 usb_pd_toc.jsonl
-        Stores: Table of Contents data"]
-
-        SectionsFile["🗂 usb_pd_sections.jsonl
-        Stores: Parsed section data"]
-
-        ValidationFile["🗂 validation_report.xlsx
-        Stores: Validation results (ToC ↔ Sections)"]
-
-        LogFile["📄 performance.log
-        Stores: Errors, warnings, and performance"]
-
-        Archive["📦 Project Repository / Release.zip
-        Includes: Code, outputs, README"]
+    %% Outputs
+    subgraph Artifacts
+        TOC["🗂 usb_pd_toc.jsonl"]
+        SECS["🗂 usb_pd_sections.jsonl"]
+        VALID["🗂 validation_report.xlsx"]
+        LOG["📄 performance.log"]
     end
 
-    %% Connections
-    User --> CLI
-    User --> API
-    CLI --> PdfBox
-    API --> PdfBox
+    %% Flows
+    Dev --> Runner
+    App --> UploadAPI
+    Runner --> PDF
+    UploadAPI --> PDF
+
+    PDF --> PdfBox
     PdfBox --> ToCExtractor
     PdfBox --> SectionExtractor
-    SectionExtractor --> OCR
-    OCR --> SectionExtractor
-    SectionExtractor --> PostProcessor
-    PostProcessor --> Deduplicator
-    Deduplicator --> JsonWriter
-    ToCExtractor --> TOCFile
-    JsonWriter --> SectionsFile
+
+    SectionExtractor --> PostProc
+    PostProc --> Dedup
+    Dedup --> JsonWriter
+
+    ToCExtractor --> TOC
+    JsonWriter --> SECS
+
     ToCExtractor --> Validator
     JsonWriter --> Validator
-    Validator --> ReportGenerator
-    ReportGenerator --> ValidationFile
+    Validator --> ReportGen
+    ReportGen --> VALID
 
-    %% Logging / Observability Links
     PdfBox --> Logger
     SectionExtractor --> Logger
     Validator --> Logger
     JsonWriter --> Logger
-    Logger --> LogFile
+    Logger --> LOG
     Logger --> Perf
-
-    %% Final Artifacts
-    TOCFile --> Archive
-    SectionsFile --> Archive
-    ValidationFile --> Archive
-    LogFile --> Archive
-    README --> Archive
