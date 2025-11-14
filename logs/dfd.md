@@ -1,74 +1,57 @@
-graph TD
-%% Ingestion
-subgraph Ingestion
-PDF["📄 Input PDF\n(USB_PD_R3_2 V1.1.pdf)\nInput: spec PDF file"]
-CLI["🖥️ CLI / Runner\nUsbParserRunner / UsbPdParserApplication\nInput: file path\nTrigger: parsing run"]
-API["🌐 Spring Boot API\nPdfParserController\nInput: upload / URL\nOutput: parse request"]
-end
+```mermaid
+flowchart TD
+  %% External entities
+  User["👤 User / Developer"]
+  APIClient["🌐 API Client (optional)"]
 
-    %% Parsing
-    subgraph Parsing
-        PdfBox["📦 PDF Parser (Apache PDFBox / PyMuPDF)\nTask: extract page text + layout\nOutput: raw text blocks & layout"]
-        ToCExtractor["🧭 ToC Extractor\nPdfBoxTocExtractor\nTask: parse front-matter ToC lines\nOutput: usb_pd_toc.jsonl"]
-        SectionExtractor["📑 Section Extractor\nPdfBoxSectionExtractor\nTask: split pages into sections\nOutput: raw section objects"]
-        OCR["🔎 OCR Fallback (Tess4J / pytesseract)\nTask: OCR image-only pages\nOutput: OCR text appended to sections"]
-    end
+  %% Processes
+  P1["P1: Receive & Ingest PDF\n(CLI / API)"]
+  P2["P2: Extract ToC\n(PdfBoxTocExtractor)"]
+  P3["P3: Extract Sections\n(PdfBoxSectionExtractor)"]
+  P4["P4: Post-process Sections\n(SectionPostProcessor)"]
+  P5["P5: Deduplicate & Choose Best\n(chooseBetterSection)"]
+  P6["P6: Write JSONL\n(JsonlWriter)"]
+  P7["P7: Validate ToC vs Sections\n(ExcelValidator)"]
+  P8["P8: Generate Report\n(Report Generator)"]
+  P9["P9: Logging & Metrics\n(PerfProbe / Logback)"]
 
-    %% Post-processing
-    subgraph PostProcessing
-        PostProc["🧼 SectionPostProcessor (optional)\nTask: clean headings, normalize titles, heuristics"]
-        Dedup["🔁 Deduplicator\nTask: keep best Section per section_id"]
-        JsonWriter["💾 JSONL Writer (Jackson)\nTask: write usb_pd_sections.jsonl"]
-    end
+  %% Data stores
+  D_TOC["D1: TOC Store\n(usb_pd_toc.jsonl)"]
+  D_SECS["D2: Sections Store\n(usb_pd_sections.jsonl)"]
+  D_REPORT["D3: Validation Reports\n(validation_report.xlsx)"]
+  D_LOGS["D4: Logs & Perf\n(performance.log)"]
 
-    %% Validation & Reporting
-    subgraph Validation
-        Validator["✅ Validation Engine (ExcelValidator)\nTask: ToC ↔ Sections matching\nOutputs: validation_report.xlsx"]
-        Rules["📋 Validation Rules\n- Missing / Extra sections\n- Page alignment\n- Table/figure counts"]
-        ReportGen["📊 Excel Report Generator (Apache POI)\nTask: build validation workbook"]
-    end
+  %% Flows
+  User -->|PDF file| P1
+  APIClient -->|Upload| P1
 
-    %% Storage & Outputs
-    subgraph StorageOutputs
-        TOCFile["🗂 usb_pd_toc.jsonl"]
-        SectionsFile["🗂 usb_pd_sections.jsonl"]
-        ValidationFile["🗂 validation_report.xlsx"]
-        Artifacts["📦 Archive (zip)\nPack: scripts + outputs + README"]
-    end
+  P1 -->|raw PDF bytes| P2
+  P1 -->|raw PDF bytes| P3
 
-    %% Observability & Utilities
-    subgraph Observability
-        Logger["📝 Logging (SLF4J + Logback)\nTask: record progress & errors"]
-        Metrics["📈 Metrics & Perf\n(Execution time, pages processed)"]
-        README["📚 README + Docs\nArchitecture, Usage, Notes"]
-    end
+  P2 -->|parsed ToC entries| D_TOC
+  P2 -->|parsed ToC entries| P7
 
-    %% Connections / Flow
-    CLI --> PDF
-    API --> PDF
-    PDF --> PdfBox
-    PdfBox --> ToCExtractor
-    PdfBox --> SectionExtractor
-    SectionExtractor --> OCR
-    OCR --> SectionExtractor
-    SectionExtractor --> PostProc
-    PostProc --> Dedup
-    Dedup --> JsonWriter
-    ToCExtractor --> TOCFile
-    JsonWriter --> SectionsFile
-    Dedup --> Validator
-    ToCExtractor --> Validator
-    Validator --> Rules
-    Rules --> ReportGen
-    ReportGen --> ValidationFile
-    JsonWriter --> Artifacts
-    TOCFile --> Artifacts
-    ValidationFile --> Artifacts
+  P3 -->|raw sections| P4
+  P4 -->|cleaned sections| P5
+  P5 -->|deduplicated sections| D_SECS
+  P5 -->|deduplicated sections| P6
+  P6 -->|usb_pd_sections.jsonl| D_SECS
 
-    %% Observability links
-    PdfBox --> Logger
-    SectionExtractor --> Logger
-    Validator --> Logger
-    JsonWriter --> Logger
-    Logger --> Metrics
-    README --> Artifacts
+  P6 -->|sections file| P7
+  P7 -->|validation results| D_REPORT
+  P7 -->|validation feedback| P8
+  P8 -->|validation_report.xlsx| D_REPORT
+
+  %% Observability flows
+  P1 -->|ingest metrics| P9
+  P2 -->|parsing metrics| P9
+  P3 -->|parsing metrics| P9
+  P5 -->|dedupe metrics| P9
+  P7 -->|validation metrics| P9
+  P9 -->|logs & metrics| D_LOGS
+
+  %% End-user outputs
+  D_TOC -->|download| User
+  D_SECS -->|download| User
+  D_REPORT -->|download| User
+  D_LOGS -->|view| User
