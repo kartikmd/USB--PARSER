@@ -1,57 +1,57 @@
 ```mermaid
 graph TD
 
-    %% Entry
+    %% Entry Points
     subgraph Entry
-        Dev["👤 Developer"]
-        App["🌐 Spring Boot App\nUsbPdParserApplication"]
+        App["🌐 Spring Boot Application\nUsbPdParserApplication"]
+        UploadAPI["📤 PdfParserController (REST API)"]
     end
 
     %% Ingestion
     subgraph Ingestion
-        UploadAPI["📤 PdfParserController (REST API)\nAccepts PDF upload"]
-        PDF["📄 Input PDF\nUSB_PD_R3_2.pdf (saved under output/uploads/)"]
+        PDF["📄 Uploaded PDF"]
     end
 
-    %% Parsing
+    %% Parsing Layer
     subgraph Parsing
-        PdfBox["📦 PDFBox Layer\n(PdfBoxTocExtractor, PdfBoxSectionExtractor)"]
-        ToCExtractor["🧭 ToC Extractor\n-> usb_pd_toc.jsonl (output/)"]
-        SectionExtractor["📑 Section Extractor\n-> Section POJOs"]
+        PdfBox["📦 PDFBox Layer\n(PdfBoxTocExtractor & PdfBoxSectionExtractor)"]
+        ToCExtractor["🧭 Extract TOC\n-> usb_pd_toc.jsonl"]
+        SectionExtractor["📑 Extract Sections\n-> Section Objects"]
     end
 
-    %% Processing
+    %% Processing Layer
     subgraph Processing
-        PostProc["🧼 SectionPostProcessor\n(normalize / merge)"]
-        Dedup["🔁 Deduplicator\n(chooseBetterSection)"]
-        JsonWriter["💾 JsonlWriter (Jackson)\n-> usb_pd_sections.jsonl (output/)"]
+        PostProc["🧼 SectionPostProcessor\n(clean/normalize)"]
+        Dedup["🔁 Deduplicator\nchooseBetterSection()"]
+        JsonWriter["💾 JsonWriter (Jackson)\n-> usb_pd_sections.jsonl"]
     end
 
     %% Validation
     subgraph Validation
-        Validator["✅ ExcelValidator\n(uses Apache POI)"]
-        ReportGen["📊 Report Generator\n-> validation_report.xlsx (output/)"]
+        Validator["✅ ExcelValidator (Apache POI)\nCompare TOC vs Sections"]
+        ReportGen["📊 Generate\nvalidation_report.xlsx"]
     end
 
-    %% Observability (logs NOT in output/)
+    %% Observability
     subgraph Observability
-        Logger["📝 SLF4J + Logback\nwrites performance messages"]
-        Perf["📈 PerfProbe / PerfLogger\n-> performance.log (logs/performance.log)"]
+        Logger["📝 SLF4J Logger"]
+        Perf["📈 PerfProbe / PerfLogger\nWrites to /logs/performance.log"]
     end
 
     %% Outputs
-    subgraph Outputs
-        TOC["🗂 usb_pd_toc.jsonl (output/)"]
-        SECS["🗂 usb_pd_sections.jsonl (output/)"]
-        VALID["🗂 validation_report.xlsx (output/)"]
-        LOG["📄 performance.log (logs/performance.log)"]
+    subgraph OutputFiles
+        TOC["🗂 usb_pd_toc.jsonl"]
+        SECS["🗂 usb_pd_sections.jsonl"]
+        VALID["🗂 validation_report.xlsx"]
+        LOG["📄 logs/performance.log"]
     end
 
+
     %% Flows
-    Dev --> App
     App --> UploadAPI
     UploadAPI --> PDF
     PDF --> PdfBox
+
     PdfBox --> ToCExtractor
     PdfBox --> SectionExtractor
 
@@ -67,11 +67,11 @@ graph TD
     Validator --> ReportGen
     ReportGen --> VALID
 
-    PdfBox --> Logger
-    SectionExtractor --> Logger
-    Validator --> Logger
-    JsonWriter --> Logger
-    Logger --> LOG
+    %% Logging flows
+    UploadAPI --> Perf
+    ToCExtractor --> Perf
+    SectionExtractor --> Perf
+    JsonWriter --> Perf
+    Validator --> Perf
 
-    Logger --> Perf
-
+    Perf --> LOG
