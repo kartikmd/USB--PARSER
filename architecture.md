@@ -10,33 +10,33 @@ graph TD
     %% Ingestion
     subgraph Ingestion
         UploadAPI["📤 PdfParserController (REST API)\nAccepts PDF upload"]
-        PDF["📄 Input PDF\n(saved to output/)"]
+        PDF["📄 Uploaded PDF\n(saved in output/)"]
     end
 
     %% Parsing
     subgraph Parsing
-        PdfBox["📦 PDFBox Layer\n(PdfBoxTocExtractor + PdfBoxSectionExtractor)"]
-        ToCExtractor["🧭 TOC Extractor\n-> usb_pd_toc.jsonl (output/)"]
-        SectionExtractor["📑 Section Extractor\n-> Section POJOs"]
+        PdfBox["📦 PDFBox Engine\n(PdfBoxTocExtractor, PdfBoxSectionExtractor)"]
+        ToCExtractor["🧭 TOC Extractor\nExtracts TOC entries"]
+        SectionExtractor["📑 Section Extractor\nExtracts all sections"]
     end
 
     %% Processing
     subgraph Processing
-        PostProc["🧼 SectionPostProcessor\n(clean + merge)"]
+        PostProc["🧼 SectionPostProcessor\n(clean/normalize)"]
         Dedup["🔁 Deduplicator\n(chooseBetterSection)"]
-        JsonWriter["💾 JsonlWriter (Jackson)\n-> usb_pd_sections.jsonl"]
+        JsonWriter["💾 JsonlWriter (Jackson)\nWrites JSONL files"]
     end
 
     %% Validation
     subgraph Validation
-        Validator["✅ ExcelValidator\n(uses Apache POI)"]
-        ReportGen["📊 Report Generator\n-> validation_report.xlsx"]
+        Validator["✅ ExcelValidator\n(Apache POI)"]
+        ReportGen["📊 Report Generator\nCreates validation_report.xlsx"]
     end
 
-    %% Observability
-    subgraph Observability
-        Logger["📝 SLF4J + Logback\nwrites performance logs"]
-        Perf["📈 PerfProbe\n-> logs/performance.log"]
+    %% Logs & Performance
+    subgraph Logging
+        Logger["📝 SLF4J + Logback\nRecords every step"]
+        Perf["📈 PerfLogger\nWrites to logs/performance.log"]
     end
 
     %% Outputs
@@ -44,10 +44,10 @@ graph TD
         TOC["🗂 usb_pd_toc.jsonl"]
         SECS["🗂 usb_pd_sections.jsonl"]
         VALID["🗂 validation_report.xlsx"]
-        LOG["📄 performance.log (logs/)"]
+        PERFLOG["📄 performance.log\n(logs/performance.log)"]
     end
 
-    %% Flows
+    %% Flow Connections
     Dev --> App
     App --> UploadAPI
     UploadAPI --> PDF
@@ -56,13 +56,17 @@ graph TD
     PdfBox --> ToCExtractor
     PdfBox --> SectionExtractor
 
+    %% TOC Flow
+    ToCExtractor --> JsonWriter
+    JsonWriter --> TOC
+
+    %% Sections Flow
     SectionExtractor --> PostProc
     PostProc --> Dedup
     Dedup --> JsonWriter
-
-    ToCExtractor --> TOC
     JsonWriter --> SECS
 
+    %% Validation Flow
     ToCExtractor --> Validator
     JsonWriter --> Validator
     Validator --> ReportGen
@@ -70,10 +74,11 @@ graph TD
 
     %% Logging at every step
     UploadAPI --> Logger
+    PdfBox --> Logger
     ToCExtractor --> Logger
     SectionExtractor --> Logger
     JsonWriter --> Logger
     Validator --> Logger
-    ReportGen --> Logger
-    Logger --> LOG
     Logger --> Perf
+    Perf --> PERFLOG
+
