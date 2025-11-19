@@ -16,15 +16,15 @@ graph TD
     %% Parsing
     subgraph Parsing
         PdfBox["📦 PDFBox Layer\n(PdfBoxTocExtractor, PdfBoxSectionExtractor)"]
-        ToCExtractor["🧭 ToC Extractor\n-> usb_pd_toc.jsonl (output/)"]
-        SectionExtractor["📑 Section Extractor\n-> Section POJOs"]
+        ToCExtractor["🧭 ToC Extractor\n-> tocSections (in-memory)"]
+        SectionExtractor["📑 Section Extractor\n-> allSections (in-memory)"]
     end
 
     %% Processing
     subgraph Processing
         PostProc["🧼 SectionPostProcessor\n(normalize / merge)"]
         Dedup["🔁 Deduplicator\n(chooseBetterSection)"]
-        JsonWriter["💾 JsonlWriter (Jackson)\n-> usb_pd_sections.jsonl (output/)"]
+        JsonWriter["💾 JsonlWriter (Jackson)\nWrites usb_pd_toc.jsonl & usb_pd_sections.jsonl (output/)"]
     end
 
     %% Validation
@@ -36,7 +36,7 @@ graph TD
     %% Observability (logs NOT in output/)
     subgraph Observability
         Logger["📝 SLF4J + Logback\nwrites performance messages"]
-        Perf["📈 PerfProbe / PerfLogger\n-> performance.log (logs/performance.log)"]
+        Perf["📈 PerfProbe / PerfLogger\n-> logs/performance.log"]
     end
 
     %% Outputs
@@ -55,12 +55,13 @@ graph TD
     PdfBox --> ToCExtractor
     PdfBox --> SectionExtractor
 
+    ToCExtractor --> JsonWriter
     SectionExtractor --> PostProc
     PostProc --> Dedup
     Dedup --> JsonWriter
 
-    ToCExtractor --> TOC
     JsonWriter --> SECS
+    JsonWriter --> TOC
 
     ToCExtractor --> Validator
     JsonWriter --> Validator
@@ -74,3 +75,4 @@ graph TD
     Logger --> LOG
 
     Logger --> Perf
+
