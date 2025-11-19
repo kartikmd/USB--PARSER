@@ -1,83 +1,78 @@
 ```mermaid
 graph TD
-  %% Entry
-  subgraph ENTRY
-    Dev["👤 Developer / CLI / API Client"]
-    App["🌐 Spring Boot App\nUsbPdParserApplication"]
-  end
 
-  %% Ingestion
-  subgraph INGESTION
-    UploadAPI["📤 PdfParserController (REST API)"]
-    Save["💾 Save uploaded PDF\n(outDir = storage.base-path)"]
-    LogUpload["📝 PerfLogger: 'Upload saved'"]
-  end
+    %% Entry
+    subgraph ENTRY
+        App["🌐 Spring Boot Application\nUsbPdParserApplication"]
+        UploadAPI["📤 PdfParserController (REST API)\nPOST /api/pdf/parse"]
+    end
 
-  %% Parsing
-  subgraph PARSING
-    PdfBox["📦 PDFBox Layer"]
-    ToCExt["🧭 PdfBoxTocExtractor\n-> usb_pd_toc.jsonl"]
-    SecExt["📑 PdfBoxSectionExtractor\n-> Section POJOs"]
-    LogToC["📝 PerfLogger: 'ToC extracted'"]
-    LogSections["📝 PerfLogger: 'Sections extracted'"]
-  end
+    %% Ingestion
+    subgraph INGESTION
+        PDF["📄 Uploaded PDF File"]
+        Storage["📂 storage.base-path (output folder)\nStores uploaded PDF"]
+    end
 
-  %% Processing & Output
-  subgraph PROCESSING
-    PostProc["🧼 SectionPostProcessor (clean/normalize)"]
-    Dedup["🔁 Deduplicator (chooseBetterSection)"]
-    JsonWriter["💾 JacksonJsonlWriter\n-> usb_pd_sections.jsonl"]
-    LogJson["📝 PerfLogger: 'JSONL written'"]
-  end
+    %% Parsing Layer
+    subgraph PARSING
+        PdfBox["📦 PDFBox Engine\nReads PDF text"]
+        ToCExtractor["🧭 PdfBoxTocExtractor\nExtract TOC → usb_pd_toc.jsonl"]
+        SectionExtractor["📑 PdfBoxSectionExtractor\nExtract all sections"]
+    end
 
-  %% Validation
-  subgraph VALIDATION
-    Validator["✅ ExcelValidator (Apache POI)"]
-    Report["📊 validation_report.xlsx"]
-    LogValid["📝 PerfLogger: 'Validation report written'"]
-  end
+    %% Processing Layer
+    subgraph PROCESSING
+        PostProc["🧼 SectionPostProcessor\nClean/normalize sections"]
+        Dedup["🔁 Deduplication\nchooseBetterSection()"]
+        JsonWriter["💾 JsonlWriter (Jackson)\nWrites final JSONL"]
+    end
 
-  %% Observability
-  subgraph OBSERVABILITY
-    Logger["📝 SLF4J + Logback"]
-    Perf["📈 PerfProbe / PerfLogger\n-> performance.log"]
-  end
+    %% Validation
+    subgraph VALIDATION
+        Validator["✅ ExcelValidator (Apache POI)\nCompare TOC ↔ Sections"]
+        ReportGen["📊 Excel Report Generator\nvalidation_report.xlsx"]
+    end
 
-  %% Outputs
-  subgraph OUTPUTS
-    TOC["🗂 usb_pd_toc.jsonl"]
-    SECS["🗂 usb_pd_sections.jsonl"]
-    VALID["🗂 validation_report.xlsx"]
-    LOG["📄 performance.log"]
-  end
+    %% Observability
+    subgraph OBSERVABILITY
+        Logger["📝 SLF4J + Logback"]
+        Perf["📈 PerfLogger\nWrites performance.log\nstored in /logs"]
+    end
 
-  %% Flows (ordered, matching logs)
-  Dev --> App
-  App --> UploadAPI
-  UploadAPI --> Save
-  Save --> LogUpload
-  LogUpload --> PdfBox
-  PdfBox --> ToCExt
-  ToCExt --> LogToC
-  PdfBox --> SecExt
-  SecExt --> LogSections
-  SecExt --> PostProc
-  PostProc --> Dedup
-  Dedup --> JsonWriter
-  JsonWriter --> LogJson
-  ToCExt --> Validator
-  JsonWriter --> Validator
-  Validator --> Report
-  Report --> LogValid
-  LogUpload --> Perf
-  LogToC --> Perf
-  LogSections --> Perf
-  LogJson --> Perf
-  LogValid --> Perf
+    %% Outputs
+    subgraph OUTPUTS
+        TOC["🗂 usb_pd_toc.jsonl"]
+        SECS["🗂 usb_pd_sections.jsonl"]
+        VALID["🗂 validation_report.xlsx"]
+        LOG["📄 performance.log (in logs folder)"]
+    end
 
-  %% Artifacts
-  ToCExt --> TOC
-  JsonWriter --> SECS
-  Report --> VALID
-  Perf --> LOG
+    %% Flow Connections
+    App --> UploadAPI
+    UploadAPI --> PDF
+    PDF --> Storage
+
+    Storage --> PdfBox
+    PdfBox --> ToCExtractor
+    PdfBox --> SectionExtractor
+
+    SectionExtractor --> PostProc
+    PostProc --> Dedup
+    Dedup --> JsonWriter
+
+    ToCExtractor --> TOC
+    JsonWriter --> SECS
+
+    ToCExtractor --> Validator
+    JsonWriter --> Validator
+    Validator --> ReportGen
+    ReportGen --> VALID
+
+    PdfBox --> Logger
+    SectionExtractor --> Logger
+    Validator --> Logger
+    JsonWriter --> Logger
+    Logger --> LOG
+
+    Logger --> Perf
 
