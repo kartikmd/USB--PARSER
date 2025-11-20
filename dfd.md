@@ -1,21 +1,46 @@
 ```mermaid
 flowchart TD
-  User["👤 User / Dev"]
-  System["📦 USB PD Parser"]
+  %% External actors
+  User["👤 Developer / API Client"]
 
-  User -->|upload/run| System
+  %% Ingest
+  User -->|upload PDF| Api["📤 PdfParserController (REST API)"]
 
-  subgraph System
-    Ingest["1 - Ingest PDF"]
-    Parse["2 - Parse ToC & Sections"]
-    Post["3 - Post-process & Write JSONL"]
-    Validate["4 - Validate & Report"]
-  end
+  %% Save & Storage
+  Api -->|save file| UploadFS["📁 output/uploads/<file>.pdf"]
 
-  Ingest --> Parse
-  Parse --> Post
-  Post --> Validate
+  %% Parsing (PDFBox)
+  UploadFS -->|read bytes| PdfBox["📦 PDFBox Layer"]
+  PdfBox --> ToCExtract["🧭 PdfBoxTocExtractor"]
+  PdfBox --> SecExtract["📑 PdfBoxSectionExtractor"]
 
-  Post -->|"usb_pd_toc.jsonl\nusb_pd_sections.jsonl"| Storage["🗂 Outputs"]
-  Validate -->|"validation_report.xlsx"| Storage
-  Storage -->|download| User
+  %% Outputs from parsing
+  ToCExtract -->|toc list| TocJson["🗂 usb_pd_toc.jsonl (output/)"]
+  SecExtract -->|sections list| RawSections["📄 in-memory Section POJOs"]
+
+  %% Processing
+  RawSections --> PostProc["🧼 SectionPostProcessor"]
+  PostProc --> Dedup["🔁 Deduplicator (chooseBetterSection)"]
+  Dedup --> JsonWriter["💾 JsonlWriter (Jackson)"]
+
+  %% JSONL outputs
+  JsonWriter -->|write| SecJson["🗂 usb_pd_sections.jsonl (output/)"]
+  ToCExtract -->|also ->| JsonWriter
+
+  %% Validation
+  TocJson --> Validator["✅ ExcelValidator (Apache POI)"]
+  SecJson --> Validator
+  Validator -->|write| ValidXlsx["🗂 validation_report.xlsx (output/)"]
+
+  %% Observability / logs
+  Api --> Logger["📝 SLF4J + Logback"]
+  ToCExtract --> Logger
+  SecExtract --> Logger
+  JsonWriter --> Logger
+  Validator --> Logger
+  Logger -->|perf lines| PerfLog["📄 logs/performance.log"]
+
+  %% Final downloads
+  User -->|download| TocJson
+  User -->|download| SecJson
+  User -->|download| ValidXlsx
