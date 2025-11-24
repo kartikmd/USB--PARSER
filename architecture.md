@@ -1,30 +1,28 @@
 ```mermaid
 flowchart TB
-
-  %% Top-level actors
+  %% Top: Actor
   Dev["👤 Developer / Client"]
+
+  %% Application
   App["🌐 Spring Boot App\nUsbPdParserApplication"]
-  
-  %% Ingestion Layer inside Controller
-  subgraph Ingestion["📥 Ingestion Layer (Inside Controller)"]
-    UploadAPI["📤 PdfParserController (REST API)\nPOST /api/pdf/parse"]
-    SavedPDF["💾 Saved File\n(output/uploaded.pdf)"]
+
+  %% Ingestion Layer (inside Controller)
+  subgraph Ingestion["📥 Ingestion Layer"]
+    UploadAPI["📤 PdfParserController\nPOST /api/pdf/parse\n(save uploaded PDF)"]
+    SavedPDF["💾 Saved PDF\n/output/uploaded.pdf"]
   end
 
-  %% PDFBox + Parsing Layer
-  subgraph PDFProcessing["📦 PDF Processing"]
-    PdfBox["📦 Apache PDFBox\n(load + extract pages)"]
-
-    subgraph Parsing["📑 Internal Parsing Layer (inside PDFBox)"]
-      ParsingService["🔧 ParsingService\n(TextNormalizer, PreJoin/Merge,\nRegexEngine, PrintedPageDetection,\nTableRepair, Hyphenation, Dotted-line skip)"]
-      ToCExtractor["🧾 PdfBoxTocExtractor\n(uses ParsingService)"]
-      SectionExtractor["📄 PdfBoxSectionExtractor\n(uses ParsingService)"]
-    end
+  %% PDF / Parsing Layer (core parsing + internal processing)
+  subgraph Parsing["📑 PDF Processing & Parsing Layer"]
+    PdfBox["📦 Apache PDFBox\n(load + page text)"]
+    ParsingService["🔧 ParsingService (injectable)\n• normalize(), pre-join/merge\n• printed page detection\n• hyphenation join\n• dotted-leader removal\n• table-id repair"]
+    ToCExtractor["🧾 PdfBoxTocExtractor\n(extract TOC lines → section_id,title,page)"]
+    SectionExtractor["📄 PdfBoxSectionExtractor\n(find headings → collect section content)"]
   end
 
-  %% Outputs & Validation
-  JsonWriter["💾 JsonWriter\n(writes jsonl outputs)"]
-  Validator["✅ ExcelValidator\n(compare TOC vs Sections)"]
+  %% Output & Validation
+  JsonWriter["💾 JsonWriter\nwrites usb_pd_toc.jsonl & usb_pd_sections.jsonl"]
+  Validator["✅ ExcelValidator\n(compares TOC vs Sections)"]
   ReportGen["📊 Report Generator\n(validation_report.xlsx)"]
 
   %% Observability
@@ -37,26 +35,23 @@ flowchart TB
   VALID["🗂 validation_report.xlsx (output/)"]
   LOG["📄 performance.log (logs/)"]
 
-  %% Flow Connections
+  %% Flows
   Dev --> App
   App --> UploadAPI
-
   UploadAPI --> SavedPDF
   SavedPDF --> PdfBox
 
-  %% PDFBox → Internal Parsing Layer
+  %% Internal parsing wiring
   PdfBox --> ParsingService
   ParsingService --> ToCExtractor
   ParsingService --> SectionExtractor
 
-  %% Extractors → Writer → Output
   ToCExtractor --> JsonWriter
   SectionExtractor --> JsonWriter
 
   JsonWriter --> TOC
   JsonWriter --> SECS
 
-  %% Validation
   TOC --> Validator
   SECS --> Validator
   Validator --> ReportGen
