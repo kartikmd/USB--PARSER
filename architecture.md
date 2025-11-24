@@ -1,85 +1,37 @@
 ```mermaid
-graph TD
+flowchart TD
+  A[PDF file(s)\nUSB_PD_R3_2...pdf] -->|PDDocument.load & PDFTextStripper| B[Text Extraction]
+  B --> C[TocExtractor (PdfBoxTocExtractor)]
+  B --> D[SectionExtractor (PdfBoxSectionExtractor)]
 
-    %% Entry
-    subgraph Entry
-        Dev["👤 Developer"]
-        App["🌐 Spring Boot App\nUsbPdParserApplication"]
-    end
+  subgraph TocExtractor
+    C1[Pre-join / clean lines]
+    C2[Regex parse: DOTS_PAGE / TITLE_PAGE / TABLE_VARIANTS / LETTER_SECTION]
+    C3[repairNumericKeysThatHoldTables]
+    C4[build Section objects]
+    C1 --> C2 --> C3 --> C4
+  end
+  C --> E[TOC JSONL (usb_pd_toc.jsonl)]
 
-    %% Ingestion
-    subgraph Ingestion
-        UploadAPI["📤 PdfParserController (REST API)\nAccepts PDF upload"]
-        PDF["📄 Input PDF\nUSB_PD_R3_2.pdf (saved inside output/)"]
-    end
+  subgraph SectionExtractor
+    D1[Detect printed page numbers]
+    D2[Normalize & merge broken lines]
+    D3[Heading detection: HEADING_PATTERN / LETTER_HEADING / TABLE_HEADING]
+    D4[Accumulate section content]
+    D5[finalizeSection → Section objects]
+    D1 --> D2 --> D3 --> D4 --> D5
+  end
+  D --> F[Parsed Sections JSONL (usb_pd_sections.jsonl)]
 
-    %% Parsing
-    subgraph Parsing
-        PdfBox["📦 PDFBox Layer\n(PdfBoxTocExtractor, PdfBoxSectionExtractor)"]
-        ToCExtractor["🧭 TOC Extractor\nProduces TOC data"]
-        SectionExtractor["📑 Section Extractor\nProduces Section POJOs"]
-    end
+  E --> G[Validator (ExcelValidator)]
+  F --> G
+  G --> H[ValidationResult]
+  H --> I[Writes validation_report.xlsx]
+  E --> J[Downstream consumers / human review]
+  F --> J
 
-    %% Processing
-    subgraph Processing
-        PostProc["🧼 SectionPostProcessor\n(normalize / merge)"]
-        Dedup["🔁 Deduplicator\nchooseBetterSection()"]
-        JsonWriter["💾 JsonlWriter (Jackson)\nWrites TOC + Sections as JSONL"]
-    end
-
-    %% Validation
-    subgraph Validation
-        Validator["✅ ExcelValidator (Apache POI)\nCompares TOC.jsonl & Sections.jsonl"]
-        ReportGen["📊 Report Generator\nCreates validation_report.xlsx"]
-    end
-
-    %% Observability
-    subgraph Observability
-        Logger["📝 SLF4J + Logback"]
-        Perf["📈 PerfLogger\nWrites into logs/performance.log"]
-    end
-
-    %% Outputs
-    subgraph Outputs
-        TOC["🗂 usb_pd_toc.jsonl (output/)"]
-        SECS["🗂 usb_pd_sections.jsonl (output/)"]
-        VALID["🗂 validation_report.xlsx (output/)"]
-        LOG["📄 performance.log (logs/)"]
-    end
-
-    %% Flows
-    Dev --> App
-    App --> UploadAPI
-
-    UploadAPI --> PDF
-    PDF --> PdfBox
-
-    PdfBox --> ToCExtractor
-    PdfBox --> SectionExtractor
-
-    %% TOC flow
-    ToCExtractor --> JsonWriter
-    JsonWriter --> TOC
-
-    %% Sections flow
-    SectionExtractor --> PostProc
-    PostProc --> Dedup
-    Dedup --> JsonWriter
-    JsonWriter --> SECS
-
-    %% Validation flow (IMPORTANT FIX)
-    TOC --> Validator
-    SECS --> Validator
-    Validator --> ReportGen
-    ReportGen --> VALID
-
-    %% Logging (CORRECTED)
-    UploadAPI --> Logger
-    ToCExtractor --> Logger
-    SectionExtractor --> Logger
-    Validator --> Logger
-    JsonWriter --> Logger
-    Logger --> Perf
-    Perf --> LOG
+  style C fill:#f9f,stroke:#333
+  style D fill:#ff9,stroke:#333
+  style G fill:#9ff,stroke:#333
 
 
