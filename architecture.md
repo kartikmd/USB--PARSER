@@ -1,5 +1,4 @@
 ```mermaid
-
 flowchart TB
     %% Validation
     subgraph Validation
