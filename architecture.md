@@ -1,6 +1,6 @@
 ```mermaid
-flowchart TB
 
+flowchart TB
     %% Validation
     subgraph Validation
         Validator["✅ ExcelValidator (Apache POI)\nCompares TOC.jsonl & Sections.jsonl"]
@@ -12,6 +12,21 @@ flowchart TB
         Logger["📝 SLF4J + Logback"]
         Perf["📈 PerfLogger\nWrites into logs/performance.log"]
     end
+
+    %% Injection / Parsing Layer
+    subgraph InjectionLayer["🧩 Injection / Parsing Layer"]
+        Normalizer["🔤 TextNormalizer\n(normalize(), remove NBSP, unicode)"]
+        PreJoin["🔗 PreJoin / Merge\n(page-only merge, dotted leaders)"]
+        RegexEngine["🔎 RegexEngine\n(common regex patterns)"]
+        TableRepair["🛠 TableRepair\nnumeric-key fixes & post-repair"]
+        DI["⚙️ DI Container\n(provide same instance to extractors)"]
+    end
+
+    %% Extractors & PdfBox
+    PdfBox["📦 Apache PDFBox"]
+    ToCExtractor["🧾 PdfBoxTocExtractor"]
+    SectionExtractor["📑 PdfBoxSectionExtractor"]
+    JsonWriter["💾 JsonWriter"]
 
     %% Outputs
     subgraph Outputs
@@ -26,16 +41,23 @@ flowchart TB
     App --> UploadAPI["📥 Upload API (/upload)"]
 
     UploadAPI --> PDF["📄 PDF File"]
-    PDF --> PdfBox["📦 Apache PDFBox"]
+    PDF --> PdfBox
 
-    PdfBox --> ToCExtractor["🧾 PdfBoxTocExtractor"]
-    PdfBox --> SectionExtractor["📑 PdfBoxSectionExtractor"]
+    %% Injection: PdfBox -> Injection Layer -> Extractors
+    PdfBox --> DI
+    DI --> Normalizer
+    DI --> PreJoin
+    DI --> RegexEngine
+    DI --> TableRepair
 
-    %% TOC flow
-    ToCExtractor --> JsonWriter["💾 JSON Writer"]
+    PdfBox --> InjectionLayer
+    InjectionLayer --> ToCExtractor
+    InjectionLayer --> SectionExtractor
+
+    %% Extractors -> Writer -> Outputs
+    ToCExtractor --> JsonWriter
     JsonWriter --> TOC
 
-    %% Sections flow (no post-processing layers)
     SectionExtractor --> JsonWriter
     JsonWriter --> SECS
 
@@ -47,6 +69,8 @@ flowchart TB
 
     %% Logging
     UploadAPI --> Logger
+    PdfBox --> Logger
+    InjectionLayer --> Logger
     ToCExtractor --> Logger
     SectionExtractor --> Logger
     Validator --> Logger
