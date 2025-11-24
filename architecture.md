@@ -1,48 +1,58 @@
 ```mermaid
 flowchart TB
+
   %% Top-level actors
   Dev["👤 Developer / Client"]
   App["🌐 Spring Boot App\nUsbPdParserApplication"]
-  UploadAPI["📤 PdfParserController (REST API)\nPOST /api/pdf/parse"]
-
-  %% Ingestion
-  PDF["📄 Input PDF\nUSB_PD_R3_2.pdf (output/)"]
-  PdfBox["📦 Apache PDFBox\n(page extraction)"]
-
-  %% Parsing (INTERNAL processing included)
-  subgraph Parsing["📑 Parsing Layer (extractors + processing)"]
-    ParsingService["🔧 ParsingService\n(TextNormalizer, PreJoin/Merge, RegexEngine,\nPrintedPageDetection, TableRepair, Hyphenation, Dotted-line skip)"]
-    ToCExtractor["🧾 PdfBoxTocExtractor\n(uses ParsingService)"]
-    SectionExtractor["📄 PdfBoxSectionExtractor\n(uses ParsingService)"]
+  
+  %% Ingestion Layer inside Controller
+  subgraph Ingestion["📥 Ingestion Layer (Inside Controller)"]
+    UploadAPI["📤 PdfParserController (REST API)\nPOST /api/pdf/parse"]
+    SavedPDF["💾 Saved File\n(output/uploaded.pdf)"]
   end
 
-  %% Writers, Validation, Observability
-  JsonWriter["💾 JsonWriter\n(writes usb_pd_toc.jsonl & usb_pd_sections.jsonl)"]
-  Validator["✅ ExcelValidator\n(Comparisons + report via Apache POI)"]
+  %% PDFBox + Parsing Layer
+  subgraph PDFProcessing["📦 PDF Processing"]
+    PdfBox["📦 Apache PDFBox\n(load + extract pages)"]
+
+    subgraph Parsing["📑 Internal Parsing Layer (inside PDFBox)"]
+      ParsingService["🔧 ParsingService\n(TextNormalizer, PreJoin/Merge,\nRegexEngine, PrintedPageDetection,\nTableRepair, Hyphenation, Dotted-line skip)"]
+      ToCExtractor["🧾 PdfBoxTocExtractor\n(uses ParsingService)"]
+      SectionExtractor["📄 PdfBoxSectionExtractor\n(uses ParsingService)"]
+    end
+  end
+
+  %% Outputs & Validation
+  JsonWriter["💾 JsonWriter\n(writes jsonl outputs)"]
+  Validator["✅ ExcelValidator\n(compare TOC vs Sections)"]
   ReportGen["📊 Report Generator\n(validation_report.xlsx)"]
+
+  %% Observability
   Logger["📝 SLF4J + Logback"]
   Perf["📈 PerfLogger\n(logs/performance.log)"]
 
-  %% Outputs
+  %% Output files
   TOC["🗂 usb_pd_toc.jsonl (output/)"]
   SECS["🗂 usb_pd_sections.jsonl (output/)"]
   VALID["🗂 validation_report.xlsx (output/)"]
   LOG["📄 performance.log (logs/)"]
 
-  %% Flows
+  %% Flow Connections
   Dev --> App
   App --> UploadAPI
-  UploadAPI --> PDF
-  PDF --> PdfBox
 
-  %% Injection / parsing wiring
+  UploadAPI --> SavedPDF
+  SavedPDF --> PdfBox
+
+  %% PDFBox → Internal Parsing Layer
   PdfBox --> ParsingService
   ParsingService --> ToCExtractor
   ParsingService --> SectionExtractor
 
-  %% Extractors -> Writer -> Outputs
+  %% Extractors → Writer → Output
   ToCExtractor --> JsonWriter
   SectionExtractor --> JsonWriter
+
   JsonWriter --> TOC
   JsonWriter --> SECS
 
@@ -52,7 +62,7 @@ flowchart TB
   Validator --> ReportGen
   ReportGen --> VALID
 
-  %% Logging / Observability
+  %% Logging
   UploadAPI --> Logger
   PdfBox --> Logger
   ParsingService --> Logger
@@ -61,4 +71,6 @@ flowchart TB
   JsonWriter --> Logger
   Validator --> Logger
   Logger --> Perf
+  Perf --> LOG
+
   Perf --> LOG
