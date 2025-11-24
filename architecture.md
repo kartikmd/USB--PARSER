@@ -1,71 +1,52 @@
 ```mermaid
+
 flowchart TB
-  %% Top-level actors
-  Dev["👨‍💻 Developer"]
-  App["🌐 Spring Boot App"]
-  UploadAPI["📥 Upload API (/upload)"]
 
-  %% PDF ingestion
-  PDF["📄 PDF File"]
-  PdfBox["📦 Apache PDFBox\n(page extraction)"]
+    %% User & Application
+    User["👤 User / Developer"]
+    App["🌐 Spring Boot Application"]
+    UploadAPI["📥 /upload API"]
 
-  %% Injection / Parsing Layer (single injectable service)
-  subgraph InjectionLayer["🧩 Injection / Parsing Layer"]
-    DI["⚙️ DI Container\n(creates ParsingService)"]
-    ParsingService["🔧 ParsingService\n(TextNormalizer, PreJoin, RegexEngine, TableRepair)"]
-  end
+    %% PDF Processing
+    PDF["📄 Input PDF"]
+    PdfBox["📦 PDFBox\n(read pages & extract text)"]
 
-  %% Extractors & Writers
-  ToCExtractor["🧾 PdfBoxTocExtractor\n(uses ParsingService)"]
-  SectionExtractor["📑 PdfBoxSectionExtractor\n(uses ParsingService)"]
-  JsonWriter["💾 JsonWriter\n(writes jsonl outputs)"]
+    %% Extractors
+    TocExt["🧾 TOC Extractor"]
+    SecExt["📑 Section Extractor"]
 
-  %% Validation & Reporting
-  Validator["✅ ExcelValidator\n(Apache POI)"]
-  ReportGen["📊 Report Generator\n(validation_report.xlsx)"]
+    %% Outputs
+    TocJSON["🗂 usb_pd_toc.jsonl"]
+    SecJSON["🗂 usb_pd_sections.jsonl"]
 
-  %% Observability
-  Logger["📝 SLF4J + Logback"]
-  Perf["📈 PerfLogger\n(logs/performance.log)"]
+    %% Validation
+    Validator["✅ ExcelValidator"]
+    Report["📊 validation_report.xlsx"]
 
-  %% Outputs
-  TOC["🗂 usb_pd_toc.jsonl (output/)"]
-  SECS["🗂 usb_pd_sections.jsonl (output/)"]
-  VALID["🗂 validation_report.xlsx (output/)"]
-  LOG["📄 performance.log (logs/)"]
+    %% Logging
+    Logger["📝 Logback Logging"]
+    PerfLog["📈 performance.log"]
 
-  %% Flows / Connections
-  Dev --> App
-  App --> UploadAPI
-  UploadAPI --> PDF
-  PDF --> PdfBox
+    %% Flows
+    User --> App
+    App --> UploadAPI
+    UploadAPI --> PDF
+    PDF --> PdfBox
 
-  %% Injection wiring
-  PdfBox --> DI
-  DI --> ParsingService
-  ParsingService --> ToCExtractor
-  ParsingService --> SectionExtractor
+    PdfBox --> TocExt
+    PdfBox --> SecExt
 
-  %% Extraction flow
-  ToCExtractor --> JsonWriter
-  JsonWriter --> TOC
+    TocExt --> TocJSON
+    SecExt --> SecJSON
 
-  SectionExtractor --> JsonWriter
-  JsonWriter --> SECS
+    TocJSON --> Validator
+    SecJSON --> Validator
 
-  %% Validation
-  TOC --> Validator
-  SECS --> Validator
-  Validator --> ReportGen
-  ReportGen --> VALID
+    Validator --> Report
 
-  %% Logging / Observability
-  UploadAPI --> Logger
-  PdfBox --> Logger
-  ParsingService --> Logger
-  ToCExtractor --> Logger
-  SectionExtractor --> Logger
-  JsonWriter --> Logger
-  Validator --> Logger
-  Logger --> Perf
-  Perf --> LOG
+    %% Logging flow
+    App --> Logger
+    TocExt --> Logger
+    SecExt --> Logger
+    Validator --> Logger
+    Logger --> PerfLog
