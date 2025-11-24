@@ -1,37 +1,79 @@
 ```mermaid
-flowchart TD
-  A[PDF file(s)\nUSB_PD_R3_2...pdf] -->|PDDocument.load & PDFTextStripper| B[Text Extraction]
-  B --> C[TocExtractor (PdfBoxTocExtractor)]
-  B --> D[SectionExtractor (PdfBoxSectionExtractor)]
+flowchart TB
+    %% Actors
+    subgraph DevEnv["Developer"]
+        Dev["👨‍💻 Developer"]
+    end
 
-  subgraph TocExtractor
-    C1[Pre-join / clean lines]
-    C2[Regex parse: DOTS_PAGE / TITLE_PAGE / TABLE_VARIANTS / LETTER_SECTION]
-    C3[repairNumericKeysThatHoldTables]
-    C4[build Section objects]
-    C1 --> C2 --> C3 --> C4
-  end
-  C --> E[TOC JSONL (usb_pd_toc.jsonl)]
+    subgraph AppEnv["Application"]
+        App["🌐 App (Spring Boot)"]
+        UploadAPI["📥 Upload API\n(/upload)"]
+        PdfBox["📦 Apache PDFBox"]
+        ToCExtractor["🧾 PdfBoxTocExtractor"]
+        SectionExtractor["📑 PdfBoxSectionExtractor"]
+        PostProc["🔧 Sections Post-Proc"]
+        Dedup["🧹 Deduplicate / Repair"]
+        JsonWriter["💾 JSON Writer"]
+    end
 
-  subgraph SectionExtractor
-    D1[Detect printed page numbers]
-    D2[Normalize & merge broken lines]
-    D3[Heading detection: HEADING_PATTERN / LETTER_HEADING / TABLE_HEADING]
-    D4[Accumulate section content]
-    D5[finalizeSection → Section objects]
-    D1 --> D2 --> D3 --> D4 --> D5
-  end
-  D --> F[Parsed Sections JSONL (usb_pd_sections.jsonl)]
+    %% Validation
+    subgraph Validation
+        Validator["✅ ExcelValidator\n(Apache POI)"]
+        ReportGen["📊 Report Generator\n(writes validation_report.xlsx)"]
+    end
 
-  E --> G[Validator (ExcelValidator)]
-  F --> G
-  G --> H[ValidationResult]
-  H --> I[Writes validation_report.xlsx]
-  E --> J[Downstream consumers / human review]
-  F --> J
+    %% Observability
+    subgraph Observability
+        Logger["📝 SLF4J + Logback"]
+        Perf["📈 PerfLogger\nlogs/performance.log"]
+    end
 
-  style C fill:#f9f,stroke:#333
-  style D fill:#ff9,stroke:#333
-  style G fill:#9ff,stroke:#333
+    %% Outputs
+    subgraph Outputs
+        TOC["🗂 usb_pd_toc.jsonl\n(output/)"]
+        SECS["🗂 usb_pd_sections.jsonl\n(output/)"]
+        VALID["🗂 validation_report.xlsx\n(output/)"]
+        LOG["📄 performance.log\n(logs/)"]
+    end
 
+    %% File reference (project zip)
+    NoteFile["📦 Project ZIP:\n/mnt/data/testing.zip"]:::noteStyle
 
+    %% Flows (as requested)
+    Dev --> App
+    App --> UploadAPI
+
+    UploadAPI --> NoteFile
+    UploadAPI --> PDF[".pdf payload"]
+    PDF --> PdfBox
+
+    PdfBox --> ToCExtractor
+    PdfBox --> SectionExtractor
+
+    %% TOC flow
+    ToCExtractor --> JsonWriter
+    JsonWriter --> TOC
+
+    %% Sections flow
+    SectionExtractor --> PostProc
+    PostProc --> Dedup
+    Dedup --> JsonWriter
+    JsonWriter --> SECS
+
+    %% Validation flow (IMPORTANT FIX)
+    TOC --> Validator
+    SECS --> Validator
+    Validator --> ReportGen
+    ReportGen --> VALID
+
+    %% Logging (CORRECTED)
+    UploadAPI --> Logger
+    ToCExtractor --> Logger
+    SectionExtractor --> Logger
+    Validator --> Logger
+    JsonWriter --> Logger
+    Logger --> Perf
+
+    Perf --> LOG
+
+    classDef noteStyle fill:#f8f0c8,stroke:#b08b00;
