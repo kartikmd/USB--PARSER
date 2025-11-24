@@ -1,5 +1,4 @@
 ```mermaid
-
 graph TD
 
   %% Entry
@@ -14,15 +13,13 @@ graph TD
     PDF["📄 Input PDF\nUSB_PD_R3_2.pdf (saved in output/)"]
   end
 
-  %% Parsing
-  subgraph Parsing
+  %% Parsing (NOW includes Processing Layer inside)
+  subgraph Parsing["🧩 Parsing Layer (includes Processing)"]
     PdfBox["📦 PDFBox Layer\n(PdfBoxTocExtractor, PdfBoxSectionExtractor)"]
     ToCExtractor["🧭 TOC Extractor\nnumbered + front-matter + annex (A,B,C…)"]
     SectionExtractor["📑 Section Extractor\nbuilds Section objects\n(content + page)"]
-  end
 
-  %% Processing
-  subgraph Processing
+    %% Processing moved inside Parsing
     PostProc["🧼 SectionPostProcessor\n(clean / normalize sections)"]
     Dedup["🔁 Deduplicator\nchooseBetterSection()"]
     JsonWriter["💾 JsonlWriter (Jackson)\nwrites TOC & Sections JSONL"]
@@ -81,4 +78,5 @@ graph TD
   JsonWriter --> Logger
   Validator --> Logger
   Logger --> Perf
+
   Perf --> LOG
