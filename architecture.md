@@ -1,78 +1,71 @@
 ```mermaid
 flowchart TB
-    %% Validation
-    subgraph Validation
-        Validator["✅ ExcelValidator (Apache POI)\nCompares TOC.jsonl & Sections.jsonl"]
-        ReportGen["📊 Report Generator\nCreates validation_report.xlsx"]
-    end
+  %% Top-level actors
+  Dev["👨‍💻 Developer"]
+  App["🌐 Spring Boot App"]
+  UploadAPI["📥 Upload API (/upload)"]
 
-    %% Observability
-    subgraph Observability
-        Logger["📝 SLF4J + Logback"]
-        Perf["📈 PerfLogger\nWrites into logs/performance.log"]
-    end
+  %% PDF ingestion
+  PDF["📄 PDF File"]
+  PdfBox["📦 Apache PDFBox\n(page extraction)"]
 
-    %% Injection / Parsing Layer
-    subgraph InjectionLayer["🧩 Injection / Parsing Layer"]
-        Normalizer["🔤 TextNormalizer\n(normalize(), remove NBSP, unicode)"]
-        PreJoin["🔗 PreJoin / Merge\n(page-only merge, dotted leaders)"]
-        RegexEngine["🔎 RegexEngine\n(common regex patterns)"]
-        TableRepair["🛠 TableRepair\nnumeric-key fixes & post-repair"]
-        DI["⚙️ DI Container\n(provide same instance to extractors)"]
-    end
+  %% Injection / Parsing Layer (single injectable service)
+  subgraph InjectionLayer["🧩 Injection / Parsing Layer"]
+    DI["⚙️ DI Container\n(creates ParsingService)"]
+    ParsingService["🔧 ParsingService\n(TextNormalizer, PreJoin, RegexEngine, TableRepair)"]
+  end
 
-    %% Extractors & PdfBox
-    PdfBox["📦 Apache PDFBox"]
-    ToCExtractor["🧾 PdfBoxTocExtractor"]
-    SectionExtractor["📑 PdfBoxSectionExtractor"]
-    JsonWriter["💾 JsonWriter"]
+  %% Extractors & Writers
+  ToCExtractor["🧾 PdfBoxTocExtractor\n(uses ParsingService)"]
+  SectionExtractor["📑 PdfBoxSectionExtractor\n(uses ParsingService)"]
+  JsonWriter["💾 JsonWriter\n(writes jsonl outputs)"]
 
-    %% Outputs
-    subgraph Outputs
-        TOC["🗂 usb_pd_toc.jsonl (output/)"]
-        SECS["🗂 usb_pd_sections.jsonl (output/)"]
-        VALID["🗂 validation_report.xlsx (output/)"]
-        LOG["📄 performance.log (logs/)"]
-    end
+  %% Validation & Reporting
+  Validator["✅ ExcelValidator\n(Apache POI)"]
+  ReportGen["📊 Report Generator\n(validation_report.xlsx)"]
 
-    %% Flows
-    Dev["👨‍💻 Developer"] --> App["🌐 Spring Boot App"]
-    App --> UploadAPI["📥 Upload API (/upload)"]
+  %% Observability
+  Logger["📝 SLF4J + Logback"]
+  Perf["📈 PerfLogger\n(logs/performance.log)"]
 
-    UploadAPI --> PDF["📄 PDF File"]
-    PDF --> PdfBox
+  %% Outputs
+  TOC["🗂 usb_pd_toc.jsonl (output/)"]
+  SECS["🗂 usb_pd_sections.jsonl (output/)"]
+  VALID["🗂 validation_report.xlsx (output/)"]
+  LOG["📄 performance.log (logs/)"]
 
-    %% Injection: PdfBox -> Injection Layer -> Extractors
-    PdfBox --> DI
-    DI --> Normalizer
-    DI --> PreJoin
-    DI --> RegexEngine
-    DI --> TableRepair
+  %% Flows / Connections
+  Dev --> App
+  App --> UploadAPI
+  UploadAPI --> PDF
+  PDF --> PdfBox
 
-    PdfBox --> InjectionLayer
-    InjectionLayer --> ToCExtractor
-    InjectionLayer --> SectionExtractor
+  %% Injection wiring
+  PdfBox --> DI
+  DI --> ParsingService
+  ParsingService --> ToCExtractor
+  ParsingService --> SectionExtractor
 
-    %% Extractors -> Writer -> Outputs
-    ToCExtractor --> JsonWriter
-    JsonWriter --> TOC
+  %% Extraction flow
+  ToCExtractor --> JsonWriter
+  JsonWriter --> TOC
 
-    SectionExtractor --> JsonWriter
-    JsonWriter --> SECS
+  SectionExtractor --> JsonWriter
+  JsonWriter --> SECS
 
-    %% Validation flow
-    TOC --> Validator
-    SECS --> Validator
-    Validator --> ReportGen
-    ReportGen --> VALID
+  %% Validation
+  TOC --> Validator
+  SECS --> Validator
+  Validator --> ReportGen
+  ReportGen --> VALID
 
-    %% Logging
-    UploadAPI --> Logger
-    PdfBox --> Logger
-    InjectionLayer --> Logger
-    ToCExtractor --> Logger
-    SectionExtractor --> Logger
-    Validator --> Logger
-    JsonWriter --> Logger
-    Logger --> Perf
-    Perf --> LOG
+  %% Logging / Observability
+  UploadAPI --> Logger
+  PdfBox --> Logger
+  ParsingService --> Logger
+  ToCExtractor --> Logger
+  SectionExtractor --> Logger
+  JsonWriter --> Logger
+  Validator --> Logger
+  Logger --> Perf
+  Perf --> LOG
