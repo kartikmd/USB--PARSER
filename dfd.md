@@ -1,46 +1,59 @@
 ```mermaid
 flowchart TD
-  %% External actors
-  User["👤 Developer / API Client"]
 
-  %% Ingest
-  User -->|upload PDF| Api["📤 PdfParserController (REST API)"]
+  %% External Entity
+  User["👤 Developer / Client"]
 
-  %% Save & Storage
-  Api -->|save file| UploadFS["📁 output/uploads/<file>.pdf"]
+  %% Processes
+  P1["P1: Upload & Validate PDF\n(PdfParserController)"]
+  P2["P2: Extract TOC\n(PdfBoxTocExtractor)"]
+  P3["P3: Extract Sections\n(PdfBoxSectionExtractor)"]
+  P4["P4: Write JSONL\n(JsonlWriter - Jackson)"]
+  P5["P5: Validate TOC vs Sections\n(ExcelValidator - Apache POI)"]
+  P6["P6: Logging & Performance\n(SLF4J + Logback + PerfLogger)"]
 
-  %% Parsing (PDFBox)
-  UploadFS -->|read bytes| PdfBox["📦 PDFBox Layer"]
-  PdfBox --> ToCExtract["🧭 PdfBoxTocExtractor"]
-  PdfBox --> SecExtract["📑 PdfBoxSectionExtractor"]
+  %% Data Stores
+  D_PDF["D1: Uploaded PDF\n(output/uploads/)"]
+  D_TOC["D2: TOC JSONL\nusb_pd_toc.jsonl (output/)"]
+  D_SECS["D3: Sections JSONL\nusb_pd_sections.jsonl (output/)"]
+  D_REPORT["D4: Validation Report\nvalidation_report.xlsx (output/)"]
+  D_LOGS["D5: Logs\nlogs/performance.log"]
 
-  %% Outputs from parsing
-  ToCExtract -->|toc list| TocJson["🗂 usb_pd_toc.jsonl (output/)"]
-  SecExtract -->|sections list| RawSections["📄 in-memory Section POJOs"]
+  %% Flows: User ↔ System
+  User -->|Upload PDF| P1
+  P1 -->|Success / Status| User
 
-  %% Processing
-  RawSections --> PostProc["🧼 SectionPostProcessor"]
-  PostProc --> Dedup["🔁 Deduplicator (chooseBetterSection)"]
-  Dedup --> JsonWriter["💾 JsonlWriter (Jackson)"]
+  %% P1: Upload & store PDF
+  P1 -->|valid PDF bytes| D_PDF
+  P1 -->|\"Upload saved...\" metrics| P6
 
-  %% JSONL outputs
-  JsonWriter -->|write| SecJson["🗂 usb_pd_sections.jsonl (output/)"]
-  ToCExtract -->|also ->| JsonWriter
+  %% P2: TOC extraction
+  D_PDF -->|PDF file| P2
+  P2 -->|TOC entries (List<Section>)| P4
+  P2 -->|\"ToC extracted...\" metrics| P6
 
-  %% Validation
-  TocJson --> Validator["✅ ExcelValidator (Apache POI)"]
-  SecJson --> Validator
-  Validator -->|write| ValidXlsx["🗂 validation_report.xlsx (output/)"]
+  %% P3: Sections extraction
+  D_PDF -->|PDF file| P3
+  P3 -->|Section entries (List<Section>)| P4
+  P3 -->|\"Sections extracted...\" metrics| P6
 
-  %% Observability / logs
-  Api --> Logger["📝 SLF4J + Logback"]
-  ToCExtract --> Logger
-  SecExtract --> Logger
-  JsonWriter --> Logger
-  Validator --> Logger
-  Logger -->|perf lines| PerfLog["📄 logs/performance.log"]
+  %% P4: JSONL writing
+  P4 -->|write TOC JSONL| D_TOC
+  P4 -->|write Sections JSONL| D_SECS
+  P4 -->|\"JSONL written...\" metrics| P6
 
-  %% Final downloads
-  User -->|download| TocJson
-  User -->|download| SecJson
-  User -->|download| ValidXlsx
+  %% P5: Excel validation
+  D_TOC -->|TOC records| P5
+  D_SECS -->|Section records| P5
+  P5 -->|validation_report.xlsx| D_REPORT
+  P5 -->|\"Validation report written...\" metrics| P6
+
+  %% P6: Logging
+  P6 -->|append logs| D_LOGS
+
+  %% Outputs back to user
+  D_TOC -->|download TOC JSONL| User
+  D_SECS -->|download Sections JSONL| User
+  D_REPORT -->|download Excel report| User
+  D_LOGS -->|view performance.log| User
+
