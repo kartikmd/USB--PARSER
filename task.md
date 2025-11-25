@@ -1,83 +1,97 @@
-📌 USB Power Delivery (USB-PD) Parsing System — Task Documentation
+📄 USB Power Delivery (USB-PD) Parsing System – Task Documentation
+📌 Project Overview
+This project processes the official USB Power Delivery Specification PDF and automatically generates structured machine-readable outputs used for documentation analysis and validation.
 
-🧾 Overview
-This project automates the extraction of structured data from the official USB Power Delivery Specification PDF.
-It converts the document into machine-readable structured outputs and validates consistency between the Table of Contents (TOC) and the extracted Sections.
+The system extracts:
 
-The system is implemented using:
+Table of Contents JSONL
 
-Java 17
-Spring Boot
-Apache PDFBox
-Apache POI
-Jackson JSONL Writer
-SLF4J + Logback
+Extracted PDF Sections JSONL
 
-🎯 Project Goals
-Task	Status
-Accept PDF via REST API	✅ Done
-Extract Table of Contents	✅ Done
-Extract full document sections (text + hierarchy)	✅ Done
-Serialize outputs into JSONL	✅ Done
-Validate TOC vs Section extraction	✅ Done
-Generate excel validation report	✅ Done
-Maintain performance logs	✅ Done
+Excel Validation Report
 
-🧩 Functional Breakdown
-1️⃣ Input Handling
+Execution & performance logs
 
-PDF uploaded via endpoint:
-POST /api/pdf/parse
-File validation: required, must be PDF
+The implementation uses:
 
-File stored to:
-output/uploads/<filename>.pdf
-Logs first performance entry:
+Java 17 · Spring Boot · Apache PDFBox · Jackson JSONL · Apache POI · SLF4J + Logback
 
-Upload saved: <time> ms, CPU %, Memory Used
-2️⃣ Parsing Layer (Apache PDFBox)
-📍 TOC Extraction (PdfBoxTocExtractor)
-Extracts:
-Section number (1, 1.2, 3.4.5…)
-Title
-Page number
-Nested hierarchy level
-Parent section
-➡ Output → usb_pd_toc.jsonl
+🎯 Objectives
+The goal of this system is to build a complete automated pipeline that:
 
-📍 Content Extraction (PdfBoxSectionExtractor)
-Detects headings
-Extracts text belonging to each section
-Handles page numbering from printed pages inside PDF
-➡ Output → usb_pd_sections.jsonl
+1️⃣ Accepts and Stores a PDF
+✔ Input received through a REST API (POST multipart upload)
+✔ Validates file type and saves it to output/uploads/
+✔ Logs upload timing, memory and CPU usage into performance.log
 
-3️⃣ Serialization (JSONL Output)
-Performed using:
-JsonlWriter (Jackson)
-Files generated:
-File	Purpose
-usb_pd_toc.jsonl	Raw structured Table of Contents
-usb_pd_sections.jsonl	Parsed full document sections
+2️⃣ Extracts the Table of Contents (TOC)
+✔ Detects various TOC formats:
 
-4️⃣ Validation Layer (Excel Report)
-ExcelValidator (Apache POI) compares:
-Missing entries
-Extra entries
-Page alignment mismatch
-Orphaned or unreferenced sections
+Number-based (e.g., 1, 1.2, 3.4.5)
 
-➡ Produces:
-validation_report.xlsx
-5️⃣ Observability
-Logging handled by:
+Annex sections (A, B, C …)
 
-SLF4J + Logback
-PerfLogger
-Logs include:
-Upload processing time
-Parsing performance
-Memory + CPU usage
-Extraction counts
+Dotted, spaced or trailing-page formats
 
-➡ Stored in:
-logs/performance.log
+✔ Extracted metadata includes:
+
+Field	Meaning
+section_id	The numeric/letter code (e.g., 1.2.3, A.1)
+title	Cleaned TOC title text
+page	Mapped PDF page number
+level	Depth based on numbering
+parent_id	Hierarchy reference
+full_path	section_id + title
+→ Stored as: usb_pd_toc.jsonl
+
+3️⃣ Extracts Full Document Sections
+✔ Extracts content from every page
+✔ Detects section headings inside the document
+✔ Assigns content to the corresponding TOC entry using:
+
+Page tracking
+
+Heading matching logic
+
+Hierarchical rules
+
+→ Stored as: usb_pd_sections.jsonl
+
+4️⃣ Serializes Output to JSONL
+✔ Uses Jackson streaming to produce line-by-line JSON objects
+✔ Ensures lightweight memory usage even for large PDFs
+✔ Generates two files:
+
+usb_pd_toc.jsonl
+
+usb_pd_sections.jsonl
+
+5️⃣ Validates TOC vs Extracted Sections
+Validation includes:
+
+Missing sections
+
+Extra sections
+
+Page mismatch
+
+Unmapped content
+
+Ordering & hierarchy consistency
+
+→ Results exported to validation_report.xlsx using Apache POI
+
+6️⃣ Performance Monitoring & Logging
+✔ Uses SLF4J + Logback for structured logging
+✔ Uses PerfLogger for execution metrics:
+
+Time taken for each stage
+
+Memory usage
+
+Section count
+
+Error traces (if any)
+
+→ Output: logs/performance.log
+
