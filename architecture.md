@@ -1,5 +1,6 @@
 ```mermaid
-flowchart TB
+graph TD
+
   %% Entry
   subgraph Entry
     Dev["👤 Developer / Client"]
@@ -9,66 +10,66 @@ flowchart TB
   %% Ingestion
   subgraph Ingestion
     UploadAPI["📤 PdfParserController (REST API)\nPOST /api/pdf/parse"]
-    SavedPDF["💾 Saved PDF\n(output/uploaded.pdf)"]
+    PDF["📄 Uploaded PDF\n(saved in output/uploads/)"]
   end
 
-  %% PDF + Parsing (all processing inside parsing layer)
-  subgraph Parsing["📑 Parsing Layer (PDFBox + internal processing)"]
-    PdfBox["📦 Apache PDFBox\n(load pages & extract text)"]
-    Helpers["🔧 Internal Helpers\n(normalize / pre-join / printed-page detection\nhyphenation join / dotted-leader removal\ntable-id repair)"]
-    ToC["🧾 PdfBoxTocExtractor\n(extract sectionId,title,page)"]
-    Section["📄 PdfBoxSectionExtractor\n(find headings and collect content)"]
+  %% Parsing
+  subgraph Parsing
+    PdfBox["📦 Apache PDFBox Layer"]
+    ToCExtractor["🧭 PdfBoxTocExtractor\n(Extracts TOC entries including A,B,C annexes)"]
+    SectionExtractor["📑 PdfBoxSectionExtractor\n(Extracts content + page mapping)"]
   end
 
-  %% Writers & Validation
-  JsonWriter["💾 JsonWriter\nwrites usb_pd_toc.jsonl & usb_pd_sections.jsonl"]
-  Validator["✅ ExcelValidator\n(compares TOC ↔ Sections & produces XLSX)"]
-  ReportGen["📊 Report Generator\n(validation_report.xlsx)"]
+  %% JSONL Writing (Now merged — no processing layer)
+  subgraph Serialization
+    JsonWriter["💾 JsonlWriter (Jackson)\nWrites: usb_pd_toc.jsonl & usb_pd_sections.jsonl"]
+  end
+
+  %% Validation
+  subgraph Validation
+    Validator["✅ ExcelValidator (Apache POI)\nCompares TOC vs Extracted Sections"]
+    ReportGen["📊 Report Generator\nProduces validation_report.xlsx"]
+  end
 
   %% Observability
-  Logger["📝 SLF4J + Logback\n(app logs & debug)"]
-  Perf["📈 PerfLogger\n(writes logs/performance.log)"]
+  subgraph Observability
+    Logger["📝 SLF4J + Logback\n(app + performance logs)"]
+    Perf["📈 PerfLogger\nlogs/performance.log"]
+  end
 
   %% Outputs
-  TOC["🗂 usb_pd_toc.jsonl (output/)"]
-  SECS["🗂 usb_pd_sections.jsonl (output/)"]
-  VALID["🗂 validation_report.xlsx (output/)"]
-  LOG["📄 performance.log (logs/)"]
+  subgraph Outputs
+    TOC["🗂 usb_pd_toc.jsonl (output/)"]
+    SECS["🗂 usb_pd_sections.jsonl (output/)"]
+    VALID["🗂 validation_report.xlsx (output/)"]
+    LOG["📄 performance.log (logs/)"]
+  end
 
-  %% Flows
+
+  %% Flow Connections
   Dev --> App
   App --> UploadAPI
-  UploadAPI --> SavedPDF
-  SavedPDF --> PdfBox
 
-  %% Inside parsing layer wiring (helpers are used by extractors)
-  PdfBox --> Helpers
-  Helpers --> ToC
-  Helpers --> Section
-  PdfBox --> ToC
-  PdfBox --> Section
+  UploadAPI --> PDF
+  PDF --> PdfBox
 
-  %% Extractors -> Writer -> Outputs
-  ToC --> JsonWriter
-  Section --> JsonWriter
+  PdfBox --> ToCExtractor
+  PdfBox --> SectionExtractor
+
+  ToCExtractor --> JsonWriter
+  SectionExtractor --> JsonWriter
   JsonWriter --> TOC
   JsonWriter --> SECS
 
-  %% Validation
   TOC --> Validator
   SECS --> Validator
   Validator --> ReportGen
   ReportGen --> VALID
 
-  %% Logging / Observability
   UploadAPI --> Logger
-  PdfBox --> Logger
-  Helpers --> Logger
-  ToC --> Logger
-  Section --> Logger
+  ToCExtractor --> Logger
+  SectionExtractor --> Logger
   JsonWriter --> Logger
   Validator --> Logger
   Logger --> Perf
-  Perf --> LOG
-
   Perf --> LOG
