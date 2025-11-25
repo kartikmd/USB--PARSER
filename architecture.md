@@ -1,47 +1,61 @@
 ```mermaid
-flowchart TB
-  %% Top: Actor
-  Dev["👤 Developer / Client"]
+graph TD
 
-  %% Application
-  App["🌐 Spring Boot App\nUsbPdParserApplication"]
-
-  %% Ingestion Layer (inside Controller)
-  subgraph Ingestion["📥 Ingestion Layer"]
-    UploadAPI["📤 PdfParserController\nPOST /api/pdf/parse\n(save uploaded PDF)"]
-    SavedPDF["💾 Saved PDF\n/output/uploaded.pdf"]
+  %% Entry Layer
+  subgraph Entry
+    Dev["👤 Developer / Client"]
+    App["🌐 Spring Boot App\nUsbPdParserApplication"]
   end
 
-  %% PDF / Parsing Layer (core parsing + internal processing)
-  subgraph Parsing["📑 PDF Processing & Parsing Layer"]
-    PdfBox["📦 Apache PDFBox\n(load + page text)"]
-    ParsingService["🔧 ParsingService (injectable)\n• normalize(), pre-join/merge\n• printed page detection\n• hyphenation join\n• dotted-leader removal\n• table-id repair"]
-    ToCExtractor["🧾 PdfBoxTocExtractor\n(extract TOC lines → section_id,title,page)"]
-    SectionExtractor["📄 PdfBoxSectionExtractor\n(find headings → collect section content)"]
+  %% Ingestion Layer
+  subgraph Ingestion
+    UploadAPI["📤 PdfParserController (REST API)\nPOST /api/pdf/parse"]
+    PDF["📄 Input PDF\n(saved in output/)"]
   end
 
-  %% Output & Validation
-  JsonWriter["💾 JsonWriter\nwrites usb_pd_toc.jsonl & usb_pd_sections.jsonl"]
-  Validator["✅ ExcelValidator\n(compares TOC vs Sections)"]
-  ReportGen["📊 Report Generator\n(validation_report.xlsx)"]
+  %% Parsing Layer (includes all internal processing)
+  subgraph Parsing
+    PdfBox["📦 Apache PDFBox\n(load pages + extract text)"]
 
-  %% Observability
-  Logger["📝 SLF4J + Logback"]
-  Perf["📈 PerfLogger\n(logs/performance.log)"]
+    ToCExtractor["🧾 PdfBoxTocExtractor\n(parse TOC → section_id, title, page)"]
+    SectionExtractor["📄 PdfBoxSectionExtractor\n(parse headings → content + page)"]
 
-  %% Output files
-  TOC["🗂 usb_pd_toc.jsonl (output/)"]
-  SECS["🗂 usb_pd_sections.jsonl (output/)"]
-  VALID["🗂 validation_report.xlsx (output/)"]
-  LOG["📄 performance.log (logs/)"]
+    ParsingService["🔧 Internal Parsing Helpers\n• normalize text\n• pre-join broken lines\n• printed page detection\n• skip headers/footers\n• hyphenation handling\n• dotted leader removal\n• table-id repair"]
+  end
+
+  %% Writer Layer
+  subgraph Writer
+    JsonWriter["💾 JsonlWriter\nwrites TOC & Sections JSONL"]
+  end
+
+  %% Validation Layer
+  subgraph Validation
+    Validator["✅ ExcelValidator (Apache POI)\ncompares TOC vs Sections"]
+    ReportGen["📊 Report Generator\ncreates validation_report.xlsx"]
+  end
+
+  %% Observability Layer
+  subgraph Observability
+    Logger["📝 SLF4J + Logback\nerror/info/debug logs"]
+    Perf["📈 PerfLogger\nwrites logs/performance.log"]
+  end
+
+  %% Outputs Layer
+  subgraph Outputs
+    TOC["🗂 usb_pd_toc.jsonl"]
+    SECS["🗂 usb_pd_sections.jsonl"]
+    VALID["🗂 validation_report.xlsx"]
+    LOG["📄 performance.log"]
+  end
 
   %% Flows
   Dev --> App
   App --> UploadAPI
-  UploadAPI --> SavedPDF
-  SavedPDF --> PdfBox
 
-  %% Internal parsing wiring
+  UploadAPI --> PDF
+  PDF --> PdfBox
+
+  %% Parsing connections
   PdfBox --> ParsingService
   ParsingService --> ToCExtractor
   ParsingService --> SectionExtractor
@@ -52,6 +66,7 @@ flowchart TB
   JsonWriter --> TOC
   JsonWriter --> SECS
 
+  %% Validation
   TOC --> Validator
   SECS --> Validator
   Validator --> ReportGen
@@ -66,6 +81,4 @@ flowchart TB
   JsonWriter --> Logger
   Validator --> Logger
   Logger --> Perf
-  Perf --> LOG
-
   Perf --> LOG
