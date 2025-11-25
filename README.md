@@ -1,45 +1,50 @@
 # USB Power Delivery (USB-PD) PDF Parser
 
-## 📌 Project Overview
-This project is a **Spring Boot application** that parses the official **USB Power Delivery Specification PDF**.  
-It extracts:
-- The **Table of Contents (ToC)** into one JSONL file.
-- All **other sections** into a second JSONL file.
-- A **validation report (Excel)** comparing ToC sections vs parsed sections (with missing/extra counts).
+## 📌 Project Overview  
+This project is a **Spring Boot application** that parses the official  
+**USB Power Delivery Specification PDF** and generates structured output files.  
+It automates extraction of documentation structure for testing, analysis, and content validation.
 
-It follows:
-- ✅ 100% OOP principles
-- ✅ Java 17 + Spring Boot 3.x
-- ✅ Lombok (for boilerplate reduction)
-- ✅ Proper Java naming conventions
-- ✅ Global exception handling
+The system produces:
+
+- 📄 **usb_pd_toc.jsonl** → Extracted Table of Contents  
+- 📄 **usb_pd_sections.jsonl** → All extracted content sections  
+- 📊 **validation_report.xlsx** → Comparison between TOC & actual parsed content  
+- 🧾 **performance.log** → Execution time and processing metrics
 
 ---
 
-## 🚀 Features
-- **Upload PDF** via REST API (`/api/pdf/parse`)
-- Extracts **ToC** into `usb_pd_toc.jsonl`
-- Extracts **all sections** into `usb_pd_sections.jsonl`
-- Generates **Excel validation report** (`validation_report.xlsx`)
-- Handles exceptions globally (`GlobalExceptionHandler`)
-- Supports **JUnit/Mockito tests** for services, controller, and validation logic
+## 🚀 Key Features
+
+- Upload PDF via REST endpoint:  
+  `POST /api/pdf/parse`
+- Extracts **hierarchical Table of Contents**
+- Extracts **all content sections with text**
+- Generates a **validation report (Excel)**
+- Includes detailed **performance + debugging logs**
+- Global exception handling implemented for stability
 
 ---
 
 ## 🛠️ Tech Stack
-- **Java 17**
-- **Spring Boot 3.2.x**
-- **Apache PDFBox** → for PDF parsing
-- **Jackson** → for JSONL writing
-- **Apache POI** → for Excel validation reports
-- **Lombok** → for cleaner models
-- **JUnit 5 + Mockito** → for unit/integration tests
+
+| Layer | Technology |
+|-------|-----------|
+| Language | **Java 17** |
+| Framework | **Spring Boot 3.x** |
+| Parsing Engine | **Apache PDFBox** |
+| File Output | **Jackson JSONL Writer** |
+| Validation | **Apache POI (Excel)** |
+| Logging | **SLF4J + Logback** |
+| Utility | **Lombok (models & builders)** |
+| Testing | **JUnit 5 + Mockito** |
 
 ---
 
 ## ⚙️ Setup & Run
 
-### 1. Clone the Repository
+### 1️⃣ Clone the Repository
+
 ```bash
 git clone https://github.com/<your-username>/usb-pd-parser.git
 cd usb-pd-parser
