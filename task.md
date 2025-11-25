@@ -1,105 +1,131 @@
-USB Power Delivery (USB-PD) Parsing Assignment – Task Documentation
-📌 Project Overview
-This project extracts structured information from the official USB Power Delivery Specification PDF, generating:
+📌 USB Power Delivery (USB-PD) Parsing System — Task Documentation
+🧾 Overview
+This project automates the extraction of structured data from the official USB Power Delivery Specification PDF.
+It converts the document into machine-readable structured outputs and validates consistency between the Table of Contents (TOC) and the extracted Sections.
 
-Table of Contents JSONL
+The system is implemented using:
 
-Parsed Sections JSONL
+Java 17
 
-Validation Report (Excel) comparing ToC vs sections
+Spring Boot
 
-Performance logs and architecture documentation
+Apache PDFBox
 
-The system is implemented using Java 17, Spring Boot, Apache PDFBox, Apache POI, and SLF4J/Logback.
+Apache POI
 
-🎯 Objectives
-Your task was to build an end-to-end system that:
+Jackson JSONL Writer
 
-1. Reads the USB-PD Specification PDF
-   Accepts input through CLI or REST API.
+SLF4J + Logback
 
-Validates file format and path.
+🎯 Project Goals
+Task	Status
+Accept PDF via REST API	✅ Done
+Extract Table of Contents	✅ Done
+Extract full document sections (text + hierarchy)	✅ Done
+Serialize outputs into JSONL	✅ Done
+Validate TOC vs Section extraction	✅ Done
+Generate excel validation report	✅ Done
+Maintain performance logs	✅ Done
+🧩 Functional Breakdown
+1️⃣ Input Handling
+PDF uploaded via endpoint:
 
-2. Extracts ToC (Table of Contents)
-   Parse numbered section titles (e.g., 1., 1.2, 3.4.5, etc.)
+POST /api/pdf/parse
+File validation: required, must be PDF
 
-Generate structured TOC data:
+File stored to:
 
-section_id
+output/uploads/<filename>.pdf
+Logs first performance entry:
 
-title
+Upload saved: <time> ms, CPU %, Memory Used
+2️⃣ Parsing Layer (Apache PDFBox)
+📍 TOC Extraction (PdfBoxTocExtractor)
+Extracts:
 
-page
+Section number (1, 1.2, 3.4.5…)
 
-level
+Title
 
-parent_id
+Page number
 
-full_path
+Nested hierarchy level
 
-→ Output stored as usb_pd_toc.jsonl
+Parent section
 
-3. Extracts Sections from PDF
-   Split PDF pages into meaningful section-level content.
+➡ Output → usb_pd_toc.jsonl
 
-Combine:
+📍 Content Extraction (PdfBoxSectionExtractor)
+Detects headings
 
-heading detection,
+Extracts text belonging to each section
 
-page number tracking,
+Handles page numbering from printed pages inside PDF
 
-hierarchical mapping.
+➡ Output → usb_pd_sections.jsonl
 
-→ Output stored as usb_pd_sections.jsonl
+3️⃣ Serialization (JSONL Output)
+Performed using:
 
-4. Clean & Post-Process Sections
-   Implemented optional SectionPostProcessor to:
+JsonlWriter (Jackson)
+Files generated:
 
-normalize headings,
+File	Purpose
+usb_pd_toc.jsonl	Raw structured Table of Contents
+usb_pd_sections.jsonl	Parsed full document sections
+4️⃣ Validation Layer (Excel Report)
+ExcelValidator (Apache POI) compares:
 
-remove trash content,
+Missing entries
 
-unify formatting.
+Extra entries
 
-5. Deduplicate Sections
-   Use heuristics to pick best content per section_id:
+Page alignment mismatch
 
-Prefer non-placeholder content.
+Orphaned or unreferenced sections
 
-Prefer longer text.
+➡ Produces:
 
-Prefer lower page number.
+validation_report.xlsx
+5️⃣ Observability
+Logging handled by:
 
-6. Write JSONL Outputs
-   Use Jackson streaming to write:
+SLF4J + Logback
 
-One JSON object per line
+PerfLogger
 
-Proper UTF-8 encoding
+Logs include:
 
-Minimal memory footprint
+Upload processing time
 
-7. Validate ToC vs Sections
-   Validation included:
+Parsing performance
 
-Missing sections
+Memory + CPU usage
 
-Extra sections
+Extraction counts
 
-Page mismatch detection
+➡ Stored in:
 
-Orphaned sections
-
-Structure consistency checks
-
-→ Results written to validation_report.xlsx using Apache POI.
-
-8. Logging & Performance
-   SLF4J + Logback logging.
-
-PerfProbe recorded processing times, section counts, and performance metrics.
-
-→ Output stored in:
-
-performance.log
-
+logs/performance.log
+📁 Output Directory Structure
+output/
+ ├── uploads/                       (uploaded PDF)
+ ├── usb_pd_toc.jsonl
+ ├── usb_pd_sections.jsonl
+ ├── validation_report.xlsx
+logs/
+ └── performance.log
+🧪 Example Log Entries
+Upload saved: 156 ms, CPU: 7%, Memory: 67 MB
+ToC extracted: 3992 ms, items=265
+Sections extracted: 16038 ms, items=4773
+JSONL written: 132 ms, total=5038
+Validation report written: 1698 ms
+Job complete: 24826 ms, CPU: 21%, Memory: 633 MB
+🧠 Key Features
+Feature	Description
+📑 PDF Parsing	Handles complex formatting, dotted leaders, annexes, printed page numbers
+🧼 Cleaning	Fixes broken TOC lines and normalizes content
+🔁 Deduplication	Removes duplicate section entries based on best quality
+📊 Validation	Ensures TOC & extracted content are aligned
+⚡ Performance monitoring	Logs execution efficiency and resource usage
