@@ -2,50 +2,50 @@
 sequenceDiagram
     %% Participants
     actor Dev as Developer / Client
-    participant App as UsbPdParserApplication
+    participant App as Spring Boot App
     participant Ctrl as PdfParserController
     participant Storage as File System (output/)
-    participant PdfBox as PDFBox Layer<br/>(Toc + Section Extractors)
+    participant PdfBox as PDFBox Extractors<br/>(TOC + Sections)
     participant Writer as JsonlWriter (Jackson)
     participant Validator as ExcelValidator (Apache POI)
     participant Log as PerfLogger / Logback
 
-    %% 1. Entry + Ingestion
-    Dev->>App: Start Spring Boot app
-    Dev->>Ctrl: POST /api/pdf/parse (multipart PDF)
-    Ctrl->>Ctrl: validate file (non-empty, is PDF)
-    Ctrl->>Storage: save PDF under output/
-    Storage-->>Ctrl: PDF path
-    Ctrl->>Log: log "Upload saved..." (time, CPU, memory)
+    %% ENTRY + UPLOAD
+    Dev->>App: Starts Application
+    Dev->>Ctrl: POST /api/pdf/parse (Upload PDF)
+    Ctrl->>Ctrl: Validate file (PDF check)
+    Ctrl->>Storage: Save PDF inside output/
+    Storage-->>Ctrl: File stored path
+    Ctrl->>Log: "Upload saved" (time, CPU, memory)
 
-    %% 2. Parsing (TOC + Sections)
-    Ctrl->>PdfBox: parse TOC (PdfBoxTocExtractor)
-    PdfBox-->>Ctrl: List<Section> tocSections
-    Ctrl->>Log: log "ToC extracted..." (items, ms)
+    %% PARSING PHASE
+    Ctrl->>PdfBox: Extract TOC (PdfBoxTocExtractor)
+    PdfBox-->>Ctrl: tocSections (List<Section>)
+    Ctrl->>Log: "TOC extracted" (count, time)
 
-    Ctrl->>PdfBox: parse Sections (PdfBoxSectionExtractor)
-    PdfBox-->>Ctrl: List<Section> allSections
-    Ctrl->>Log: log "Sections extracted..." (items, ms)
+    Ctrl->>PdfBox: Extract Sections (PdfBoxSectionExtractor)
+    PdfBox-->>Ctrl: allSections (List<Section>)
+    Ctrl->>Log: "Sections extracted" (count, time)
 
-    %% 3. JSONL Writing (no post-processing/dedup)
-    Ctrl->>Writer: write usb_pd_toc.jsonl (tocSections)
-    Writer->>Storage: create/overwrite usb_pd_toc.jsonl
-    Storage-->>Writer: file written
+    %% WRITE JSONL OUTPUTS
+    Ctrl->>Writer: Write usb_pd_toc.jsonl
+    Writer->>Storage: Save TOC JSONL
+    Storage-->>Writer: File written
 
-    Ctrl->>Writer: write usb_pd_sections.jsonl (allSections)
-    Writer->>Storage: create/overwrite usb_pd_sections.jsonl
-    Storage-->>Writer: file written
-    Ctrl->>Log: log "JSONL written..." (total items, ms)
+    Ctrl->>Writer: Write usb_pd_sections.jsonl
+    Writer->>Storage: Save Sections JSONL
+    Storage-->>Writer: File written
+    Ctrl->>Log: "JSONL written" (rows, time)
 
-    %% 4. Validation (Excel)
-    Ctrl->>Validator: validate(tocSections, allSections)
-    Validator->>Storage: create validation_report.xlsx
-    Storage-->>Validator: report saved
-    Validator-->>Ctrl: validation done
-    Ctrl->>Log: log "Validation report written..." (ms)
+    %% VALIDATION PHASE
+    Ctrl->>Validator: Compare TOC vs Sections
+    Validator->>Storage: Generate validation_report.xlsx
+    Storage-->>Validator: File saved
+    Validator-->>Ctrl: Validation complete
+    Ctrl->>Log: "Validation report written"
 
-    %% 5. Final summary + HTTP response
-    Ctrl->>Log: log "Job complete..." (total ms, CPU, memory)
-    Ctrl-->>Dev: 200 OK + "Parsing complete. Results -> output/"
- entry
+    %% FINAL RESPONSE
+    Ctrl->>Log: "Job complete" (total runtime, memory)
+    Ctrl-->>Dev: 200 OK - Results available in output/
+
   Dev->>FS: download outputs (toc, sections, report)
