@@ -1,39 +1,51 @@
 ```mermaid
 sequenceDiagram
-  actor Dev as Developer
-  participant API as PdfParserController
-  participant FS as File System (output/uploads)
-  participant PDF as PDFBox
-  participant TOC as PdfBoxTocExtractor
-  participant SEC as PdfBoxSectionExtractor
-  participant POST as SectionPostProcessor
-  participant DEDUP as Deduplicator
-  participant JSON as JacksonJsonlWriter
-  participant VAL as ExcelValidator
-  participant LOG as PerfLogger
+    %% Participants
+    actor Dev as Developer / Client
+    participant App as UsbPdParserApplication
+    participant Ctrl as PdfParserController
+    participant Storage as File System (output/)
+    participant PdfBox as PDFBox Layer<br/>(Toc + Section Extractors)
+    participant Writer as JsonlWriter (Jackson)
+    participant Validator as ExcelValidator (Apache POI)
+    participant Log as PerfLogger / Logback
 
-  Dev->>API: POST /api/pdf/parse (file)
-  API->>FS: save uploaded file
-  API->>LOG: log "Upload saved"
-  API->>PDF: request parse(pdf)
-  PDF->>TOC: extract TOC pages
-  TOC-->>PDF: tocSections
-  TOC->>LOG: log "ToC extracted"
-  PDF->>SEC: extract full sections
-  SEC-->>PDF: allSections (Section POJOs)
-  SEC->>LOG: log "Sections extracted"
-  SEC->>POST: send allSections
-  POST-->>SEC: cleanedSections
-  POST->>DEDUP: send cleanedSections
-  DEDUP-->>POST: dedupedSections
-  TOC->>JSON: provide tocSections
-  DEDUP->>JSON: provide dedupedSections
-  JSON->>FS: write usb_pd_toc.jsonl & usb_pd_sections.jsonl
-  JSON->>LOG: log "JSONL written"
-  TOC->>VAL: provide usb_pd_toc.jsonl
-  JSON->>VAL: provide usb_pd_sections.jsonl
-  VAL->>VAL: compare and build report
-  VAL->>FS: write validation_report.xlsx
-  VAL->>LOG: log "Validation report written"
-  LOG->>LOG: write final "Job complete" entry
+    %% 1. Entry + Ingestion
+    Dev->>App: Start Spring Boot app
+    Dev->>Ctrl: POST /api/pdf/parse (multipart PDF)
+    Ctrl->>Ctrl: validate file (non-empty, is PDF)
+    Ctrl->>Storage: save PDF under output/
+    Storage-->>Ctrl: PDF path
+    Ctrl->>Log: log "Upload saved..." (time, CPU, memory)
+
+    %% 2. Parsing (TOC + Sections)
+    Ctrl->>PdfBox: parse TOC (PdfBoxTocExtractor)
+    PdfBox-->>Ctrl: List<Section> tocSections
+    Ctrl->>Log: log "ToC extracted..." (items, ms)
+
+    Ctrl->>PdfBox: parse Sections (PdfBoxSectionExtractor)
+    PdfBox-->>Ctrl: List<Section> allSections
+    Ctrl->>Log: log "Sections extracted..." (items, ms)
+
+    %% 3. JSONL Writing (no post-processing/dedup)
+    Ctrl->>Writer: write usb_pd_toc.jsonl (tocSections)
+    Writer->>Storage: create/overwrite usb_pd_toc.jsonl
+    Storage-->>Writer: file written
+
+    Ctrl->>Writer: write usb_pd_sections.jsonl (allSections)
+    Writer->>Storage: create/overwrite usb_pd_sections.jsonl
+    Storage-->>Writer: file written
+    Ctrl->>Log: log "JSONL written..." (total items, ms)
+
+    %% 4. Validation (Excel)
+    Ctrl->>Validator: validate(tocSections, allSections)
+    Validator->>Storage: create validation_report.xlsx
+    Storage-->>Validator: report saved
+    Validator-->>Ctrl: validation done
+    Ctrl->>Log: log "Validation report written..." (ms)
+
+    %% 5. Final summary + HTTP response
+    Ctrl->>Log: log "Job complete..." (total ms, CPU, memory)
+    Ctrl-->>Dev: 200 OK + "Parsing complete. Results -> output/"
+ entry
   Dev->>FS: download outputs (toc, sections, report)
